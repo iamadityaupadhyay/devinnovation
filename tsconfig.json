@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "types": ["@shadcn/ui"],
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/util.js", "src/auth.js", "src/app/model/User.ts", "src/app/api/user/signup/route.ts", "src/app/api/auth/[...nextauth]/route.js", "src/app/api/contact/route.ts", "src/app/dashboard/page.jsx", "src/app/quiz-play/[id]/page.tsx", "src/app/(portfolio)/components/DashBoard.jsx", "src/app/(portfolio)/components/skeleton/Skeleton.jsx", "src/app/(pages)/coverpage/page.jsx", "src/app/(portfolio)/components/SplitText.jsx", "src/app/api/(quiz)/total-quizes/route.ts", "src/app/api/chat-gpt/route.ts", "src/app/(pages)/(dashboards)/student-dashboard/page.tsx", "src/app/(portfolio)/components/StudentDashboard.jsx", "src/app/(portfolio)/components/JoinQuiz.jsx", "src/app/(portfolio)/components/TechnologySection.tsx", "src/app/(pages)/(tcs-nqt)/playy/[shareCode]/page.jsx", "src/app/api/(tcs)/mock-tests/[id]/user-result/route.ts", "src/app/api/send-otp/route.js", "src/app/(pages)/otp/page.jsx", "src/app/(portfolio)/components/RotatingText.jsx"],
+  "exclude": ["node_modules"]
+}
