@@ -193,7 +193,7 @@ const AppsInvoNavbar: React.FC = () => {
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50 font-sans">
       {/* Top Bar - Hidden on mobile */}
-      <div className="hidden lg:block bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-100 border-b border-gray-200">
+      <div className="hidden lg:block bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-end items-center py-1">
             <div className="flex items-center space-x-6 text-sm">
@@ -232,9 +232,9 @@ const AppsInvoNavbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <a href="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 via-purple-500 to-blue-500 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform">
-              <div className="text-white font-bold text-lg">A</div>
-            </div>
+            <div className="w-12 h-10 md:w-10 lg:w-14 md:h-10 lg:h-14 bg-blue-100 rounded-full flex items-center justify-center">
+                          <img src="/icons/digital-art.gif" className='w-14'></img>
+                        </div>
             <span className="text-xl font-bold">
               <span className="text-gray-700">dev</span>
               <span className="text-orange-500">invo</span>
