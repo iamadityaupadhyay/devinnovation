@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Quote, Star, Smartphone, Phone, TabletSmartphone, Watch, Palette, CheckCircle, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Service {
   title: string;
@@ -112,10 +113,10 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
           
           {/* More Info Button - appears on hover */}
           <div className={`transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 group">
+            <Link href={`/service/${service.title.replaceAll(" ","-").toLowerCase()}`} className="bg-orange-500 hover:bg-orange-600 w-36 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 group">
               More Info
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
+            </Link>
           </div>
         </div>
       </div>

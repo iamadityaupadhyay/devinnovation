@@ -90,7 +90,7 @@ export default function ModernFooter() {
                             {industries.map((industry) => (
                                 <div key={industry.name} className="flex items-center hover:text-orange-500 transition-colors duration-300">
                                     
-                                    <span>{industry.name}</span>
+                                    <Link href={`/service/${industry.name.toLowerCase().replace(/ /g, '-')}`}>{industry.name}</Link>
                                 </div>
                             ))}
                         </div>

@@ -70,9 +70,99 @@ const servicesData: ServiceItem[] = [
     href: "consulting",
     imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
     description: "Strategic technology consulting to guide your digital transformation"
+  },
+  // Additional services from the new image
+  {
+    name: "Mobile App Development",
+    href: "mobile-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Comprehensive mobile app development services"
+  },
+  {
+    name: "Android App Development",
+    href: "android-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1591200636279-6d832b3a2e0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Expert Android app development solutions"
+  },
+  {
+    name: "Android VR App Development",
+    href: "android-vr-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Innovative VR app development for Android"
+  },
+  {
+    name: "Blockchain App Development",
+    href: "blockchain-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1640932663090-83e24c9d6b5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Secure blockchain-based app development"
+  },
+  {
+    name: "Chatbot App Development",
+    href: "chatbot-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1600585154526-990d71a92051?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Intelligent chatbot application development"
+  },
+  {
+    name: "Flutter App Development",
+    href: "flutter-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Cross-platform apps with Flutter"
+  },
+  {
+    name: "Hybrid App Development",
+    href: "hybrid-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Efficient hybrid app development services"
+  },
+  {
+    name: "iOS App Development",
+    href: "ios-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1591200636279-6d832b3a2e0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "High-quality iOS app development"
+  },
+  {
+    name: "IoT App Development",
+    href: "iot-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
+    description: "IoT-enabled app development solutions"
+  },
+  {
+    name: "Kotlin App Development",
+    href: "kotlin-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1534126511022-8e5b7f7b8b4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Robust Kotlin-based app development"
+  },
+  {
+    name: "Mobile App Consultancy",
+    href: "mobile-app-consultancy",
+    imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+    description: "Expert consultancy for mobile app projects"
+  },
+  {
+    name: "React Native App Development",
+    href: "react-native-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1607990281513-2c110a25bd90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Cross-platform apps with React Native"
+  },
+  {
+    name: "Software Quality Assurance",
+    href: "software-quality-assurance",
+    imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Ensuring software reliability through quality assurance"
+  },
+  {
+    name: "SEO Service",
+    href: "seo-service",
+    imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+    description: "Optimize your site with expert SEO services"
+  },
+  {
+    name: "Wearable App Development",
+    href: "wearable-app-development",
+    imageUrl: "https://images.unsplash.com/photo-1576091160597-9e1e597d6bc1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Apps designed for wearable devices"
   }
 ];
-
 interface IndustryPageProps {
   params: {
     industry: string;
@@ -119,9 +209,9 @@ export default function IndustryPage({ params }: any) {
             {/* Main Content Section - At half height */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start" >
               {/* Left Side - Your Content */}
-              
-              <WhyChooseUs/>
               <ServiceForm/>
+              <WhyChooseUs/>
+              
               
             </div>
           </div>

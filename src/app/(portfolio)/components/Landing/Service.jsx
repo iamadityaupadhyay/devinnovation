@@ -33,8 +33,8 @@ const ServicesComponent = () => {
   const handleServiceClick = (service) => {
     // You can customize this function to handle clicks
     // For example, navigate to a specific page or show more details
-    console.log(`Clicked on: ${service}`);
-    // Example: window.location.href = `/services/${service.toLowerCase().replace(/ /g, '-')}`;
+    
+  window.location.href = `/service/${service.toLowerCase().replace(/ /g, '-')}`;
   };
 
   return (
