@@ -72,7 +72,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className=" pt-8 pb-16 bg-gradient-to-br from-orange-50 via-white to-orange-100 px-4 ">
+    <section className=" pt-8 pb-16 bg-gradient-to-br from-orange-50 via-yellow to-orange-100 px-4 ">
       <div className="max-w-7xl  mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
