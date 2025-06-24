@@ -5,6 +5,10 @@ import Service from "./components/Landing/Service"
 import PastExperiences from "./components/Landing/PastExperiences"
 import DevelopmentLifecycle from "./components/Landing/DevelopmentLifecycle"
 import WhyChooseUs from "./components/Landing/WhyChooseUs"
+import WhyChooseUsSection from "./components/Landing/Whychooseuss"
+import FAQComponent from "./components/Landing/FAQ"
+import RequestQuoteModal from "./components/Forms/RequestQuote"
+
 
 
 export default async function Home() {
@@ -15,6 +19,19 @@ export default async function Home() {
       <PastExperiences/>
       <DevelopmentLifecycle/>
       <WhyChooseUs/>
+      <WhyChooseUsSection/>
+ <FAQComponent/>
+     
+ {/* <WebCrumbsComponent/> */}
+
+
+
+
+
+
+
+
+
       <Service/>
       
     </main>

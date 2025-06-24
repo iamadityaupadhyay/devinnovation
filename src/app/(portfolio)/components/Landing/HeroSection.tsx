@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from 'react';
+import RequestQuoteModal from '../Forms/RequestQuote';
 
 
 export default function BlockchainLandingCarousel() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -84,7 +86,11 @@ export default function BlockchainLandingCarousel() {
       ]
     },
   ];
-
+useEffect(() => {
+  if (isModalOpen) {
+    setIsAutoPlaying(false);
+  }
+}, [isModalOpen]);
   useEffect(() => {
     if (!isAutoPlaying) return;
     
@@ -96,6 +102,7 @@ export default function BlockchainLandingCarousel() {
   }, [isAutoPlaying, slides.length]);
 
   
+
 
   const goToSlide = (index:any) => {
     setCurrentSlide(index);
@@ -204,9 +211,10 @@ export default function BlockchainLandingCarousel() {
       </div>
     </div>
   );
-
+  
   return (
     <div className="relative w-full h-screen overflow-hidden bg-red-300">
+      
       {/* Carousel Container */}
       <div className="relative  h-full">
         <div 
@@ -221,14 +229,14 @@ export default function BlockchainLandingCarousel() {
               <FloatingElements />
               
               {/* Left Content */}
-              <div className="flex-1 max-w-xl z-10 w-full lg:pr-8 text-center lg:text-left">
-                <div className="space-y-4 md:space-y-6 lg:space-y-8">
+              <div className="flex-1 max-w-xl mt-4 z-10 w-full  text-center lg:text-left">
+                <div className="space-y-5 md:space-y-6 lg:space-y-8">
                   {/* Main Title */}
                   <div>
-                    <h1 className={`${slide.id==5?"text-3xl":"text-4xl"}  md:text-4xl lg:text-4xl font-bold text-orange-500 mb-1 md:mb-2 leading-tight`}>
+                    <h1 className={`${slide.id==5?"text-3xl":"text-4xl"}  md:text-4xl lg:text-5xl font-extrabold text-orange-500 mb-1 md:mb-2 leading-tight`}>
                       {slide.title}
                     </h1>
-                    <p className={`${slide.id==5?"text-3xl":"text-4xl"} md:text-4xl lg:text-3xl text-gray-700 font-bold`}>
+                    <p className={`${slide.id==5?"text-3xl":"text-4xl"} md:text-5xl lg:text-5xl text-gray-700 font-extrabold`}>
                       {slide.subtitle}
                     </p>
                   </div>
@@ -247,7 +255,7 @@ export default function BlockchainLandingCarousel() {
                   </div>
 
                   {/* Stats Section - Responsive Grid */}
-                  <div className="flex flex-col items-center gap-4 py-8 md:gap-6">
+                  <div className="flex flex-col items-center gap-4 py-4 md:gap-6">
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4 lg:gap-6 w-full max-w-2xl">
                       <div className="bg-white border border-gray-200 rounded-lg p-3 md:p-4 flex items-center gap-2 justify-center sm:justify-start">
                         <div className="w-12 h-10 md:w-10 lg:w-14 md:h-10 lg:h-14 bg-blue-100 rounded-full flex items-center justify-center">
@@ -288,11 +296,18 @@ export default function BlockchainLandingCarousel() {
                     </div>
                   </div>
 
-                  {/* CTA Button */}
-                  <button className="bg-orange-500 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg hover:bg-transparent hover:text-orange-500 border-2 border-orange-500 transition-all duration-300 text-lg">
-                    BOOK FREE CONSULTANCY
-                  </button>
+          
+                 
                 </div>
+                <button 
+  onClick={() => {
+    setIsModalOpen(true);
+    setIsAutoPlaying(false); 
+  }}
+  className="bg-orange-500 text-white px-4 py-3 rounded-md lg:text-lg font-bold transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
+>
+  BOOK FREE CONSULTANCY
+</button>
               </div>
 
               {/* Right Illustration - Hidden on mobile */}
@@ -304,7 +319,7 @@ export default function BlockchainLandingCarousel() {
 
               {/* Mobile Illustration - Smaller version */}
               <div className="lg:hidden  flex justify-center items-center z-10">
-                <div className="relative pb-10 w-96 ">
+                <div className="relative pb-10 w-screen h-64 ">
                   <BlockchainIllustration />
                 </div>
               </div>
@@ -344,7 +359,14 @@ export default function BlockchainLandingCarousel() {
       </div>
 
       {/* Progress Bar */}
-     
+     <RequestQuoteModal 
+  isOpen={isModalOpen} 
+  onClose={() => {
+    setIsModalOpen(false);
+    setIsAutoPlaying(true); // Resume carousel
+  }} 
+/>
     </div>
+    
   );
 }

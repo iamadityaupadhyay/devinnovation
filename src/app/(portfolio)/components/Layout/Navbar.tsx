@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Mail, Phone } from 'lucide-react';
+import RequestQuoteModal from '../Forms/RequestQuote';
 
 interface DropdownItem {
   label: string;
@@ -29,7 +30,7 @@ const AppsInvoNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-
+const [isModalOpen, setIsModalOpen] = useState(false);
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -42,16 +43,16 @@ const AppsInvoNavbar: React.FC = () => {
   }, []);
 
   const services: Service[] = [
-    { name: 'Web Development', icon: '💻', href: '#', bgColor: 'bg-blue-500' },
-    { name: 'Mobile Apps', icon: '📱', href: '#', bgColor: 'bg-green-500' },
-    { name: 'UI/UX Design', icon: '🎨', href: '#', bgColor: 'bg-purple-500' },
-    { name: 'Digital Marketing', icon: '📊', href: '#', bgColor: 'bg-red-500' },
-    { name: 'E-commerce', icon: '🛒', href: '#', bgColor: 'bg-orange-500' },
-    { name: 'Cloud Solutions', icon: '☁️', href: '#', bgColor: 'bg-cyan-500' },
-    { name: 'AI & ML', icon: '🤖', href: '#', bgColor: 'bg-indigo-500' },
-    { name: 'DevOps', icon: '⚙️', href: '#', bgColor: 'bg-gray-600' },
-    { name: 'Quality Assurance', icon: '✅', href: '#', bgColor: 'bg-emerald-500' },
-    { name: 'Consulting', icon: '💡', href: '#', bgColor: 'bg-yellow-500' }
+    { name: 'Web Development', icon: '💻', href: '/service/web-development', bgColor: 'bg-blue-500' },
+    { name: 'Mobile Apps', icon: '📱', href: '/service/mobile-apps', bgColor: 'bg-green-500' },
+    { name: 'UI/UX Design', icon: '🎨', href: '/service/ui-ux-design', bgColor: 'bg-purple-500' },
+    { name: 'Digital Marketing', icon: '📊', href: '/service/digital-marketing', bgColor: 'bg-red-500' },
+    { name: 'E-commerce', icon: '🛒', href: '/service/e-commerce', bgColor: 'bg-orange-500' },
+    { name: 'Cloud Solutions', icon: '☁️', href: '/service/cloud-solutions', bgColor: 'bg-cyan-500' },
+    { name: 'AI & ML', icon: '🤖', href: '/service/ai-ml', bgColor: 'bg-indigo-500' },
+    { name: 'DevOps', icon: '⚙️', href: '/service/devops', bgColor: 'bg-gray-600' },
+    { name: 'Quality Assurance', icon: '✅', href: '/service/quality-assurance', bgColor: 'bg-emerald-500' },
+    { name: 'Consulting', icon: '💡', href: '/service/consulting', bgColor: 'bg-yellow-500' }
   ];
 
   const developers: Service[] = [
@@ -76,53 +77,50 @@ const AppsInvoNavbar: React.FC = () => {
   ];
 
   const industries: Service[] = [
-    { name: 'Healthcare', icon: '🏥', href: '#healthcare', bgColor: 'bg-blue-500' },
-    { name: 'E-commerce', icon: '🛒', href: '#ecommerce', bgColor: 'bg-orange-500' },
-    { name: 'Education', icon: '🎓', href: '#education', bgColor: 'bg-green-500' },
-    { name: 'Finance', icon: '💸', href: '#finance', bgColor: 'bg-yellow-500' },
-    { name: 'Real Estate', icon: '🏠', href: '#real-estate', bgColor: 'bg-purple-500' },
-    { name: 'Travel & Tourism', icon: '✈️', href: '#travel', bgColor: 'bg-cyan-500' },
-    { name: 'Construction', icon: '🏗️', href: '#construction', bgColor: 'bg-gray-600' },
-    { name: 'Agriculture', icon: '🌾', href: '#agriculture', bgColor: 'bg-emerald-500' },
-    { name: 'Electric Vehicle', icon: '🚗', href: '#electric-vehicle', bgColor: 'bg-indigo-500' },
-    { name: 'Fintech', icon: '📱', href: '#fintech', bgColor: 'bg-red-500' },
-    { name: 'Milk Delivery', icon: '🥛', href: '#milk-delivery', bgColor: 'bg-blue-400' },
-    { name: 'Fleet Management', icon: '🚚', href: '#fleet-management', bgColor: 'bg-green-600' },
-    { name: 'Lawyer', icon: '⚖️', href: '#lawyer', bgColor: 'bg-purple-600' },
-    { name: 'AI Application', icon: '🤖', href: '#ai-application', bgColor: 'bg-cyan-600' },
-    { name: 'Oil & Gas', icon: '⛽', href: '#oil-gas', bgColor: 'bg-gray-700' },
-    { name: 'Banking', icon: '🏦', href: '#banking', bgColor: 'bg-yellow-600' },
-    { name: 'Business', icon: '💼', href: '#business', bgColor: 'bg-blue-600' },
-    { name: 'Car Rental', icon: '🚘', href: '#car-rental', bgColor: 'bg-orange-600' },
-    { name: 'NGO', icon: '🤝', href: '#ngo', bgColor: 'bg-green-700' },
-    { name: 'Game', icon: '🎮', href: '#game', bgColor: 'bg-purple-700' },
-    { name: 'Courier', icon: '📦', href: '#courier', bgColor: 'bg-red-600' },
-    { name: 'Online Examination', icon: '📝', href: '#online-examination', bgColor: 'bg-cyan-700' },
-    { name: 'Taxi Booking', icon: '🚕', href: '#taxi-booking', bgColor: 'bg-yellow-700' },
-    { name: 'Augmented Reality', icon: '🕶️', href: '#augmented-reality', bgColor: 'bg-blue-700' },
-    { name: 'CRM & ERP', icon: '📊', href: '#crm-erp', bgColor: 'bg-indigo-600' },
-    { name: 'Automotive', icon: '🚗', href: '#automotive', bgColor: 'bg-gray-800' },
-    { name: 'Influencer', icon: '🌟', href: '#influencer', bgColor: 'bg-orange-700' },
-    { name: 'Restaurant', icon: '🍽️', href: '#restaurant', bgColor: 'bg-red-700' },
-    { name: 'SaaS', icon: '☁️', href: '#saas', bgColor: 'bg-blue-800' },
-    { name: 'Social Networking', icon: '🌐', href: '#social-networking', bgColor: 'bg-green-800' },
-    { name: 'Sports', icon: '⚽', href: '#sports', bgColor: 'bg-purple-800' },
-    { name: 'Travel App', icon: '🗺️', href: '#travel-app', bgColor: 'bg-cyan-800' },
-    { name: 'Wellness App', icon: '🧘', href: '#wellness-app', bgColor: 'bg-yellow-800' },
-    { name: 'Car Wash', icon: '🚿', href: '#car-wash', bgColor: 'bg-blue-900' },
-    { name: 'Astrology', icon: '🌙', href: '#astrology', bgColor: 'bg-purple-900' },
-    { name: 'Doctor', icon: '🩺', href: '#doctor', bgColor: 'bg-red-800' },
-    { name: 'Salon', icon: '💇', href: '#salon', bgColor: 'bg-orange-800' },
-    { name: 'Laundry', icon: '🧼', href: '#laundry', bgColor: 'bg-green-900' },
-    { name: 'Medicine Delivery', icon: '💊', href: '#medicine-delivery', bgColor: 'bg-blue-500' },
-    { name: 'Airline', icon: '✈️', href: '#airline', bgColor: 'bg-cyan-900' },
-    { name: 'E-Scooter App', icon: '🛵', href: '#e-scooter-app', bgColor: 'bg-yellow-900' },
-    { name: 'Entertainment', icon: '🎬', href: '#entertainment', bgColor: 'bg-red-900' },
-    { name: 'Event', icon: '🎉', href: '#event', bgColor: 'bg-purple-500' },
-    { name: 'm-Learning', icon: '📱', href: '#m-learning', bgColor: 'bg-blue-600' },
-    { name: 'News App', icon: '📰', href: '#news-app', bgColor: 'bg-orange-900' },
-    { name: 'On-Demand', icon: '⚡', href: '#on-demand', bgColor: 'bg-green-500' },
-    { name: 'Political', icon: '🏛️', href: '#political', bgColor: 'bg-blue-700' }
+    { name: 'Healthcare', icon: '🏥', href: '/service/healthcare', bgColor: 'bg-blue-500' },
+    { name: 'E-commerce', icon: '🛒', href: '/industries/e-commerce', bgColor: 'bg-orange-500' },
+    { name: 'Education', icon: '🎓', href: '/service/education', bgColor: 'bg-green-500' },
+    { name: 'Finance', icon: '💸', href: '/service/finance', bgColor: 'bg-yellow-500' },
+    { name: 'Real Estate', icon: '🏠', href: '/service/real-estate', bgColor: 'bg-purple-500' },
+    { name: 'Travel & Tourism', icon: '✈️', href: '/service/travel-tourism', bgColor: 'bg-cyan-500' },
+    { name: 'Construction', icon: '🏗️', href: '/service/construction', bgColor: 'bg-gray-600' },
+    { name: 'Agriculture', icon: '🌾', href: '/service/agriculture', bgColor: 'bg-emerald-500' },
+    { name: 'Electric Vehicle', icon: '🚗', href: '/service/electric-vehicle', bgColor: 'bg-indigo-500' },
+    { name: 'Fintech', icon: '📱', href: '/service/fintech', bgColor: 'bg-red-500' },
+    { name: 'Milk Delivery', icon: '🥛', href: '/service/milk-delivery', bgColor: 'bg-blue-400' },
+    { name: 'Fleet Management', icon: '🚚', href: '/service/fleet-management', bgColor: 'bg-green-600' },
+    { name: 'Lawyer', icon: '⚖️', href: '/service/lawyer', bgColor: 'bg-purple-600' },
+    { name: 'AI Application', icon: '🤖', href: '/service/ai-application', bgColor: 'bg-cyan-600' },
+    { name: 'Oil & Gas', icon: '⛽', href: '/service/oil-gas', bgColor: 'bg-gray-700' },
+    { name: 'Banking', icon: '🏦', href: '/service/banking', bgColor: 'bg-yellow-600' },
+    { name: 'Business', icon: '💼', href: '/service/business', bgColor: 'bg-blue-600' },
+    { name: 'Car Rental', icon: '🚘', href: '/service/car-rental', bgColor: 'bg-orange-600' },
+    { name: 'NGO', icon: '🤝', href: '/service/ngo', bgColor: 'bg-green-700' },
+    { name: 'Game', icon: '🎮', href: '/service/game', bgColor: 'bg-purple-700' },
+    { name: 'Courier', icon: '📦', href: '/service/courier', bgColor: 'bg-red-600' },
+    { name: 'Online Examination', icon: '📝', href: '/service/online-examination', bgColor: 'bg-cyan-700' },
+    { name: 'Taxi Booking', icon: '🚕', href: '/service/taxi-booking', bgColor: 'bg-yellow-700' },
+    { name: 'Augmented Reality', icon: '🕶️', href: '/service/augmented-reality', bgColor: 'bg-blue-700' },
+    { name: 'CRM & ERP', icon: '📊', href: '/service/crm-erp', bgColor: 'bg-indigo-600' },
+    { name: 'Automotive', icon: '🚗', href: '/service/automotive', bgColor: 'bg-gray-800' },
+    { name: 'Influencer', icon: '🌟', href: '/service/influencer', bgColor: 'bg-orange-700' },
+    { name: 'Restaurant', icon: '🍽️', href: '/service/restaurant', bgColor: 'bg-red-700' },
+    { name: 'SaaS', icon: '☁️', href: '/service/saas', bgColor: 'bg-blue-800' },
+    { name: 'Social Networking', icon: '🌐', href: '/service/social-networking', bgColor: 'bg-green-800' },
+    { name: 'Sports', icon: '⚽', href: '/service/sports', bgColor: 'bg-purple-800' },
+    { name: 'Travel App', icon: '🗺️', href: '/service/travel-app', bgColor: 'bg-cyan-800' },
+    { name: 'Wellness App', icon: '🧘', href: '/service/wellness-app', bgColor: 'bg-yellow-800' },
+    { name: 'Car Wash', icon: '🚿', href: '/service/car-wash', bgColor: 'bg-blue-900' },
+    { name: 'Astrology', icon: '🌙', href: '/service/astrology', bgColor: 'bg-purple-900' },
+    { name: 'Doctor', icon: '🩺', href: '/service/doctor', bgColor: 'bg-red-800' },
+    { name: 'Salon', icon: '💇', href: '/service/salon', bgColor: 'bg-orange-800' },
+    { name: 'Laundry', icon: '🧼', href: '/service/laundry', bgColor: 'bg-green-900' },
+    { name: 'Medicine Delivery', icon: '💊', href: '/service/medicine-delivery', bgColor: 'bg-blue-500' },
+    { name: 'Airline', icon: '✈️', href: '/service/airline', bgColor: 'bg-cyan-900' },
+    { name: 'E-Scooter App', icon: '🛵', href: '/service/e-scooter-app', bgColor: 'bg-yellow-900' },
+    { name: 'Entertainment', icon: '🎬', href: '/service/entertainment', bgColor: 'bg-red-900' },
+    { name: 'News App', icon: '📰', href: '/service/news-app', bgColor: 'bg-orange-900' },
+    { name: 'On-Demand', icon: '⚡', href: '/service/on-demand', bgColor: 'bg-green-500' }
   ];
 
   const navItems: NavItem[] = [
@@ -164,7 +162,7 @@ const AppsInvoNavbar: React.FC = () => {
     { label: 'Career', href: '#' },
     { label: 'Clients', href: '#' },
     { label: 'Blog', href: '#' },
-    { label: 'Contact', href: '#' },
+    
   ];
 
   const handleMouseEnter = (label: string) => {
@@ -216,12 +214,15 @@ const AppsInvoNavbar: React.FC = () => {
                 <Phone className="w-4 h-4" />
                 <span>+91 8840250583</span>
               </div>
-                <a
-                href="#"
-                className="bg-orange-500 text-white px-4 py-1.5 rounded-md text-sm font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
-                >
-                Consult Experts
-                </a>
+               <button 
+  onClick={() => {
+    setIsModalOpen(true);
+    
+  }}
+  className="bg-orange-500 text-white px-4 py-1 rounded-md text-base font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
+>
+  Consult Experts
+</button>
             </div>
           </div>
         </div>
@@ -414,16 +415,19 @@ const AppsInvoNavbar: React.FC = () => {
                 <Mail className="w-4 h-4" />
                 <span>trackode.ai@gmail.com</span>
               </a>
-              <a href="tel:+15551234567" className="flex items-center space-x-2 text-gray-600 py-2">
+              <a href="tel:+918840250583" className="flex items-center space-x-2 text-gray-600 py-2">
                 <Phone className="w-4 h-4" />
-                <span>+1 (555) 123-4567</span>
+                <span>+91 8840250583</span>
               </a>
-              <a
-                href="#"
-                className="inline-block bg-orange-500 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-600 transition-colors mt-2"
-              >
-                Consult Experts
-              </a>
+               <button 
+  onClick={() => {
+    setIsModalOpen(true);
+  
+  }}
+  className="bg-orange-500 text-white px-4 py-1 rounded-md text-base font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
+>
+  Consult Experts
+</button>
             </div>
           </div>
 
@@ -520,6 +524,13 @@ const AppsInvoNavbar: React.FC = () => {
           ))}
         </div>
       </div>
+       <RequestQuoteModal
+  isOpen={isModalOpen} 
+  onClose={() => {
+    setIsModalOpen(false);
+    // Resume carousel
+  }} 
+/>
     </nav>
   );
 };
