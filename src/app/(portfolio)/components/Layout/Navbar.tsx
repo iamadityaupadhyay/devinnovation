@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Mail, Phone } from 'lucide-react';
 import RequestQuoteModal from '../Forms/RequestQuote';
-
+import Link from 'next/link';
+import Image from 'next/image';
 interface DropdownItem {
   label: string;
   href: string;
@@ -10,11 +11,16 @@ interface DropdownItem {
 
 interface Service {
   name: string;
-  icon: string;
   href: string;
-  bgColor: string;
+  imageUrl?: string; // Changed from icon to imageUrl
+  bgColor: string
 }
-
+interface Hire{
+  name: string;
+  href: string;
+  icon:string// Changed from icon to imageUrl
+  bgColor: string
+}
 interface NavItem {
   label: string;
   href: string;
@@ -30,7 +36,8 @@ const AppsInvoNavbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -42,20 +49,70 @@ const [isModalOpen, setIsModalOpen] = useState(false);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const services: Service[] = [
-    { name: 'Web Development', icon: '💻', href: '/service/web-development', bgColor: 'bg-blue-500' },
-    { name: 'Mobile Apps', icon: '📱', href: '/service/mobile-apps', bgColor: 'bg-green-500' },
-    { name: 'UI/UX Design', icon: '🎨', href: '/service/ui-ux-design', bgColor: 'bg-purple-500' },
-    { name: 'Digital Marketing', icon: '📊', href: '/service/digital-marketing', bgColor: 'bg-red-500' },
-    { name: 'E-commerce', icon: '🛒', href: '/service/e-commerce', bgColor: 'bg-orange-500' },
-    { name: 'Cloud Solutions', icon: '☁️', href: '/service/cloud-solutions', bgColor: 'bg-cyan-500' },
-    { name: 'AI & ML', icon: '🤖', href: '/service/ai-ml', bgColor: 'bg-indigo-500' },
-    { name: 'DevOps', icon: '⚙️', href: '/service/devops', bgColor: 'bg-gray-600' },
-    { name: 'Quality Assurance', icon: '✅', href: '/service/quality-assurance', bgColor: 'bg-emerald-500' },
-    { name: 'Consulting', icon: '💡', href: '/service/consulting', bgColor: 'bg-yellow-500' }
+  const servicesData: Service[] = [
+    {
+      name: "Web Development",
+      href: "/service/web-development",
+      imageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      bgColor: 'bg-blue-500'
+    },
+    {
+      name: "Mobile Apps",
+      href: "/service/mobile-apps",
+      imageUrl: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-green-500'
+    },
+    {
+      name: "UI/UX Design",
+      href: "/service/ui-ux-design",
+      imageUrl: "https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80",
+      bgColor: 'bg-purple-500'
+    },
+    {
+      name: "Digital Marketing",
+      href: "/service/digital-marketing",
+      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+      bgColor: 'bg-red-500'
+    },
+    {
+      name: "E-commerce",
+      href: "/service/e-commerce",
+      imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      bgColor: 'bg-orange-500'
+    },
+    {
+      name: "Cloud Solutions",
+      href: "/service/cloud-solutions",
+      imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
+      bgColor: 'bg-cyan-500'
+    },
+    {
+      name: "AI & ML",
+      href: "/service/ai-ml",
+      imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2332&q=80",
+      bgColor: 'bg-indigo-500'
+    },
+    {
+      name: "DevOps",
+      href: "/service/devops",
+      imageUrl: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      bgColor: 'bg-gray-600'
+    },
+    {
+      name: "Quality Assurance",
+      href: "/service/quality-assurance",
+      imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-emerald-500'
+    },
+    {
+      name: "Consulting",
+      href: "/service/consulting",
+      imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      bgColor: 'bg-yellow-500'
+    }
   ];
 
-  const developers: Service[] = [
+  const developers: Hire[] = [
     { name: 'Ionic App Developers', icon: '⚡', href: '#hire-ionic-developers', bgColor: 'bg-blue-500' },
     { name: 'Node.js Developers', icon: '🟢', href: '#hire-nodejs-developers', bgColor: 'bg-green-600' },
     { name: 'Next.js Developers', icon: '▲', href: '#hire-nextjs-developers', bgColor: 'bg-black' },
@@ -77,70 +134,278 @@ const [isModalOpen, setIsModalOpen] = useState(false);
   ];
 
   const industries: Service[] = [
-    { name: 'Healthcare', icon: '🏥', href: '/service/healthcare', bgColor: 'bg-blue-500' },
-    { name: 'E-commerce', icon: '🛒', href: '/industries/e-commerce', bgColor: 'bg-orange-500' },
-    { name: 'Education', icon: '🎓', href: '/service/education', bgColor: 'bg-green-500' },
-    { name: 'Finance', icon: '💸', href: '/service/finance', bgColor: 'bg-yellow-500' },
-    { name: 'Real Estate', icon: '🏠', href: '/service/real-estate', bgColor: 'bg-purple-500' },
-    { name: 'Travel & Tourism', icon: '✈️', href: '/service/travel-tourism', bgColor: 'bg-cyan-500' },
-    { name: 'Construction', icon: '🏗️', href: '/service/construction', bgColor: 'bg-gray-600' },
-    { name: 'Agriculture', icon: '🌾', href: '/service/agriculture', bgColor: 'bg-emerald-500' },
-    { name: 'Electric Vehicle', icon: '🚗', href: '/service/electric-vehicle', bgColor: 'bg-indigo-500' },
-    { name: 'Fintech', icon: '📱', href: '/service/fintech', bgColor: 'bg-red-500' },
-    { name: 'Milk Delivery', icon: '🥛', href: '/service/milk-delivery', bgColor: 'bg-blue-400' },
-    { name: 'Fleet Management', icon: '🚚', href: '/service/fleet-management', bgColor: 'bg-green-600' },
-    { name: 'Lawyer', icon: '⚖️', href: '/service/lawyer', bgColor: 'bg-purple-600' },
-    { name: 'AI Application', icon: '🤖', href: '/service/ai-application', bgColor: 'bg-cyan-600' },
-    { name: 'Oil & Gas', icon: '⛽', href: '/service/oil-gas', bgColor: 'bg-gray-700' },
-    { name: 'Banking', icon: '🏦', href: '/service/banking', bgColor: 'bg-yellow-600' },
-    { name: 'Business', icon: '💼', href: '/service/business', bgColor: 'bg-blue-600' },
-    { name: 'Car Rental', icon: '🚘', href: '/service/car-rental', bgColor: 'bg-orange-600' },
-    { name: 'NGO', icon: '🤝', href: '/service/ngo', bgColor: 'bg-green-700' },
-    { name: 'Game', icon: '🎮', href: '/service/game', bgColor: 'bg-purple-700' },
-    { name: 'Courier', icon: '📦', href: '/service/courier', bgColor: 'bg-red-600' },
-    { name: 'Online Examination', icon: '📝', href: '/service/online-examination', bgColor: 'bg-cyan-700' },
-    { name: 'Taxi Booking', icon: '🚕', href: '/service/taxi-booking', bgColor: 'bg-yellow-700' },
-    { name: 'Augmented Reality', icon: '🕶️', href: '/service/augmented-reality', bgColor: 'bg-blue-700' },
-    { name: 'CRM & ERP', icon: '📊', href: '/service/crm-erp', bgColor: 'bg-indigo-600' },
-    { name: 'Automotive', icon: '🚗', href: '/service/automotive', bgColor: 'bg-gray-800' },
-    { name: 'Influencer', icon: '🌟', href: '/service/influencer', bgColor: 'bg-orange-700' },
-    { name: 'Restaurant', icon: '🍽️', href: '/service/restaurant', bgColor: 'bg-red-700' },
-    { name: 'SaaS', icon: '☁️', href: '/service/saas', bgColor: 'bg-blue-800' },
-    { name: 'Social Networking', icon: '🌐', href: '/service/social-networking', bgColor: 'bg-green-800' },
-    { name: 'Sports', icon: '⚽', href: '/service/sports', bgColor: 'bg-purple-800' },
-    { name: 'Travel App', icon: '🗺️', href: '/service/travel-app', bgColor: 'bg-cyan-800' },
-    { name: 'Wellness App', icon: '🧘', href: '/service/wellness-app', bgColor: 'bg-yellow-800' },
-    { name: 'Car Wash', icon: '🚿', href: '/service/car-wash', bgColor: 'bg-blue-900' },
-    { name: 'Astrology', icon: '🌙', href: '/service/astrology', bgColor: 'bg-purple-900' },
-    { name: 'Doctor', icon: '🩺', href: '/service/doctor', bgColor: 'bg-red-800' },
-    { name: 'Salon', icon: '💇', href: '/service/salon', bgColor: 'bg-orange-800' },
-    { name: 'Laundry', icon: '🧼', href: '/service/laundry', bgColor: 'bg-green-900' },
-    { name: 'Medicine Delivery', icon: '💊', href: '/service/medicine-delivery', bgColor: 'bg-blue-500' },
-    { name: 'Airline', icon: '✈️', href: '/service/airline', bgColor: 'bg-cyan-900' },
-    { name: 'E-Scooter App', icon: '🛵', href: '/service/e-scooter-app', bgColor: 'bg-yellow-900' },
-    { name: 'Entertainment', icon: '🎬', href: '/service/entertainment', bgColor: 'bg-red-900' },
-    { name: 'News App', icon: '📰', href: '/service/news-app', bgColor: 'bg-orange-900' },
-    { name: 'On-Demand', icon: '⚡', href: '/service/on-demand', bgColor: 'bg-green-500' }
+    {
+      name: "Healthcare",
+      href: "/service/healthcare",
+      imageUrl: "https://images.unsplash.com/photo-1602265585142-6b221b9b2c24?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGVhbHRoY2FyZSUyMGFwcHN8ZW58MHx8MHx8fDA%3D",
+      bgColor: 'bg-blue-500'
+    },
+    {
+      name: "E-commerce",
+      href: "/service/e-commerce",
+      imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      bgColor: 'bg-orange-500'
+    },
+    {
+      name: "Education",
+      href: "/service/education",
+      imageUrl: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2022&q=80",
+      bgColor: 'bg-green-500'
+    },
+    {
+      name: "Finance",
+      href: "/service/finance",
+      imageUrl: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-yellow-500'
+    },
+    {
+      name: "Real Estate",
+      href: "/service/real-estate",
+      imageUrl: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1973&q=80",
+      bgColor: 'bg-purple-500'
+    },
+    {
+      name: "Travel & Tourism",
+      href: "/service/travel-tourism",
+      imageUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB ascend=0&ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-cyan-500'
+    },
+    {
+      name: "Construction",
+      href: "/service/construction",
+      imageUrl: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-gray-600'
+    },
+    {
+      name: "Agriculture",
+      href: "/service/agriculture",
+      imageUrl: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2129&q=80",
+      bgColor: 'bg-emerald-500'
+    },
+    {
+      name: "Electric Vehicle",
+      href: "/service/electric-vehicle",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1715789261470-fb25ffbf70d3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWxlY3RyaWMlMjB2ZWhpY2xlfGVufDB8fDB8fHww",
+      bgColor: 'bg-indigo-500'
+    },
+    {
+      name: "Fintech",
+      href: "/service/fintech",
+      imageUrl: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-red-500'
+    },
+    {
+      name: "Milk Delivery",
+      href: "/service/milk-delivery",
+      imageUrl: "https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2026&q=80",
+      bgColor: 'bg-blue-400'
+    },
+    
+    {
+      name: "Lawyer",
+      href: "/service/lawyer",
+      imageUrl: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2012&q=80",
+      bgColor: 'bg-purple-600'
+    },
+    {
+      name: "AI Application",
+      href: "/service/ai-application",
+      imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2332&q=80",
+      bgColor: 'bg-cyan-600'
+    },
+    {
+      name: "Oil & Gas",
+      href: "/service/oil-gas",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1682148795124-dac95dd91fd4?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      bgColor: 'bg-gray-700'
+    },
+    {
+      name: "Banking",
+      href: "/service/banking",
+      imageUrl: "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-yellow-600'
+    },
+    {
+      name: "Business",
+      href: "/service/business",
+      imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-blue-600'
+    },
+    {
+      name: "Car Rental",
+      href: "/service/car-rental",
+      imageUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2014&q=80",
+      bgColor: 'bg-orange-600'
+    },
+    {
+      name: "NGO",
+      href: "/service/ngo",
+      imageUrl: "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-green-700'
+    },
+    {
+      name: "Game",
+      href: "/service/game",
+      imageUrl: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+      bgColor: 'bg-purple-700'
+    },
+    {
+      name: "Courier",
+      href: "/service/courier",
+      imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-red-600'
+    },
+    {
+      name: "Online Examination",
+      href: "/service/online-examination",
+      imageUrl: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-cyan-700'
+    },
+    {
+      name: "Taxi Booking",
+      href: "/service/taxi-booking",
+      imageUrl: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-yellow-700'
+    },
+    
+    {
+      name: "CRM & ERP",
+      href: "/service/crm-erp",
+      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+      bgColor: 'bg-indigo-600'
+    },
+    {
+      name: "Automotive",
+      href: "/service/automotive",
+      imageUrl: "https://images.unsplash.com/photo-1486496146582-9ffcd0b2b2b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-gray-800'
+    },
+    {
+      name: "Influencer",
+      href: "/service/influencer",
+      imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      bgColor: 'bg-orange-700'
+    },
+    {
+      name: "Restaurant",
+      href: "/service/restaurant",
+      imageUrl: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      bgColor: 'bg-red-700'
+    },
+    {
+      name: "SaaS",
+      href: "/service/saas",
+      imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
+      bgColor: 'bg-blue-800'
+    },
+    {
+      name: "Social Networking",
+      href: "/service/social-networking",
+      imageUrl: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      bgColor: 'bg-green-800'
+    },
+    {
+      name: "Sports",
+      href: "/service/sports",
+      imageUrl: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-purple-800'
+    },
+    {
+      name: "Travel App",
+      href: "/service/travel-app",
+      imageUrl: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2035&q=80",
+      bgColor: 'bg-cyan-800'
+    },
+    {
+      name: "Wellness App",
+      href: "/service/wellness-app",
+      imageUrl: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-yellow-800'
+    },
+    {
+      name: "Car Wash",
+      href: "/service/car-wash",
+      imageUrl: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FyJTIwd2FzaHxlbnwwfHwwfHx8MA%3D%3D",
+      bgColor: 'bg-blue-900'
+    },
+    {
+      name: "Astrology",
+      href: "/service/astrology",
+      imageUrl: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80",
+      bgColor: 'bg-purple-900'
+    },
+    {
+      name: "Doctor",
+      href: "/service/doctor",
+      imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      bgColor: 'bg-red-800'
+    },
+    {
+      name: "Salon",
+      href: "/service/salon",
+      imageUrl: "https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      bgColor: 'bg-orange-800'
+    },
+    {
+      name: "Laundry",
+      href: "/service/laundry",
+      imageUrl: "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGF1bmRyeXxlbnwwfHwwfHx8MA%3D%3D",
+      bgColor: 'bg-green-900'
+    },
+    {
+      name: "Medicine Delivery",
+      href: "/service/medicine-delivery",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1677860447055-5ce8092c0d7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWVkaWNpbmUlMjBkZWxpdmVyeXxlbnwwfHwwfHx8MA%3D%3D",
+      bgColor: 'bg-blue-500'
+    },
+    {
+      name: "Airline",
+      href: "/service/airline",
+      imageUrl: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      bgColor: 'bg-cyan-900'
+    },
+    {
+      name: "E-Scooter App",
+      href: "/service/e-scooter-app",
+      imageUrl: "https://images.unsplash.com/photo-1666608943517-2767469cd774?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZSUyMHNjb290ZXIlMjBhcHB8ZW58MHx8MHx8fDA%3D",
+      bgColor: 'bg-yellow-900'
+    },
+    {
+      name: "Entertainment",
+      href: "/service/entertainment",
+      imageUrl: "https://plus.unsplash.com/premium_photo-1710409625244-e9ed7e98f67b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZW50ZXJ0YWlubWVudHxlbnwwfHwwfHx8MA%3D%3D",
+      bgColor: 'bg-red-900'
+    },
+    {
+      name: "News App",
+      href: "/service/news-app",
+      imageUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      bgColor: 'bg-orange-900'
+    },
+    {
+      name: "On-Demand",
+      href: "/service/on-demand",
+      imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80",
+      bgColor: 'bg-green-500'
+    }
   ];
 
   const navItems: NavItem[] = [
     { label: 'Home', href: '#', isActive: true },
-    { label: 'Portfolio', href: '#' },
+    { label: 'Portfolio', href: '/portfolio' },
     {
       label: 'Services',
-      href: '#',
+      href: '/service',
       hasDropdown: true,
       isServicesDropdown: true,
-      dropdownItems: [
-        { label: 'Web Development', href: '#' },
-        { label: 'Mobile Apps', href: '#' },
-        { label: 'UI/UX Design', href: '#' },
-        { label: 'Digital Marketing', href: '#' },
-      ],
+      dropdownItems: servicesData.map(service => ({
+        label: service.name,
+        href: service.href
+      })),
     },
     {
       label: 'Industries',
-      href: '#',
+      href: '/industry',
       hasDropdown: true,
       isIndustriesDropdown: true,
       dropdownItems: industries.map(industry => ({
@@ -148,10 +413,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
         href: industry.href
       })),
     },
-    
     {
       label: 'Hire Team',
-      href: '#',
+      href: '/team',
       hasDropdown: true,
       isHireTeamDropdown: true,
       dropdownItems: developers.map(developer => ({
@@ -159,10 +423,9 @@ const [isModalOpen, setIsModalOpen] = useState(false);
         href: developer.href
       })),
     },
-    { label: 'Career', href: '#' },
-    { label: 'Clients', href: '#' },
-    { label: 'Blog', href: '#' },
+    { label: 'Trendings', href: '/industry' },
     
+    { label: 'Clients', href: '#' },
   ];
 
   const handleMouseEnter = (label: string) => {
@@ -195,34 +458,31 @@ const [isModalOpen, setIsModalOpen] = useState(false);
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-end items-center py-1">
             <div className="flex items-center space-x-6 text-sm">
-              <a
+              <Link
                 href="mailto:trackode.ai@gmail.com"
                 className="flex items-center space-x-2 text-gray-600 hover:text-orange-500 transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span>trackode.ai@gmail.com</span>
-              </a>
+              </Link>
               <div className="h-4 w-px bg-gray-300" />
-              <a
+              <Link
                 href="mailto:salestrackode.ai@gmail.com"
                 className="text-gray-600 hover:text-orange-500 transition-colors"
               >
                 salestrackode.ai@gmail.com
-              </a>
+              </Link>
               <div className="h-4 w-px bg-gray-300" />
               <div className="flex items-center space-x-1 text-gray-600">
                 <Phone className="w-4 h-4" />
                 <span>+91 8840250583</span>
               </div>
-               <button 
-  onClick={() => {
-    setIsModalOpen(true);
-    
-  }}
-  className="bg-orange-500 text-white px-4 py-1 rounded-md text-base font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
->
-  Consult Experts
-</button>
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-orange-500 text-white px-4 py-1 rounded-md text-base font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
+              >
+                Consult Experts
+              </button>
             </div>
           </div>
         </div>
@@ -232,177 +492,209 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <a href="/" className="flex items-center space-x-2 group">
+          <Link href="/" className="flex items-center space-x-2 group">
             <div className="w-12 h-10 md:w-10 lg:w-14 md:h-10 lg:h-14 bg-blue-100 rounded-full flex items-center justify-center">
-                          <img src="/icons/digital-art.gif" className='w-14'></img>
-                        </div>
+              <img src="/icons/digital-art.gif" className='w-14' />
+            </div>
             <span className="text-xl font-bold">
               <span className="text-gray-700">dev</span>
               <span className="text-orange-500">invo</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-5">
             {navItems.map((item, index) => (
-                <div
+              <div
                 key={index}
                 className="relative"
                 onMouseEnter={() => handleMouseEnter(item.label)}
                 onMouseLeave={handleMouseLeave}
-                >
-                <a
+              >
+                <Link
                   href={item.href}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  item.isActive
-                    ? 'text-orange-500 bg-orange-50'
-                    : 'text-gray-700 hover:text-orange-500 hover:bg-gray-50'
+                    item.isActive
+                      ? 'text-orange-500 bg-orange-50'
+                      : 'text-gray-700 hover:text-orange-500 hover:bg-gray-50'
                   }`}
                 >
                   <span>{item.label}</span>
                   {item.hasDropdown && (
-                  <ChevronDown className="w-4 h-4 ml-1" />
+                    <ChevronDown className="w-4 h-4 ml-1" />
                   )}
-                </a>
+                </Link>
 
                 {/* Desktop Dropdown */}
                 {item.hasDropdown && (
                   <div
-                  className={`absolute top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-200 z-40 ${
-                    activeDropdown === item.label
-                    ? 'opacity-100 visible translate-y-0'
-                    : 'opacity-0 invisible -translate-y-2'
-                  } ${
-                    item.isServicesDropdown 
-                    ? 'p-6 w-[800px] -left-96 max-h-[75vh] overflow-y-auto'
-                    : item.isHireTeamDropdown
-                    ? 'p-6 w-[800px] -left-96 max-h-[75vh] overflow-y-auto'
-                    : item.isIndustriesDropdown
-                    ? 'p-6 w-[800px] -left-96 max-h-[75vh] overflow-y-auto'
-                    : 'py-2 min-w-[200px]'
-                  }`}
-                  style={
-                    item.isServicesDropdown || item.isHireTeamDropdown || item.isIndustriesDropdown
-                    ? { scrollbarGutter: 'stable' }
-                    : undefined
-                  }
+                    className={`absolute top-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-200 z-40 ${
+                      activeDropdown === item.label
+                        ? 'opacity-100 visible translate-y-0'
+                        : 'opacity-0 invisible -translate-y-2'
+                    } ${
+                      item.isServicesDropdown 
+                        ? 'p-6 w-[800px] -left-96 max-h-[75vh] overflow-y-auto'
+                        : item.isHireTeamDropdown
+                        ? 'p-6 w-[800px] right-0 max-h-[75vh] overflow-y-auto'
+                        : item.isIndustriesDropdown
+                        ? 'p-6 w-[800px] -left-96 max-h-[75vh] overflow-y-auto'
+                        : 'py-2 min-w-[200px]'
+                    }`}
+                    style={
+                      item.isServicesDropdown || item.isHireTeamDropdown || item.isIndustriesDropdown
+                        ? { scrollbarGutter: 'stable' }
+                        : undefined
+                    }
                   >
-                  {item.isServicesDropdown ? (
-                    <div>
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">Our Services</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-4">
-                      Transform your ideas into powerful digital solutions with our comprehensive range of services.
-                      </p>
-                      <a href="#" className="text-orange-500 text-sm font-medium hover:text-orange-600 transition-colors">
-                      View All Services →
-                      </a>
-                    </div>
-                    
-                    <div className="grid grid-cols-5 gap-4">
-                      {services.map((service, serviceIndex) => (
-                      <a
-                        key={serviceIndex}
-                        href={service.href}
-                        className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
-                      >
-                        <div className={`w-16 h-16 ${service.bgColor} rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform shadow-lg`}>
-                        {service.icon}
+                    {item.isServicesDropdown ? (
+                      <div>
+                        <div className="mb-6">
+                          <h3 className="text-2xl font-bold text-gray-800 mb-2">Our Services</h3>
+                          <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-4">
+                            Transform your ideas into powerful digital solutions with our comprehensive range of services.
+                          </p>
+                          <Link href="/service" className="text-orange-500 text-sm font-medium hover:text-orange-600 transition-colors">
+                            View All Services →
+                          </Link>
                         </div>
-                        <span className="text-xs font-medium text-gray-800 leading-tight group-hover:text-orange-500 transition-colors">
-                        {service.name}
-                        </span>
-                      </a>
-                      ))}
-                    </div>
-                    </div>
-                  ) : item.isHireTeamDropdown ? (
-                    <div>
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">Hire Dedicated Developers</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-4">
-                      Build your dream team with our expert developers. Hire skilled professionals for your project needs.
-                      </p>
-                      <a href="#" className="text-orange-500 text-sm font-medium hover:text-orange-600 transition-colors">
-                      View All Developers →
-                      </a>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                      {developers.map((developer, developerIndex) => (
-                      <a
-                        key={developerIndex}
-                        href={developer.href}
-                        className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
-                      >
-                        <div className={`w-16 h-16 ${developer.bgColor} rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform shadow-lg`}>
-                        {developer.icon}
+                        <div className="grid grid-cols-5 gap-4">
+                          {servicesData.map((service, serviceIndex) => (
+                            <Link
+                              key={serviceIndex}
+                              href={service.href}
+                              className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
+                            >
+                              <div className={`w-16 h-16 ${service.bgColor} rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform shadow-lg overflow-hidden`}>
+                                <Image width={40} loading='lazy' priority={false} height={40} src={service.imageUrl?service.imageUrl:" "} alt={service.name} className="w-full h-full object-cover" />
+                              </div>
+                              <span className="text-xs font-medium text-gray-800 leading-tight group-hover:text-orange-500 transition-colors">
+                                {service.name}
+                              </span>
+                            </Link>
+                          ))}
                         </div>
-                        <span className="text-xs font-medium text-gray-800 leading-tight group-hover:text-orange-500 transition-colors">
-                        {developer.name}
-                        </span>
-                      </a>
-                      ))}
-                    </div>
-                    </div>
-                  ) : item.isIndustriesDropdown ? (
-                    <div>
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-gray-800 mb-2">Industries We Serve</h3>
-                      <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-4">
-                      Empowering diverse industries with innovative digital solutions tailored to their unique needs.
-                      </p>
-                      <a href="#" className="text-orange-500 text-sm font-medium hover:text-orange-600 transition-colors">
-                      View All Industries →
-                      </a>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                      {industries.map((industry, industryIndex) => (
-                      <a
-                        key={industryIndex}
-                        href={industry.href}
-                        className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
-                      >
-                        <div className={`w-16 h-16 ${industry.bgColor} rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform shadow-lg`}>
-                        {industry.icon}
+                      </div>
+                    ) : item.isHireTeamDropdown ? (
+                      <div>
+                        <div className="mb-6">
+                          <h3 className="text-2xl font-bold text-gray-800 mb-2">Hire Dedicated Developers</h3>
+                          <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-4">
+                            Build your dream team with our expert developers. Hire skilled professionals for your project needs.
+                          </p>
+                          <Link href="#" className="text-orange-500 text-sm font-medium hover:text-orange-600 transition-colors">
+                            View All Developers →
+                          </Link>
                         </div>
-                        <span className="text-xs font-medium text-gray-800 leading-tight group-hover:text-orange-500 transition-colors">
-                        {industry.name}
-                        </span>
-                      </a>
-                      ))}
-                    </div>
-                    </div>
-                  ) : (
-                    item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
-                    <a
-                      key={dropdownIndex}
-                      href={dropdownItem.href}
-                      className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-orange-500 transition-colors rounded-md"
-                    >
-                      {dropdownItem.label}
-                    </a>
-                    ))
-                  )}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                          {developers.map((developer, developerIndex) => (
+                            <Link
+                              key={developerIndex}
+                              href={developer.href}
+                              className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
+                            >
+                              <div className={`w-16 h-16 ${developer.bgColor} rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform shadow-lg`}>
+                                {developer.icon}
+                              </div>
+                              <span className="text-xs font-medium text-gray-800 leading-tight group-hover:text-orange-500 transition-colors">
+                                {developer.name}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : item.isIndustriesDropdown ? (
+                      <div>
+                        <div className="mb-6">
+                          <h3 className="text-2xl font-bold text-gray-800 mb-2">Industries We Serve</h3>
+                          <p className="text-gray-600 text-sm leading-relaxed max-w-md mb-4">
+                            Empowering diverse industries with innovative digital solutions tailored to their unique needs.
+                          </p>
+                          <Link href="/industry" className="text-orange-500 text-sm font-medium hover:text-orange-600 transition-colors">
+                            View All Industries →
+                          </Link>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                          {industries.map((industry, industryIndex) => (
+                            <Link
+                              key={industryIndex}
+                              href={industry.href}
+                              className="flex flex-col items-center text-center p-4 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
+                            >
+                              <div className={`w-16 h-16 ${industry.bgColor} rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform shadow-lg overflow-hidden`}>
+                                <Image width={40} height={40} loading='lazy' priority={false} src={industry.imageUrl?industry.imageUrl:" "} alt={industry.name} className="w-full h-full object-cover" />
+                              </div>
+                              <span className="text-xs font-medium text-gray-800 leading-tight group-hover:text-orange-500 transition-colors">
+                                {industry.name}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
+                        <Link
+                          key={dropdownIndex}
+                          href={dropdownItem.href}
+                          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-orange-500 transition-colors rounded-md"
+                        >
+                          {dropdownItem.label}
+                        </Link>
+                      ))
+                    )}
                   </div>
                 )}
-                </div>
+              </div>
             ))}
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex  ">
+            <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-transparent  text-gray-800 px-2 py-1.5 rounded-md text-sm  transition-colors border-2 border-orange-500 hover:bg-orange-400 hover:text-white hover:outline-none hover:border-orange-500"
+              >
+                Consult Experts
+              </button>
             <button
               onClick={toggleMobileMenu}
-              className="p-2 rounded-md text-gray-700 hover:text-orange-500 hover:bg-gray-50 transition-colors"
+              className="p-2 ml-2 rounded-md  text-gray-700 hover:text-orange-500 hover:bg-gray-50 transition-colors"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+             {/* main banaya hu dekh kya rhe ho 25 min lage hai banane me soch soch ke  */}
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : 
+               <div className="w-8 h-5 flex flex-col justify-between cursor-pointer">
+                <span className="h-1 w-4 bg-orange-500 rounded"></span>
+                <span className="h-1 w-6 bg-orange-500 rounded"></span>
+                <span className="h-1  bg-orange-500 rounded"></span>
+              </div>
+              }
             </button>
           </div>
         </div>
       </div>
-
+<div className="lg:hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 border-b border-gray-200">
+        <div className="max-w-7xl mx-auto ">
+          <div className="flex justify-center items-center py-1">
+            <div className="flex items-center space-x-2 text-sm">
+              <Link
+                href="mailto:trackode.ai@gmail.com"
+                className="flex items-center space-x-2 text-gray-600 hover:text-orange-500 transition-colors"
+              >
+                <Mail className="w-4 text-red-400 animate-pulse h-4" />
+                <span>trackode.ai@gmail.com</span>
+              </Link>
+              <div className="h-4 w-px bg-gray-300" />
+              
+              <div className="h-4 w-px bg-gray-300" />
+              <div className="flex items-center space-x-1 text-gray-600">
+                <Phone className="w-4 animate-pulse text-green-500 h-4" />
+                <span>+91 8840250583</span>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Mobile Navigation */}
       <div className={`lg:hidden transition-all duration-300 ease-in-out ${
         isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
@@ -411,23 +703,20 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           {/* Mobile Contact Info */}
           <div className="border-b border-gray-200 pb-4 mb-4">
             <div className="space-y-2 text-sm">
-              <a href="mailto:trackode.ai@gmail.com" className="flex items-center space-x-2 text-gray-600 py-2">
+              <Link href="mailto:trackode.ai@gmail.com" className="flex items-center space-x-2 text-gray-600 py-2">
                 <Mail className="w-4 h-4" />
                 <span>trackode.ai@gmail.com</span>
-              </a>
-              <a href="tel:+918840250583" className="flex items-center space-x-2 text-gray-600 py-2">
+              </Link>
+              <Link href="tel:+918840250583" className="flex items-center space-x-2 text-gray-600 py-2">
                 <Phone className="w-4 h-4" />
                 <span>+91 8840250583</span>
-              </a>
-               <button 
-  onClick={() => {
-    setIsModalOpen(true);
-  
-  }}
-  className="bg-orange-500 text-white px-4 py-1 rounded-md text-base font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
->
-  Consult Experts
-</button>
+              </Link>
+              <button 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-orange-500 text-white px-4 py-1 rounded-md text-base font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
+              >
+                Consult Experts
+              </button>
             </div>
           </div>
 
@@ -435,14 +724,14 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           {navItems.map((item, index) => (
             <div key={index} className="border-b border-gray-100 last:border-b-0">
               <div className="flex items-center justify-between">
-                <a
+                <Link
                   href={item.href}
                   className={`flex-1 py-3 text-base font-medium ${
                     item.isActive ? 'text-orange-500' : 'text-gray-700'
                   }`}
                 >
                   {item.label}
-                </a>
+                </Link>
                 {item.hasDropdown && (
                   <button
                     onClick={() => handleDropdownClick(item.label)}
@@ -463,23 +752,23 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                   <div className="pl-4 pb-2">
                     {item.isServicesDropdown ? (
                       <div className="grid grid-cols-2 gap-2 py-2">
-                        {services.map((service, serviceIndex) => (
-                          <a
+                        {servicesData.map((service, serviceIndex) => (
+                          <Link
                             key={serviceIndex}
                             href={service.href}
                             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                           >
-                            <div className={`w-8 h-8 ${service.bgColor} rounded-lg flex items-center justify-center text-white text-sm`}>
-                              {service.icon}
+                            <div className={`w-8 h-8 ${service.bgColor} rounded-lg flex items-center justify-center text-white text-sm overflow-hidden`}>
+                              <img src={service.imageUrl} alt={service.name} className="w-full h-full object-cover" />
                             </div>
                             <span className="text-sm text-gray-700">{service.name}</span>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     ) : item.isHireTeamDropdown ? (
                       <div className="grid grid-cols-2 gap-2 py-2">
                         {developers.map((developer, developerIndex) => (
-                          <a
+                          <Link
                             key={developerIndex}
                             href={developer.href}
                             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
@@ -488,33 +777,33 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                               {developer.icon}
                             </div>
                             <span className="text-sm text-gray-700">{developer.name}</span>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     ) : item.isIndustriesDropdown ? (
                       <div className="grid grid-cols-2 gap-2 py-2">
                         {industries.map((industry, industryIndex) => (
-                          <a
+                          <Link
                             key={industryIndex}
                             href={industry.href}
                             className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                           >
-                            <div className={`w-8 h-8 ${industry.bgColor} rounded-lg flex items-center justify-center text-white text-sm`}>
-                              {industry.icon}
+                            <div className={`w-8 h-8 ${industry.bgColor} rounded-lg flex items-center justify-center text-white text-sm overflow-hidden`}>
+                              <img src={industry.imageUrl} alt={industry.name} className="w-full h-full object-cover" />
                             </div>
                             <span className="text-sm text-gray-700">{industry.name}</span>
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     ) : (
                       item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
-                        <a
+                        <Link
                           key={dropdownIndex}
                           href={dropdownItem.href}
                           className="block py-2 text-sm text-gray-600 hover:text-orange-500 transition-colors"
                         >
                           {dropdownItem.label}
-                        </a>
+                        </Link>
                       ))
                     )}
                   </div>
@@ -524,13 +813,11 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           ))}
         </div>
       </div>
-       <RequestQuoteModal
-  isOpen={isModalOpen} 
-  onClose={() => {
-    setIsModalOpen(false);
-    // Resume carousel
-  }} 
-/>
+      
+      <RequestQuoteModal
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)}
+      />
     </nav>
   );
 };

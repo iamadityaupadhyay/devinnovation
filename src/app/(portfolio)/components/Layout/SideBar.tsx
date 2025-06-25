@@ -8,7 +8,7 @@ const SocialSidebar = () => {
 
   const socialLinks = [
     { icon: Facebook, href: 'https://instagram.com/iamadityaupadhyay', bg: 'bg-blue-600', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com/iamadityaupadhyay', bg: 'bg-gradient-to-br from-purple-600 to-pink-500', label: 'Instagram' },
+    { icon: Instagram, href: 'https://instagram.com/iam_adityaupadhyay', bg: 'bg-gradient-to-br from-purple-600 to-pink-500', label: 'Instagram' },
     { icon: Twitter, href: 'https://x.com/iam_adiupadhyay', bg: 'bg-black', label: 'Twitter/X' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/iamadityaupadhyay/', bg: 'bg-blue-700', label: 'LinkedIn' },
   ];

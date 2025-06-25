@@ -144,9 +144,7 @@ export default function ModernFooter() {
                                     <a href="mailto:trackode.ai@gmail.com" className="block hover:text-orange-500 transition-colors duration-300">
                                         trackode.ai@gmail.com
                                     </a>
-                                    <a href="mailto:trackode.ai@gmail.com" className="block hover:text-orange-500 transition-colors duration-300">
-                                        trackode.ai@gmail.com
-                                    </a>
+                                   
                                 </div>
                             </div>
                             

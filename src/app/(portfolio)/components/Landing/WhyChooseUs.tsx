@@ -117,7 +117,7 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-5">
           <div className="inline-flex flex-col sm:flex-row gap-4">
             {/* <button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-4 rounded-xl transition-colors duration-300 shadow-lg hover:shadow-xl">
               Get Started Today (not set)

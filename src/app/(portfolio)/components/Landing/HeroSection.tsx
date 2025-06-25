@@ -232,7 +232,9 @@ useEffect(() => {
               <div className="flex-1 max-w-xl mt-4 z-10 w-full  text-center lg:text-left">
                 <div className="space-y-5 md:space-y-6 lg:space-y-8">
                   {/* Main Title */}
+                  
                   <div>
+                   
                     <h1 className={`${slide.id==5?"text-3xl":"text-4xl"}  md:text-4xl lg:text-5xl font-extrabold text-orange-500 mb-1 md:mb-2 leading-tight`}>
                       {slide.title}
                     </h1>

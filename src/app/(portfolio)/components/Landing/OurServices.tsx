@@ -42,7 +42,7 @@ const services: Service[] = [
     hoverImage: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   },
   {
-    title: "UI/UX Designing",
+    title: "UI UX Design",
     description: "We design visually stunning and intuitive interfaces using advanced tools, creating seamless and engaging experiences for users.",
      icon: "/icons/digital-art.gif",
     bgColor: "bg-orange-500",

@@ -156,8 +156,8 @@ const RequestQuoteModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
             >
               <X className="w-6 h-6" />
             </button>
-            <h2 className="text-2xl font-bold text-white text-center">Request a Quote</h2>
-            <p className="text-orange-100 text-center mt-2">
+            <h2 className="text-xl font-bold text-white text-center">Request a Quote</h2>
+            <p className="text-orange-100 text-sm text-center mt-2">
               Fill out the form below with your details to start a conversation with our expert
             </p>
           </div>
