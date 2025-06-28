@@ -19,7 +19,7 @@ const QueryPopup = () => {
   useEffect(() => {
     const popupData = localStorage.getItem('hasSeenQueryPopup');
     const currentTime = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+    const oneDay = 1 * 60 * 60 * 1000; // 24 hours in milliseconds
 
     if (!popupData) {
       // No popup data, show popup

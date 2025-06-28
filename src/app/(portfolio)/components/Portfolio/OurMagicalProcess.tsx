@@ -3,7 +3,7 @@ import React from 'react'
 function OurMagicalProcess() {
   return (
     <div>{/* Process Section */}
-      <section className=" px-6 bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
+      <section className=" px-6  backdrop-blur-xl">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-2xl text-gray-900 font-black ">

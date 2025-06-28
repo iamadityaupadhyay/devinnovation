@@ -110,18 +110,7 @@ const quoteRequestSchema = new mongoose.Schema({
 
 
 
-// Static method for analytics
-quoteRequestSchema.statics.getAnalytics = function() {
-  return this.aggregate([
-    {
-      $group: {
-        _id: '$status',
-        count: { $sum: 1 },
-        avgBudget: { $avg: '$budget' }
-      }
-    }
-  ]);
-};
+
 
 const QuoteRequest =mongoose.models.QuoteRequest || mongoose.model('QuoteRequest', quoteRequestSchema);
 export default QuoteRequest;

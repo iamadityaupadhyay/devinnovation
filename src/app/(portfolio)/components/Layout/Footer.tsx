@@ -13,7 +13,7 @@ import {
 } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 
-export default function ModernFooter() {
+export default function ModernFooter({ contact }: any) {
     const industries = [
         { name: 'Airline', icon: '✈️' },
         { name: 'E-Commerce', icon: '🛒' },
@@ -25,11 +25,9 @@ export default function ModernFooter() {
         { name: 'Non-Profit', icon: '🤝' },
         { name: 'On-Demand', icon: '🚗' },
         { name: 'E-Learning', icon: '📚' },
-        { name: 'E-Commerce', icon: '🛍️' },
         { name: 'Fitness App', icon: '🏋️' },
         { name: 'Gaming', icon: '🎮' },
         { name: 'Lifestyle App', icon: '🌟' },
-        
         { name: 'Political', icon: '🏛️' },
         { name: 'Real Estate', icon: '🏠' },
         { name: 'Restaurant', icon: '🍽️' },
@@ -44,10 +42,10 @@ export default function ModernFooter() {
         { name: 'Home', href: '/' },
         { name: 'Portfolio', href: '/portfolio' },
         { name: 'Services', href: '/services' },
-        { name: 'Careers', href: '/careers' },
+        { name: 'Projects', href: '/projects' },
         { name: 'Clients', href: '/clients' },
-        { name: 'Blog', href: '/blog' },
-        { name: 'Sitemap', href: '/sitemap' }
+        { name: 'Team', href: '/team' },
+    
     ];
 
     return (
@@ -67,21 +65,34 @@ export default function ModernFooter() {
                         </p>
                         
                         <div className="flex space-x-4">
-                            <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-300">
-                                <FaLinkedin size={20} />
-                            </a>
-                            <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-300">
-                                <FaTwitter size={20} />
-                            </a>
-                            <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-300">
-                                <FaFacebook size={20} />
-                            </a>
-                            <a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-300">
-                                <FaInstagram size={20} />
-                            </a>
-                        </div>
+  <Link
+    href={contact?.linkedin || "#"}
+    className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
+  >
+    <FaLinkedin size={20} />
+  </Link>
+  <Link
+    href={contact?.twitter || "#"}
+    className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
+  >
+    <FaTwitter size={20} />
+  </Link>
+  <Link
+    href={contact?.facebook || "#"}
+    className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
+  >
+    <FaFacebook size={20} />
+  </Link>
+  <Link
+    href={contact?.instagram || "#"}
+    className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
+  >
+    <FaInstagram size={20} />
+  </Link>
+</div>
                     </div>
-{/* Industries Section - Improved */}
+
+                    {/* Industries Section - Improved */}
                     <div>
                         <h4 className="text-lg font-semibold text-white mb-6 pb-2 border-b border-orange-500 inline-block">
                             Industries We Serve
@@ -89,18 +100,20 @@ export default function ModernFooter() {
                         <div className="grid grid-cols-2 gap-3">
                             {industries.map((industry) => (
                                 <div key={industry.name} className="flex items-center hover:text-orange-500 transition-colors duration-300">
-                                    
-                                    <Link href={`/service/${industry.name.toLowerCase().replace(/ /g, '-')}`}>{industry.name}</Link>
+                                    <Link href={`/service/${industry.name.toLowerCase().replace(/ /g, '-')}`}>
+                                        {industry.name}
+                                    </Link>
                                 </div>
                             ))}
                         </div>
                     </div>
+
                     {/* Quick Links */}
-                    <div >
+                    <div>
                         <h4 className="text-lg font-semibold text-white mb-6 pb-2 border-b border-orange-500 inline-block">
                             Quick Links
                         </h4>
-                        <ul className='grid grid-cols-2 md:grid-cols-2 gap-3'>
+                        <ul className="grid grid-cols-2 md:grid-cols-2 gap-3">
                             {quickLinks.map((link) => (
                                 <li key={link.name}>
                                     <Link href={link.href} className="flex items-center hover:text-orange-500 transition-colors duration-300">
@@ -112,8 +125,6 @@ export default function ModernFooter() {
                         </ul>
                     </div>
 
-                    
-
                     {/* Contact Information */}
                     <div>
                         <h4 className="text-lg font-semibold text-white mb-6 pb-2 border-b border-orange-500 inline-block">
@@ -123,16 +134,15 @@ export default function ModernFooter() {
                             <div className="flex items-start">
                                 <FaMapMarkerAlt className="text-orange-500 mt-1 mr-3 flex-shrink-0" />
                                 <address className="not-italic">
-                                    Raju Pan Bhandar ke bagal me, Suresh Nai ke Dukan ke samne, 3rd Floor, B Block, Sector 62,<br />
-                                    Noida, Uttar Pradesh 201301
+                                    {contact?.address || 'Raju Pan Bhandar ke bagal me, Suresh Nai ke Dukaan ke samne, 3rd Floor, B Block, Sector 62, Noida, Uttar Pradesh 201301'}
                                 </address>
                             </div>
                             
                             <div className="flex items-center">
                                 <FaPhoneAlt className="text-orange-500 mr-3" />
-                                <a href="tel:+918840250583" className="hover:text-orange-500 transition-colors duration-300">
-                                    +91-884-025-0583
-                                </a>
+                                <Link href={`tel:${contact?.phoneNumber || '+91 8840250584'}`} className="hover:text-orange-500 transition-colors duration-300">
+                                    {contact?.phoneNumber || '+91 8840250584'}
+                                </Link>
                             </div>
                             
                             <div>
@@ -141,10 +151,9 @@ export default function ModernFooter() {
                                     <span className="text-white">Sales:</span>
                                 </div>
                                 <div className="ml-6 space-y-1">
-                                    <a href="mailto:trackode.ai@gmail.com" className="block hover:text-orange-500 transition-colors duration-300">
-                                        trackode.ai@gmail.com
-                                    </a>
-                                   
+                                    <Link href={`mailto:${contact?.email || 'trackode.ai@gmail.com'}`} className="block hover:text-orange-500 transition-colors duration-300">
+                                        {contact?.email || 'trackode.ai@gmail.com'}
+                                    </Link>
                                 </div>
                             </div>
                             
@@ -154,16 +163,15 @@ export default function ModernFooter() {
                                     <span className="text-white">HR:</span>
                                 </div>
                                 <div className="ml-6">
-                                    <a href="mailto:trackode.ai@gmail.com" className="hover:text-orange-500 transition-colors duration-300">
-                                        trackode.ai@gmail.com
-                                    </a>
+                                    <Link href={`mailto:${contact?.emailHR || 'trackode.ai@gmail.com'}`} className="hover:text-orange-500 transition-colors duration-300">
+                                        {contact?.emailHR || 'trackode.ai@gmail.com'}
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-              
                 {/* Copyright Section */}
                 <div className="mt-8 pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-sm">

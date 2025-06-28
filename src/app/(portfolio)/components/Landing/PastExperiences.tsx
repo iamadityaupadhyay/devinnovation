@@ -92,7 +92,7 @@ export default function PastExperiences() {
   }, [isVisible]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white-50 via-yellow-50 to-orange-50 py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-r from-orange-50 via-yellow-50 to-orange-50 py-16 px-4">
       
 
       <div className="mx-auto flex flex-col md:flex-row justify-center items-start gap-8">
@@ -118,7 +118,7 @@ export default function PastExperiences() {
               return (
                 <div
                   key={stat.id}
-                  className={`group relative overflow-hidden rounded-2xl ${stat.bgColor} p-5 transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
+                  className={`group relative overflow-hidden rounded-2xl ${stat.bgColor} p-3 transition-all duration-500 hover:scale-105 hover:shadow-2xl ${
                     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
@@ -133,8 +133,8 @@ export default function PastExperiences() {
                   </div>
 
                   <div className="relative z-10">
-                    <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className={`w-4 h-4 sm:w-8 sm:h-8 ${stat.iconColor}`} />
+                    <div className={`inline-flex items-center justify-center w-7 h-7 sm:w-10 sm:h-10 rounded-xl bg-white shadow-lg mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className={`w-2 h-2 sm:w-6 sm:h-6 ${stat.iconColor}`} />
                     </div>
 
                     <div className="mb-2">

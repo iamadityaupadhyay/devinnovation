@@ -12,10 +12,7 @@ function CallToAction() {
       <section className="py-10 px-6 bg-gradient-to-r from-orange-50 to-red-50 backdrop-blur-xl">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-4 hidden sm:block">
-            <div className="inline-flex items-center text-white gap-2 bg-gradient-to-r from-orange-400 to-red-500 text-black px-6 py-2 rounded-full font-bold text-sm mb-6">
-              <Star className="w-4 h-4" />
-              Ready to Dominate
-            </div>
+            
             <h2 className="text-2xl md:text-2xl text-gray-800 font-black mb-2">
               Let's Build Your
               <span className="ml-2 bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">

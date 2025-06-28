@@ -126,7 +126,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
 export const OurServices = () => {
   return (
-    <div id="services" className="w-full bg-gradient-to-br from-orange-50 via-white to-yellow-100 px-4 py-16 md:py-16 relative overflow-hidden">
+    <div id="services" className="w-full px-4 py-8 bg-gradient-to-r from-orange-50 to-yellow-50  relative overflow-hidden">
       {/* Interactive background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating particles */}
@@ -153,7 +153,6 @@ export const OurServices = () => {
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-5">
           <h3 className="text-blue-800 font-medium uppercase tracking-wider text-sm ">
-            OUR SERVICES
           </h3>
           <h1 className="text-3xl md:text-3xl font-extrabold text-gray-900 mb-1 leading-tight">
             We Build Modern Creative

@@ -213,7 +213,7 @@ useEffect(() => {
   );
   
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-red-300">
+    <div className=" h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden ">
       
       {/* Carousel Container */}
       <div className="relative  h-full">
@@ -224,7 +224,7 @@ useEffect(() => {
           {slides.map((slide, index) => (
             <div 
               key={slide.id}
-              className="min-w-full pt-24 lg:pt-0  h-full bg-gradient-to-br from-orange-50 via-white to-orange-100 relative flex flex-col lg:flex-row items-center justify-between p-4 md:px-8 lg:px-16"
+              className="min-w-full pt-24 lg:pt-0  h-full relative flex flex-col lg:flex-row items-center justify-between p-4 md:px-8 lg:px-16"
             >
               <FloatingElements />
               

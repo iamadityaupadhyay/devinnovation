@@ -43,7 +43,7 @@ const WhyChooseUsSection = () => {
   ];
 
   return (
-    <section className=" bg-gradient-to-br from-orange-50 via-white to-orange-100 pb-16 px-4 sm:px-6 lg:px-8">
+    <section className=" py-8 bg-gradient-to-r from-orange-50 to yellow-50 px-4 sm:px-6 lg:px-8">
       <div className=" mx-auto">
         <div className="grid lg:grid-cols-3   gap-12 items-center">
           {/* Left Side - Mobile App Showcase */}

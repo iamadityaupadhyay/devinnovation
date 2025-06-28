@@ -2,15 +2,15 @@
 import React, { useState } from 'react';
 import { User, Mail, Phone, MessageSquare, DollarSign, FileText } from 'lucide-react';
 import axios from "axios";
+import { FaRupeeSign } from 'react-icons/fa';
 
 
 const ServiceForm: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
-    countryCode: '+1',
+    countryCode: '+91',
     mobile: '',
-   
     budget: '',
     projectInfo: '',
   });
@@ -27,12 +27,12 @@ const ServiceForm: React.FC = () => {
   ];
 
   const budgetOptions = [
-    'Under $5,000',
-    '$5,000 - $10,000',
-    '$10,000 - $25,000',
-    '$25,000 - $50,000',
-    '$50,000 - $100,000',
-    'Above $100,000'
+    'Under ₹10,000',
+    '₹10,000 - ₹25,000',
+    '25,000 - ₹50,000',
+    '₹50,000 - ₹100,000',
+    '₹100,000 - ₹150,000',
+    'Above ₹150,000'
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -54,7 +54,7 @@ const ServiceForm: React.FC = () => {
       setFormData({
         fullName: '',
         email: '',
-        countryCode: '+1',
+        countryCode: '+91',
         mobile: '',
         
         budget: '',
@@ -160,7 +160,7 @@ const ServiceForm: React.FC = () => {
                   Budget (can be discussed later)
                 </label>
                 <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-500 w-5 h-5" />
+                  <FaRupeeSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-500 w-5 h-5" />
                   <select
                     name="budget"
                     value={formData.budget}

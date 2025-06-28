@@ -72,13 +72,13 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <section className=" pt-8 pb-16 bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-100 px-4 ">
+    <section className=" py-8 bg-gradient-to-r from-orange-50 via-yellow-50  to-orange-50  px-4 ">
       <div className="max-w-7xl  mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 leading-tight">
-            Why Choose <span className="text-orange-600">Adinvo</span> for the Leading{' '}
-            <span className="text-orange-600">App Development</span>
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-6 leading-tight">
+            Why Choose <span className="text-orange-600">Us for</span>
+            <span className="text-orange-600 ml-2">App Development</span>
           </h2>
           
         </div>
@@ -107,7 +107,7 @@ const WhyChooseUs = () => {
                 <div className="w-12 h-10 md:w-10 lg:w-14 md:h-10 lg:h-14  rounded-full flex items-center justify-center">
                           <img src={feature.icon} alt={feature.title} className='w-16  rounded-full' />
                         </div>
-                <h3 className={`ml-2 font-bold lg:text-lg text-md leading-tight`}>
+                <h3 className={`ml-2 font-bold text-md leading-tight`}>
                   {feature.title}
                 </h3>
                 

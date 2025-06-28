@@ -41,7 +41,7 @@ const FAQComponent = () => {
   ];
 
   return (
-    <div className="w-full  mx-auto px-2 py-10 pb-16 bg-gradient-to-br from-white via-white to-red-50 ">
+    <div className="w-full  mx-auto px-2 py-8 pb-16 bg-gradient-to-r from-orange-50 to yellow-50   ">
       {/* Header Section */}
       <div className="text-center mb-12 animate-fade-in">
         <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mb-6 shadow-lg animate-bounce-slow">

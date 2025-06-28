@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import connectDB from "./lib/util";
-import User from "@/app/model/User";
+import User from "./app/(portfolio)/model/User";
 import bcrypt from "bcryptjs";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -19,6 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         await connectDB();
         const { email, password } = credentials;
+        console.log("Credentials:", credentials)
         const user = await User.findOne({ email });
         // console.log(user);
         if (!user) {
@@ -53,36 +54,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   
   callbacks: {
-    async signIn({ user, account, profile }) {
-      if (account?.provider === "google") {
-        await connectDB();
-        
-        // Check if the user already exists in the database
-        const existingUser = await User.findOne({ email: profile?.email });
-        
-        if (existingUser===null) {
-          const password = await bcrypt.hash("null", 10);
-          const newUser = new User({
-            name: profile?.name,
-            email: profile?.email,
-            image: profile?.picture,
-            provider: "google",
-            password:password // Optional: Store the provider
-          });
-
-          await newUser.save();
- 
-          // Update the user object with the new user's ID
-          user.id = newUser._id.toString();
-          
-        } else {
-          // Update the user object with the existing user's ID
-          user.id = existingUser._id.toString();
-        }
-      }
-
-      return true; // Allow the sign-in
-    },
+    
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;

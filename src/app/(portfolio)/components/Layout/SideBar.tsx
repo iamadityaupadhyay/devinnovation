@@ -1,23 +1,25 @@
-"use client"
-import React, { useState } from 'react';
-import { Facebook, Instagram, Twitter, Linkedin, MessageCircle, Users, Phone, Mail } from 'lucide-react';
-import Link from 'next/link';
+"use client";
+import React, { useState } from "react";
+import { Facebook, Instagram, Twitter, Linkedin, MessageCircle, Users, Phone, Mail } from "lucide-react";
+import Link from "next/link";
 
-const SocialSidebar = () => {
+const SocialSidebar = ({ contact }: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  // Dynamic social links using contact prop
   const socialLinks = [
-    { icon: Facebook, href: 'https://instagram.com/iamadityaupadhyay', bg: 'bg-blue-600', label: 'Facebook' },
-    { icon: Instagram, href: 'https://instagram.com/iam_adityaupadhyay', bg: 'bg-gradient-to-br from-purple-600 to-pink-500', label: 'Instagram' },
-    { icon: Twitter, href: 'https://x.com/iam_adiupadhyay', bg: 'bg-black', label: 'Twitter/X' },
-    { icon: Linkedin, href: 'https://www.linkedin.com/in/iamadityaupadhyay/', bg: 'bg-blue-700', label: 'LinkedIn' },
+    { icon: Facebook, href: contact?.facebook || "https://facebook.com/iamadityaupadhyay", bg: "bg-blue-600", label: "Facebook" },
+    { icon: Instagram, href: contact?.instagram || "https://instagram.com/iam_adityaupadhyay", bg: "bg-gradient-to-br from-purple-600 to-pink-500", label: "Instagram" },
+    { icon: Twitter, href: contact?.twitter || "https://x.com/iam_adiupadhyay", bg: "bg-black", label: "Twitter/X" },
+    { icon: Linkedin, href: contact?.linkedin || "https://www.linkedin.com/in/iamadityaupadhyay/", bg: "bg-blue-700", label: "LinkedIn" },
   ];
 
+  // Dynamic contact links using contact prop
   const contactLinks = [
-    { icon: MessageCircle, href: 'https://wa.me/918840250583?text=Hi', bg: 'bg-green-500', label: 'WhatsApp' },
-    { icon: Users, href: '#', bg: 'bg-purple-600', label: 'Microsoft Teams' },
-    { icon: Phone, href: 'tel:+918840250583', bg: 'bg-orange-500', label: 'Phone' },
-    { icon: Mail, href: '#', bg: 'bg-blue-500', label: 'Email' },
+    { icon: MessageCircle, href: contact?.whatsapp ? `https://wa.me/${contact.whatsapp.replace(/^\+/, "").replace(" ","")}?text=Hi I want to connect with you for a project` : "https://wa.me/918840250583?text=Hi", bg: "bg-green-500", label: "WhatsApp" },
+    { icon: Users, href: contact?.whatsapp ? `https://wa.me/${contact.whatsapp.replace(/^\+/, "")}?text=Hi` : "https://wa.me/918840250583?text=Hi I want to connect with you for a project", bg: "bg-purple-600", label: "Microsoft Teams" }, // No dynamic URL provided, kept static
+    { icon: Phone, href: contact?.phoneNumber ? `tel:${contact.phoneNumber}` : "tel:+918840250583", bg: "bg-orange-500", label: "Phone" },
+    { icon: Mail, href: contact?.email ? `mailto:${contact.email}` : "#", bg: "bg-blue-500", label: "Email" },
   ];
 
   return (

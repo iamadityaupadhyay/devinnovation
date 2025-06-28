@@ -9,20 +9,23 @@ import WhyChooseUsSection from "./components/Landing/Whychooseuss"
 import FAQComponent from "./components/Landing/FAQ"
 import IndustryLeading from "./components/Landing/IndustryLeading"
 import QueryPopup from "./components/Forms/QueryPopup"// Add this line
+import PreviousProjects from "./components/Portfolio/Projects"
 
 export default async function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen  ">
       <HeroSection />
       <OurServices />
       <IndustryLeading/>
       <PastExperiences/>
+      <PreviousProjects/>
       <DevelopmentLifecycle/>
       <WhyChooseUs/>
       <WhyChooseUsSection/>
       <FAQComponent/>
       <Service/>
       <QueryPopup /> {/* Add this component */}
+     
     </main>
   )
 }

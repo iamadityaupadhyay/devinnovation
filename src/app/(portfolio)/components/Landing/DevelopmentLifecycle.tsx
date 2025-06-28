@@ -50,10 +50,10 @@ const DevelopmentRoadmap = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-orange-50 to-white pt-16 px-4">
-      <div className="max-w-7xl pb-16 mx-auto">
+    <div className="bg-gradient-to-r from-orange-50 to-yellow-50 py-8 px-4">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-1">
+          <h2 className="text-3xl font-black text-gray-900 mb-1">
             Our <span className="text-orange-600">Development Process</span>
           </h2>
           <p className="text-gray-600 lg:text-lg">Providing Tailored Software Development Lifecycle Solutions
