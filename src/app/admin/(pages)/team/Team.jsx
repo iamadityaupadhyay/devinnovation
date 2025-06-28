@@ -6,21 +6,10 @@ import connectDB from '@/lib/util';
 import Team from '../../model/team';
 import Link from 'next/link';
 
-type TeamMember = {
-  _id: string;
-  name: string;
-  position: string;
-  department: string;
-  bio: string;
-  email: string;
-  linkedin: string;
-  joinDate: string;
-  profileImage: string;
-  skills: string[];
-};
+
 
 // Server Actions
-async function deleteTeamMember(formData: FormData) {
+async function deleteTeamMember(formData) {
   'use server';
   const memberId = formData.get('memberId');
 
