@@ -43,7 +43,7 @@ const TeamShowcase = async () => {
       {/* Team Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {teamMembers.map((member) => {
-          const typedMember = member as TeamMember;
+          const typedMember = member
           return (
             <div key={typedMember._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
               <div className="p-4">
