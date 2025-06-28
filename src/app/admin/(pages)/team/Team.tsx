@@ -1,8 +1,10 @@
-"use client"
-import React, { useState, useEffect } from 'react';
-import { Mail, Linkedin, ExternalLink, Edit2, Save } from 'lucide-react';
+import { Mail, Linkedin, Trash2, Edit2 } from 'lucide-react';
 import Image from 'next/image';
-import axios from 'axios';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
+import connectDB from '@/lib/util';
+import Team from '../../model/team';
+import Link from 'next/link';
 
 type TeamMember = {
   _id: string;
@@ -17,144 +19,34 @@ type TeamMember = {
   skills: string[];
 };
 
-const TeamShowcase = () => {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [editMember, setEditMember] = useState<TeamMember | null>(null);
+// Server Actions
+async function deleteTeamMember(formData: FormData) {
+  'use server';
+  const memberId = formData.get('memberId');
 
-  const fetchTeam = async () => {
-    try {
-      const response = await axios.get("/admin/api/getTeam");
-      setTeamMembers(response.data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching team members:", error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchTeam();
-  }, []);
-
-  const handleEditClick = (member: TeamMember) => {
-    setEditMember({ ...member });
-  };
-
-  const handleUpdate = async () => {
-    if (!editMember) return;
-    try {
-      await axios.put(`/admin/api/addTeam`, { editMember });
-      setTeamMembers(teamMembers.map(member => 
-        member._id === editMember._id ? editMember : member
-      ));
-      setEditMember(null);
-    } catch (error) {
-      console.error("Error updating team member:", error);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="flex justify-center py-20">
-        <p>Loading team members...</p>
-      </div>
-    );
+  try {
+    await connectDB();
+    await Team.findByIdAndDelete(memberId);
+    revalidatePath('/admin/team');
+  } catch (error) {
+    console.error('Error deleting team member:', error);
+    throw new Error('Failed to delete team member');
   }
+}
+
+const TeamShowcase = async () => {
+  await connectDB();
+  const teamMembers = await Team.find().sort({ joinDate: -1 }).lean();
 
   return (
     <div className="container mx-auto px-0 py-2">
-      {/* Edit Form (shown as modal or inline) */}
-      {editMember && (
-        <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-xl font-bold mb-4">Edit Team Member</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block mb-2">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={editMember.name}
-                onChange={(e) => setEditMember({...editMember, name: e.target.value})}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <div>
-              <label className="block mb-2">Position</label>
-              <input
-                type="text"
-                name="position"
-                value={editMember.position}
-                onChange={(e) => setEditMember({...editMember, position: e.target.value})}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <div>
-              <label className="block mb-2">Department</label>
-              <input
-                type="text"
-                name="department"
-                value={editMember.department}
-                onChange={(e) => setEditMember({...editMember, department: e.target.value})}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <div>
-              <label className="block mb-2">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={editMember.email}
-                onChange={(e) => setEditMember({...editMember, email: e.target.value})}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <label className="block mb-2">Bio</label>
-              <textarea
-                name="bio"
-                value={editMember.bio}
-                onChange={(e) => setEditMember({...editMember, bio: e.target.value})}
-                className="w-full p-2 border rounded"
-                rows={3}
-              />
-            </div>
-            <div className="md:col-span-2">
-              <label className="block mb-2">Skills (comma separated)</label>
-              <input
-                type="text"
-                value={editMember.skills.join(', ')}
-                onChange={(e) => setEditMember({
-                  ...editMember, 
-                  skills: e.target.value.split(',').map(s => s.trim())
-                })}
-                className="w-full p-2 border rounded"
-              />
-            </div>
-          </div>
-          <div className="flex justify-end gap-2 mt-4">
-            <button 
-              onClick={() => setEditMember(null)}
-              className="px-4 py-2 bg-gray-200 rounded"
-            >
-              Cancel
-            </button>
-            <button 
-              onClick={handleUpdate}
-              className="px-4 py-2 bg-blue-500 text-white rounded flex items-center gap-2"
-            >
-              <Save size={16} />
-              Save
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Team Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {teamMembers.map(member => (
-          <div key={member._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-            <div className="p-4">
+        {teamMembers.map((member) => {
+          const typedMember = member as TeamMember;
+          return (
+            <div key={typedMember._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+              <div className="p-4">
               <div className="flex items-center space-x-4">
                 <div className="relative h-16 w-16 rounded-full overflow-hidden">
                   <Image
@@ -207,19 +99,36 @@ const TeamShowcase = () => {
                   </a>
                 )}
               </div>
-              <button 
-                onClick={() => handleEditClick(member)}
-                className="text-gray-500 hover:text-blue-500"
-                title="Edit"
-              >
-                <Edit2 size={16} />
-              </button>
-            </div>
-          </div>
-        ))}
+              <div className="flex space-x-2">
+                <Link
+                  href={`/admin/team/edit/${member._id}`}
+                  className="text-gray-500 hover:text-blue-500"
+                  title="Edit"
+                >
+                  <Edit2 size={16} />
+                </Link>
+                <form action={deleteTeamMember}>
+                  <input type="hidden" name="memberId" value={member._id} />
+                  <button
+                    type="submit"
+                    className="text-gray-500 hover:text-red-500"
+                    title="Delete"
+                  >
+                    <Trash2 size={16} />
+                  </button>
+                </form>
+              </div>
+        
       </div>
     </div>
   );
+})}
+      </div>
+      
+      
+    </div>
+  );
 };
+
 
 export default TeamShowcase;

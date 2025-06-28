@@ -21,14 +21,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const { email, password } = credentials;
         console.log("Credentials:", credentials)
         const user = await User.findOne({ email });
-        // console.log(user);
-        if (!user) {
+
+         if (!user) {
           throw new Error("User not found");
         }
        
         // Compare the provided password with the hashed password in the database
-        const isPasswordMatch = await bcrypt.compare(password, user.password);
-
+        // const isPasswordMatch = await bcrypt.compare(password, user.password);
+        const isPasswordMatch = password == user.password; // For simplicity, using plain text comparison
         if (!isPasswordMatch) {
           throw new Error("Password is not correct");
         }

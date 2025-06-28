@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
     
    return NextResponse.json({
         message: "Team member added successfully",
+        success: true,
         }
         );
 

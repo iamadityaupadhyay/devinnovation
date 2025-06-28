@@ -5,6 +5,7 @@ import { Save, Image as ImageIcon, X, Plus, Trash2, CheckCircle } from "lucide-r
 import { uploadToCloudinary } from "../lib/cloudinary";
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from "next/navigation";
 
 const TeamForm = () => {
   const [member, setMember] = useState({
@@ -21,7 +22,7 @@ const TeamForm = () => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-
+  const router = useRouter();
   const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
@@ -65,7 +66,7 @@ const TeamForm = () => {
     try {
       setIsSubmitting(true);
       setErrors((prev) => ({ ...prev, image: "" }));
-      toast.loading("Uploading image...");
+      
 
       const result = await uploadToCloudinary(file);
 
@@ -139,7 +140,7 @@ const TeamForm = () => {
     console.log("Submitting team member:", member);
 
     setIsSubmitting(true);
-    toast.loading("Saving team member...");
+    
     try {
       const formData = new FormData();
       formData.append("name", member.name);
@@ -156,7 +157,7 @@ const TeamForm = () => {
       });
 
       if (response.data.success) {
-        console.log("Team member saved successfully:", response.data);
+        // console.log("Team member saved successfully:", response.data);
         setSuccess(true);
         setMember({
           name: "",
@@ -170,6 +171,7 @@ const TeamForm = () => {
         });
         setImageMode("upload");
         toast.success("Team member saved successfully!");
+        router.push("/admin/team"); // Redirect to team page after success
       }
     } catch (error) {
       console.error("Error saving team member:", error);
@@ -182,9 +184,9 @@ const TeamForm = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 py-10 md:grid-cols-2 gap-4">
-      <Toaster position="top-right" />
-      <div className="col-span-1 mx-auto p-6 bg-white rounded-3xl shadow-lg">
+    <div className=" py-10  gap-4">
+      {/* <Toaster position="top-right" /> */}
+      <div className=" mx-auto p-6 bg-white rounded-lg shadow-lg">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-black text-gray-800">
             <span className="bg-gradient-to-r from-orange-400 to-orange-500 text-transparent bg-clip-text">
@@ -278,7 +280,7 @@ const TeamForm = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Key Skills (4 skills) <span className="text-red-500">*</span>
             </label>
-            <div className="space-y-2">
+            <div className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-4">
               {member.skills.map((skill, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <span className="text-gray-500">•</span>
@@ -500,11 +502,13 @@ const TeamForm = () => {
           </div>
         </form>
       </div>
-
-      <div className="col-span-1 hidden md:block">
+      <h1 className="text-center mt-5">Preview Card</h1>
+      <div className=" justify-center mt-2 items-center flex">
+        
         <img
           src="/team.png"
           alt="Team Form Illustration"
+          
           className="w-64 h-96 object-cover rounded-lg"
         />
       </div>
