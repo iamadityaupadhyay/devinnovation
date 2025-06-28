@@ -1,7 +1,7 @@
 import "../globals.css";
 import toast, { Toaster } from "react-hot-toast";
 import AdminNavbar from "./components/Navbar";
-import AdminSidebar from "./components/AdminSidebar";
+import AdminSidebar from "./components/AdminSideBar";
 import { SessionProvider } from "next-auth/react";
 export const metadata = {
   title: "Admin Panel",
