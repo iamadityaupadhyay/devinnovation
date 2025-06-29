@@ -24,7 +24,12 @@ export async function POST(request) {
     const body = await request.json();
     const client = new Client(body);
     await client.save();
-    return NextResponse.json(client, { status: 201 });
+    return NextResponse.json(
+      {
+        success: true,
+        message: 'Client created successfully',
+      }
+    );
   } catch (error) {
     return NextResponse.json({ message: 'Error creating client', error: error.message }, { status: 400 });
   }

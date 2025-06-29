@@ -49,14 +49,12 @@ const ServiceForm: React.FC = () => {
       const response = await axios.post("/apis/quoteSubmit", formData);
       console.log(response);
       console.log('Form submitted:', formData);
-      alert('Request submitted successfully!');
       // Reset form after submission
       setFormData({
         fullName: '',
         email: '',
         countryCode: '+91',
         mobile: '',
-        
         budget: '',
         projectInfo: '',
       });
@@ -69,7 +67,7 @@ const ServiceForm: React.FC = () => {
   return (
     <div className="">
       <div className="max-w-7xl mx-auto">
-       <div className="bg-orange-100/80 backdrop-blur-sm rounded-2xl shadow-xl p-8">
+       <div className="bg-white backdrop-blur-sm rounded-xl shadow-xl p-8">
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Get in Touch</h3>
               <p className="text-gray-600">Fill out the form below and we'll get back to you soon</p>

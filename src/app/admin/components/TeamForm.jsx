@@ -114,9 +114,7 @@ const TeamForm = () => {
     }
 
     setErrors(newErrors);
-    if (Object.keys(newErrors).length > 0) {
-      Object.values(newErrors).forEach((error) => toast.error(error));
-    }
+    
     return Object.keys(newErrors).length === 0;
   };
 
@@ -137,7 +135,7 @@ const TeamForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-    console.log("Submitting team member:", member);
+    // console.log("Submitting team member:", member);
 
     setIsSubmitting(true);
     

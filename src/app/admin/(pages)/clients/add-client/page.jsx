@@ -8,6 +8,7 @@ import axios from 'axios';
 import { Toaster, toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 const ClientForm = () => {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -70,8 +71,12 @@ const ClientForm = () => {
     try {
 
     
-      await axios.post('/admin/api/addClient', formData);
+     const response = await axios.post('/admin/api/addClient', formData);
     //   console.log('Client data submitted successfully');
+     if(response.data.success){
+      toast.success('Client data submitted successfully', { id: loadingToast });
+      router.push('/admin/clients');
+     }
       toast.success('Client data submitted successfully', { id: loadingToast });
 
       setFormData({
@@ -94,7 +99,7 @@ const ClientForm = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
-      <Toaster position="top-right" />
+      {/* <Toaster position="top-right" /> */}
       <h1 className="text-2xl font-bold mb-6">Add New Client</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

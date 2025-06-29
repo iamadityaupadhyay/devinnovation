@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useTransition } from "react";
 import { Save, Image as ImageIcon, X, Plus, Trash2, CheckCircle } from "lucide-react";
 import { uploadToCloudinary } from "../lib/cloudinary";
-import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
+import axios from "axios";
+// Import server action
 
 const ServicesForm = () => {
   const [service, setService] = useState({
@@ -13,11 +14,9 @@ const ServicesForm = () => {
     bulletPoints: ["", "", "", ""],
     image: "",
   });
-  const [imageMode, setImageMode] = useState("upload"); // "upload" or "url"
+  const [imageMode, setImageMode] = useState("upload");
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
-
+  const [isPending, startTransition] = useTransition();
   const fileInputRef = useRef(null);
 
   const handleChange = (e) => {
@@ -59,17 +58,12 @@ const ServicesForm = () => {
     }
 
     try {
-      setIsSubmitting(true);
       setErrors((prev) => ({ ...prev, image: "" }));
-      toast.loading("Uploading image...");
-
       const result = await uploadToCloudinary(file);
-
       setService((prev) => ({
         ...prev,
         image: result.secure_url,
       }));
-
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -78,8 +72,6 @@ const ServicesForm = () => {
       console.error("Upload error:", error);
       setErrors((prev) => ({ ...prev, image: "Failed to upload image" }));
       toast.error("Failed to upload image.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -89,7 +81,6 @@ const ServicesForm = () => {
     if (!service.category.trim()) newErrors.category = "Category is required";
     if (service.bulletPoints.some((b) => !b.trim()))
       newErrors.bulletPoints = "All bullet points must be filled";
-   
     if (imageMode === "url" && !service.image.trim()) {
       newErrors.image = "Image URL is required";
     } else if (imageMode === "url" && !isValidUrl(service.image)) {
@@ -99,9 +90,7 @@ const ServicesForm = () => {
     }
 
     setErrors(newErrors);
-    if (Object.keys(newErrors).length > 0) {
-      Object.values(newErrors).forEach((error) => toast.error(error));
-    }
+    
     return Object.keys(newErrors).length === 0;
   };
 
@@ -114,63 +103,55 @@ const ServicesForm = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (formDataAction) => {
     if (!validate()) return;
-    console.log("Submitting service:", service);
 
-    setIsSubmitting(true);
-    toast.loading("Saving service...");
-    try {
-      const formData = new FormData();
-      formData.append("name", service.name);
-      formData.append("category", service.category);
-      service.bulletPoints.forEach((bp, i) => formData.append(`bulletPoints[${i}]`, bp));
-      formData.append("image", service.image);
+    const formData = new FormData();
+    formData.append("name", service.name);
+    formData.append("category", service.category);
+    service.bulletPoints.forEach((bp, i) => formData.append(`bulletPoints[${i}]`, bp));
+    formData.append("image", service.image);
 
-      const response = await axios.post("/admin/api/addServices", {
-        service,
-      });
-
-      if (response.data.success) {
-        console.log("Service saved successfully:", response.data);
-        setSuccess(true);
-        setService({
-          name: "",
-          category: "",
-          bulletPoints: ["", "", "", ""],
-          image: "",
-        });
-        setImageMode("upload");
-        toast.success("Service saved successfully!");
+    console.log("Submitting FormData:", Object.fromEntries(formData));
+    
+    startTransition(async () => {
+      try {
+        const result = await axios.post("/admin/api/addServices",formData);
+        if (result.data.success) {
+          setService({
+            name: "",
+            category: "",
+            bulletPoints: ["", "", "", ""],
+            image: "",
+          });
+          setImageMode("upload");
+          setErrors({});
+          toast.success("Service saved successfully!");
+        } else {
+          setErrors((prev) => ({ ...prev, form: result.error }));
+          toast.error(result.error);
+        }
+      } catch (error) {
+        console.error("Error saving service:", error);
+        setErrors((prev) => ({ ...prev, form: "Failed to save service. Please try again." }));
+        toast.error("Failed to save service. Please try again.");
       }
-    } catch (error) {
-      console.error("Error saving service:", error);
-      setErrors((prev) => ({ ...prev, form: "Failed to save service. Please try again." }));
-      toast.error("Failed to save service. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSuccess(false), 3000);
-    }
+    });
   };
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:px-5 px-2 py-10">
-      <div className="col-span-1 p-6 bg-white rounded-3xl shadow-lg">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-10">
+     
+      <div className="col-span-1 p-6 bg-white rounded-sm shadow-lg">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-xl font-black text-gray-800">
             <span className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
               Add New Service
             </span>
           </h2>
-          {success && (
-            <div className="flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full">
-              <CheckCircle className="w-5 h-5" />
-              <span>Service saved successfully!</span>
-            </div>
-          )}
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form id="service-form" action={handleSubmit} className="space-y-6">
           {errors.form && (
             <div className="bg-red-100 text-red-800 p-4 rounded-xl">{errors.form}</div>
           )}
@@ -238,7 +219,7 @@ const ServicesForm = () => {
         </form>
       </div>
 
-      <div className="col-span-1 p-6 bg-white rounded-3xl shadow-lg">
+      <div className="col-span-1 p-6 bg-white rounded-sm shadow-lg">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Service Image <span className="text-red-500">*</span>
@@ -288,7 +269,7 @@ const ServicesForm = () => {
               <button
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                disabled={isSubmitting}
+                disabled={isPending}
                 className={`w-full px-4 py-6 border-2 rounded-xl ${
                   errors.image ? "border-red-500" : "border-gray-300 hover:border-orange-400"
                 } transition-colors`}
@@ -360,12 +341,12 @@ const ServicesForm = () => {
           </button>
           <button
             type="submit"
-            disabled={isSubmitting}
-            className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-xl hover:from-orange-600 hover:to-red-700 transition-colors disabled:opacity-70"
             form="service-form"
+            disabled={isPending}
+            className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-medium rounded-xl hover:from-orange-600 hover:to-red-700 transition-colors disabled:opacity-70"
           >
             <div className="flex items-center gap-2">
-              {isSubmitting ? (
+              {isPending ? (
                 <>
                   <svg
                     className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
@@ -399,8 +380,6 @@ const ServicesForm = () => {
           </button>
         </div>
       </div>
-
-      
     </div>
   );
 };

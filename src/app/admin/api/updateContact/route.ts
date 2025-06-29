@@ -60,10 +60,10 @@ export async function POST(request: NextRequest) {
   await connectDB();
 
   try {
-    const contactData = await request.json();
-
+    const {contact} = await request.json();
+    console.log("Received contact data:", contact);
     // Validate that contactData is an object
-    if (!contactData || typeof contactData !== "object") {
+    if (!contact || typeof contact !== "object") {
       return NextResponse.json(
         { message: "Valid contact data is required" },
         { status: 400 }
@@ -78,13 +78,13 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newContact = new Contact(contactData);
+    const newContact = new Contact(contact);
     await newContact.save();
 
     return NextResponse.json(
       {
         message: "Contact created successfully",
-        contact: newContact,
+        success:true
       },
       { status: 201 }
     );

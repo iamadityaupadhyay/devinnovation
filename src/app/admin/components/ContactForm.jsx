@@ -32,7 +32,7 @@ const ContactForm = () => {
           setOriginalContact(response.data);
           setIsEditing(true);
         }
-       toast.success("Contact data fetched successfully!");
+      
       } catch (error) {
         console.error("Error fetching contact:", error);
       }
@@ -93,7 +93,8 @@ const ContactForm = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await axios.post("/admin/api/addContact", { contact });
+      console.log("Saving contact:", contact);
+      const response = await axios.post("/admin/api/updateContact", {contact});
       if (response.data.success) {
         console.log("Contact saved successfully:", response.data);
         setOriginalContact(contact);
@@ -110,10 +111,10 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="mx-auto p-6 bg-white rounded-3xl shadow-lg">
+    <div className="mx-auto p-4 bg-white rounded-sm shadow-lg">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-xl font-black text-gray-800">
-          <span className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
+        <h2 className="text-xl font-bold text-gray-800">
+          <span className="bg-gradient-to-r  from-orange-400 to-red-500 text-transparent bg-clip-text">
             {isEditing ? "Update Contact" : "Add Contact"}
           </span>
         </h2>

@@ -34,7 +34,7 @@ export default function EditServiceForm({ service, updateService }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    toast.loading('Updating service...');
+    
 
     const formData = new FormData(e.target);
 
@@ -50,7 +50,7 @@ export default function EditServiceForm({ service, updateService }) {
       router.push('/admin/services');
     } catch (error) {
       console.error('Error updating service:', error);
-      toast.error('Failed to update service. Please try again.');
+      
       setIsSubmitting(false);
     }
   };

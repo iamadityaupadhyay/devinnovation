@@ -15,13 +15,14 @@ export default function AdminLayout({ children }) {
         <Toaster />
         <SessionProvider/>
         <AdminNavbar />
-        <div className="flex flex-1 overflow-hidden">
-          {/* Fixed Sidebar */}
-          <AdminSidebar className="fixed h-full" />
-          {/* Main Content Area */}
-          <main className="flex-1 ml-44 px-5  overflow-y-auto">
+        <main className=" px-5 overflow-y-auto">
             {children}
           </main>
+        <div className="flex flex-1 overflow-hidden">
+          {/* Fixed Sidebar */}
+          
+          {/* Main Content Area */}
+          
         </div>
         <script
           src="https://widget.cloudinary.com/v2.0/global/all.js"

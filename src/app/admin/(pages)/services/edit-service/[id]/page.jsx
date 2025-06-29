@@ -1,16 +1,16 @@
-// app/admin/services/edit-service/[id]/page.js
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
 import connectDB from '@/lib/util';
 import Service from '@/app/admin/model/service';
 import EditServiceForm from '@/app/admin/components/EditServiceForm';
+import { uploadToCloudinary } from '@/app/admin/lib/cloudinary';
 
 export default async function EditServicePage({ params }) {
   const { id } = params;
-  
+
   await connectDB();
   const serviceDoc = await Service.findById(id);
-  
+
   if (!serviceDoc) {
     redirect('/admin/services');
   }
@@ -22,71 +22,50 @@ export default async function EditServicePage({ params }) {
     category: serviceDoc.category,
     bulletPoints: serviceDoc.bulletPoints,
     image: serviceDoc.image,
+    technologies: serviceDoc.technologies || [],
+    description: serviceDoc.description || '',
+    link: serviceDoc.link || '',
     createdAt: serviceDoc.createdAt?.toISOString(),
     updatedAt: serviceDoc.updatedAt?.toISOString(),
   };
 
   async function updateService(formData) {
-    'use server'
-    
+    'use server';
+
     const name = formData.get('name');
     const category = formData.get('category');
     const bulletPoints = formData.get('bulletPoints').split('\n').filter(point => point.trim());
     const imageFile = formData.get('imageFile');
     const imageUrl = formData.get('imageUrl');
-    
-    let finalImageUrl = imageUrl;
-    
-    // Handle file upload if a new file is provided
+    const technologies = formData.get('technologies')?.split(',').map(t => t.trim()) || [];
+    const description = formData.get('description') || '';
+    const link = formData.get('link') || '';
+
+    let finalImageUrl = imageUrl || serviceDoc.image;
+
+    // Handle file upload to Cloudinary if a new file is provided
     if (imageFile && imageFile.size > 0) {
       try {
-        // Create upload directory if it doesn't exist
-        const fs = require('fs');
-        const path = require('path');
-        const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'services');
-        
-        if (!fs.existsSync(uploadDir)) {
-          fs.mkdirSync(uploadDir, { recursive: true });
-        }
-        
-        // Generate unique filename
-        const timestamp = Date.now();
-        const originalName = imageFile.name;
-        const extension = path.extname(originalName);
-        const fileName = `service-${timestamp}${extension}`;
-        const filePath = path.join(uploadDir, fileName);
-        
-        // Convert file to buffer and save
-        const bytes = await imageFile.arrayBuffer();
-        const buffer = Buffer.from(bytes);
-        fs.writeFileSync(filePath, buffer);
-        
-        // Set the URL for database storage
-        finalImageUrl = `/uploads/services/${fileName}`;
-        
-        // Delete old image if it exists and is not a URL
-        if (serviceDoc.image && serviceDoc.image.startsWith('/uploads/')) {
-          const oldImagePath = path.join(process.cwd(), 'public', serviceDoc.image);
-          if (fs.existsSync(oldImagePath)) {
-            fs.unlinkSync(oldImagePath);
-          }
-        }
+        const result = await uploadToCloudinary(imageFile);
+        finalImageUrl = result.secure_url;
       } catch (error) {
-        console.error('Error uploading image:', error);
-        // Keep the original image URL if upload fails
-        finalImageUrl = serviceDoc.image;
+        console.error('Error uploading image to Cloudinary:', error);
+        throw new Error('Failed to upload image to Cloudinary');
       }
     }
-    
+
     try {
       await connectDB();
       await Service.findByIdAndUpdate(id, {
         name,
         category,
         bulletPoints,
-        image: finalImageUrl
+        technologies,
+        description,
+        image: finalImageUrl,
+        link,
       });
-    
+      revalidatePath('/services');
     } catch (error) {
       console.error('Error updating service:', error);
       throw new Error('Failed to update service');
@@ -106,7 +85,7 @@ export default async function EditServicePage({ params }) {
               ← Back to Services
             </a>
           </div>
-          
+
           <EditServiceForm service={service} updateService={updateService} />
         </div>
       </div>

@@ -337,6 +337,7 @@ export async function POST(request: NextRequest) {
   await connectDB();
   try {
     const body = await request.json();
+    
     console.log("Received contact form submission:", body);
 
     

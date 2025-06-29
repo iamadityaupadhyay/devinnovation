@@ -4,7 +4,10 @@ import React, { useState, useRef } from "react";
 import { Save, Image as ImageIcon, X, Plus, Trash2, CheckCircle } from "lucide-react";
 import { uploadToCloudinary } from "../lib/cloudinary";
 import axios from "axios";
+import {useRouter} from "next/navigation";
+import toast from "react-hot-toast";
 const ProjectForm = () => {
+  const router = useRouter();
   const [project, setProject] = useState({
     name: "",
     category: "",
@@ -136,7 +139,8 @@ const ProjectForm = () => {
       });
 
       if (response.data.success){
-        console.log("Project saved successfully:", response.data);
+        toast.success("Project saved successfully!");
+        router.push("/admin/projects");
       }
 
       setSuccess(true);
@@ -163,10 +167,10 @@ const ProjectForm = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 py-10 gap-4">
-      <div className="col-span-1 mx-auto p-6 bg-white rounded-3xl shadow-lg">
+    <div className="py-10 px-0 gap-4">
+      <div className="col-span-1 mx-auto p-6 bg-white rounded-lg shadow-lg">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-black text-gray-800">
+          <h2 className="text-xl font-black text-gray-800">
             <span className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
               ADD NEW PROJECT
             </span>
@@ -242,7 +246,7 @@ const ProjectForm = () => {
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Key Features (4 bullet points) <span className="text-red-500">*</span>
             </label>
-            <div className="space-y-2">
+            <div className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.bulletPoints.map((point, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <span className="text-gray-500">•</span>
@@ -453,13 +457,7 @@ const ProjectForm = () => {
         </form>
       </div>
 
-      <div className="col-span-1 hidden md:block">
-        <img
-          src="/project.png"
-          alt="Project Form Illustration"
-          className="w-full h-auto rounded-3xl shadow-lg"
-        />
-      </div>
+     
     </div>
   );
 };

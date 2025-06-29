@@ -71,7 +71,7 @@ const WhyChooseUs = () => {
 
   return (
     <div className='flex flex-col'>
-    <section className=" bg-orange-100/70 backdrop-blur-sm rounded-xl py-4  px-4 ">
+    <section className=" bg-white backdrop-blur-sm rounded-xl py-4  px-4 ">
      <div className="grid grid-cols-2 gap-6">
           {features.map((feature, index) => (
             <div

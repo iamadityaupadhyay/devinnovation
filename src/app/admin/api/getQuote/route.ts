@@ -5,7 +5,7 @@ export async function GET(req: NextRequest){
     try {
         await connectDB();
         const quoteRequests = await QuoteRequest.find().sort({ createdAt: -1 });
-        return NextResponse.json (
+        return NextResponse.json(
             quoteRequests
         )
     } catch (error) {

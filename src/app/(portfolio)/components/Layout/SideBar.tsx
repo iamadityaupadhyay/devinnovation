@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const SocialSidebar = ({ contact }: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
-
+  
   // Dynamic social links using contact prop
   const socialLinks = [
     { icon: Facebook, href: contact?.facebook || "https://facebook.com/iamadityaupadhyay", bg: "bg-blue-600", label: "Facebook" },

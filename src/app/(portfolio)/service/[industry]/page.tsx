@@ -579,11 +579,6 @@ const servicesData: ServiceItem[] = [
     description: "On-demand service platforms and marketplace solutions"
   }
 ];
-interface IndustryPageProps {
-  params: {
-    industry: string;
-  };
-}
 
 export default function IndustryPage({ params }: any) {
   const currentService = servicesData.find(service => service.href === params.industry) || {

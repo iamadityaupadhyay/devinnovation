@@ -344,7 +344,7 @@ const Navbar: React.FC = ({contact,services}:any) => {
   ];
 
   const navItems: NavItem[] = [
-    { label: 'Home', href: '#', isActive: true },
+    { label: 'Home', href: '/', isActive: true },
     { label: 'Portfolio', href: '/portfolio' },
     {
       label: 'Services',
@@ -356,6 +356,7 @@ const Navbar: React.FC = ({contact,services}:any) => {
         href: service.href
       })),
     },
+    { label: 'Our Projects', href: '/projects' },
     {
       label: 'Industries',
       href: '/industry',
@@ -376,7 +377,7 @@ const Navbar: React.FC = ({contact,services}:any) => {
         href: developer.href
       })),
     },
-    { label: 'Trendings', href: '/industry' },
+    
     
     { label: 'Clients', href: '#' },
   ];

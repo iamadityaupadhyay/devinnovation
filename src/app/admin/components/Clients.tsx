@@ -213,7 +213,7 @@ const ClientsTable: React.FC = () => {
 
   return (
     <div className="container mx-auto px-0">
-      <Toaster position="top-right" />
+      {/* <Toaster position="top-right" /> */}
       
       {/* Filter Section */}
       <div className="mb-6">
