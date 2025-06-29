@@ -48,10 +48,10 @@ const Navbar: React.FC = ({contact,services}:any) => {
   
 
   
-  console.log(services);
+  
 
   
-  console.log(contact)
+  
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {

@@ -27,7 +27,7 @@ export async function middleware(req: NextRequest) {
   const isProtected = protectedPaths.includes(path); // Use includes instead of startsWith
 
   if (isProtected) {
-    console.log(`Middleware processing protected route: ${path}`);
+    
     
     const token = await getToken({
       req,
@@ -35,13 +35,13 @@ export async function middleware(req: NextRequest) {
       secureCookie: process.env.NODE_ENV === 'production',
     });
 
-    console.log('Token exists:', !!token);
+    
 
     // If no token and path is protected, redirect to login
     if (!token) {
       const signInUrl = new URL('/signin', req.url);
       signInUrl.searchParams.set('callbackUrl', req.url);
-      console.log(`Redirecting to login from ${path}`);
+      
       return NextResponse.redirect(signInUrl);
     }
   }

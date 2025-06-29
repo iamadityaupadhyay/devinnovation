@@ -47,8 +47,8 @@ const ServiceForm: React.FC = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/apis/quoteSubmit", formData);
-      console.log(response);
-      console.log('Form submitted:', formData);
+      
+      
       // Reset form after submission
       setFormData({
         fullName: '',

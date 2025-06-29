@@ -89,14 +89,14 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-    console.log("Submitting contact:", contact);
+    
 
     setIsSubmitting(true);
     try {
-      console.log("Saving contact:", contact);
+      
       const response = await axios.post("/admin/api/updateContact", {contact});
       if (response.data.success) {
-        console.log("Contact saved successfully:", response.data);
+        
         setOriginalContact(contact);
         setIsEditing(true);
         setSuccess(true);

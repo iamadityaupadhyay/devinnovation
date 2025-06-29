@@ -326,7 +326,7 @@ export async function POST(request: NextRequest) {
   await connectDB();
   try {
     const body = await request.json();
-    console.log("Received request body:", body);
+    
 
     // Save to database
     const quote = new QuoteRequest({

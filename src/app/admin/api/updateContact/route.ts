@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const {contact} = await request.json();
-    console.log("Received contact data:", contact);
+    
     // Validate that contactData is an object
     if (!contact || typeof contact !== "object") {
       return NextResponse.json(

@@ -52,7 +52,7 @@ async function Services() {
   // lets get the data from the database
   await connectDB();
   const services = await Service.find().sort({ createdAt: -1 });
-  console.log(services);
+  
   
   return (
     <div>

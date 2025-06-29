@@ -6,7 +6,7 @@ export async function PUT(req:NextRequest){
     try{
         const { id, adminNotes, priority, status } = await req.json();
        
-        // console.log("Updating quote with ID:", id, "and data:", formData);
+        // 
         const updatedQuote = await QuoteRequest.findByIdAndUpdate(
             id,
             { status,

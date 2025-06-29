@@ -19,7 +19,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         await connectDB();
         const { email, password } = credentials;
-        console.log("Credentials:", credentials)
+        
         const user = await User.findOne({ email });
 
          if (!user) {

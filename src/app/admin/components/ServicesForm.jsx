@@ -112,7 +112,7 @@ const ServicesForm = () => {
     service.bulletPoints.forEach((bp, i) => formData.append(`bulletPoints[${i}]`, bp));
     formData.append("image", service.image);
 
-    console.log("Submitting FormData:", Object.fromEntries(formData));
+    
     
     startTransition(async () => {
       try {

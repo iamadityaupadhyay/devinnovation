@@ -128,7 +128,7 @@ const TeamMemberCard = ({ member }) => {
     updatedFormData.append('linkedin', formData.linkedin);
     updatedFormData.append('image', formData.image);
 
-    console.log('Form data before update:', Object.fromEntries(updatedFormData));
+    
 
     startTransition(async () => {
       const result = await updateTeamMember(updatedFormData);

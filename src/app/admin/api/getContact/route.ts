@@ -5,11 +5,11 @@ import Contact from "../../model/contact";
 
 export async function GET(request: NextRequest) {
     await connectDB();
-    console.log("Fetching contact information...");
+    
     try {
         // Fetch the contact information from the database
         const contact = await Contact.findOne({});
-        console.log("Fetched contact data:", contact);
+        
         if (!contact) {
         return new Response(JSON.stringify({ message: "No contact information found" }), {
             status: 404,

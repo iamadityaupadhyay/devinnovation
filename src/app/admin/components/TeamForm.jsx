@@ -135,7 +135,7 @@ const TeamForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-    // console.log("Submitting team member:", member);
+    // 
 
     setIsSubmitting(true);
     
@@ -155,7 +155,7 @@ const TeamForm = () => {
       });
 
       if (response.data.success) {
-        // console.log("Team member saved successfully:", response.data);
+        // 
         setSuccess(true);
         setMember({
           name: "",

@@ -60,7 +60,7 @@ const QueryPopup = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setIsSubmitting(true);
-    console.log('Submitting query:', formData);
+    
 
     try {
       const response = await axios.post('/apis/querySubmit', formData);

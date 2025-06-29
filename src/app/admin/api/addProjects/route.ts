@@ -7,7 +7,7 @@ await connectDB();
 
 try {
    const {project}= await request.json()
-   console.log("Received data:", project);
+   
     const {
           name,
           category,

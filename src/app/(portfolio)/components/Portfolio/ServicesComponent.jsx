@@ -8,7 +8,7 @@ async function Services() {
   
   await connectDB();
   const services = await Service.find().sort({ createdAt: -1 });
-  console.log(services);
+  
   return (
     <div>
       <section className="py-10 px-2 bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">

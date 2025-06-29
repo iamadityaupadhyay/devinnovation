@@ -108,7 +108,7 @@ const RequestQuoteModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     
     try {
       const response = await axios.post("/apis/quoteSubmit", formData);
-      console.log(response);
+      
       alert('Quote request submitted successfully!');
       onClose();
     } catch (error) {

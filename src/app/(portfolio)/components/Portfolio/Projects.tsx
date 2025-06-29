@@ -35,7 +35,7 @@ function PreviousProjects() {
         setLoading(true);
         const response = await axios.get('/admin/api/getProjects'); // Your API endpoint
         
-        console.log('Fetched projects:', response.data.projects);
+        
 
         setProjects(response.data.projects);
       } catch (err) {

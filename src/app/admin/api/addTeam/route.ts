@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const { member } = await request.json();
-    console.log("Received data:", member);
+    
 
     const {
       name,
@@ -59,7 +59,7 @@ export async function PUT(request:NextRequest) {
 
   try {
     const { editMember } = await request.json();
-    console.log("Received data:", editMember);
+    
 
     const {
       _id,
@@ -78,7 +78,7 @@ export async function PUT(request:NextRequest) {
 var mongoose = require('mongoose');
 var objectId =new mongoose.Types.ObjectId(_id);
 const team = await Team.findById(_id);
-console.log(team);
+
     // Update the team member in the database
     const updatedMember = await Team.findByIdAndUpdate(
       objectId,

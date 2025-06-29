@@ -72,7 +72,7 @@ const ClientForm = () => {
 
     
      const response = await axios.post('/admin/api/addClient', formData);
-    //   console.log('Client data submitted successfully');
+    //   
      if(response.data.success){
       toast.success('Client data submitted successfully', { id: loadingToast });
       router.push('/admin/clients');
