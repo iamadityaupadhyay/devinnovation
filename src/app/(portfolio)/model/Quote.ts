@@ -41,13 +41,13 @@ const quoteRequestSchema = new mongoose.Schema({
   
   budget: {
     type: String,
-    required: [true, 'Budget selection is required'],
+    
     
   },
   
   projectInfo: {
     type: String,
-    required: [true, 'Project information is required'],
+    
 
   },
   

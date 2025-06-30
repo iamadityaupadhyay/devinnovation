@@ -23,14 +23,14 @@ const quoteRequestSchema = new mongoose.Schema({
   
   countryCode: {
     type: String,
-    required: [true, 'Country code is required'],
+    
     enum: ['+1', '+44', '+91', '+86', '+49', '+33', '+81', '+61'],
     default: '+1'
   },
   
   mobile: {
     type: String,
-    required: [true, 'Mobile number is required'],
+    
     trim: true,
     minLength: [7, 'Mobile number must be at least 7 digits'],
     maxLength: [15, 'Mobile number cannot exceed 15 digits'],
@@ -42,14 +42,7 @@ const quoteRequestSchema = new mongoose.Schema({
   budget: {
     type: String,
     
-    enum: [
-      'Under $5,000',
-      '$5,000 - $10,000',
-      '$10,000 - $25,000',
-      '$25,000 - $50,000',
-      '$50,000 - $100,000',
-      'Above $100,000'
-    ]
+    
   },
   
   projectInfo: {
