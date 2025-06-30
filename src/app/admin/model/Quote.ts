@@ -41,7 +41,7 @@ const quoteRequestSchema = new mongoose.Schema({
   
   budget: {
     type: String,
-    required: [true, 'Budget selection is required'],
+    
     enum: [
       'Under $5,000',
       '$5,000 - $10,000',
@@ -54,7 +54,7 @@ const quoteRequestSchema = new mongoose.Schema({
   
   projectInfo: {
     type: String,
-    required: [true, 'Project information is required'],
+    
 
   },
   

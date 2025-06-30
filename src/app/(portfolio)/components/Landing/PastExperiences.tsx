@@ -92,7 +92,7 @@ export default function PastExperiences() {
   }, [isVisible]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-orange-50 via-yellow-50 to-orange-50 py-16 px-4">
+    <div className="min-h-screen bg-gradient-to-r from-orange-50 to yellow-50 py-16 px-4">
       
 
       <div className="mx-auto flex flex-col md:flex-row justify-center items-start gap-8">
@@ -103,7 +103,7 @@ export default function PastExperiences() {
               <img
                 src="https://plus.unsplash.com/premium_photo-1661770215081-5263b8e1e92c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGRldmVsb3BtZW50JTIwdGVhbXxlbnwwfHwwfHx8MA%3D%3D"
                 alt="Development team working together"
-                className="lg:w-full w-screen  h-96 lg:h-full object-cover"
+                className="lg:w-full w-screen  h-auto lg:h-full object-cover"
               />
             </div>
           </div>

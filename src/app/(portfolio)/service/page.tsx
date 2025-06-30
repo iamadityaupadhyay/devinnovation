@@ -7,9 +7,10 @@ function ServiceSolutions() {
   
 
   return (
-    <> <Services/>
+    <> 
+    <Services/>
     <OurMagicalProcess/>
-          <CallToAction/>
+    <CallToAction/>
     </>
    
   );

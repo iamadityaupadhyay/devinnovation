@@ -41,21 +41,21 @@ const FAQComponent = () => {
   ];
 
   return (
-    <div className="w-full  mx-auto px-2 py-8 pb-16 bg-gradient-to-r from-orange-50 to yellow-50   ">
+    <div className="w-full max-w-7xl  mx-auto px-2 py-16  bg-gradient-to-r from-white to bg-gray-50   ">
       {/* Header Section */}
-      <div className="text-center mb-12 animate-fade-in">
-        <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mb-6 shadow-lg animate-bounce-slow">
+      <div className="text-center mb-10 animate-fade-in">
+        <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mb-4 shadow-lg animate-bounce-slow">
           <span className="text-2xl font-bold text-white">?</span>
           
         </div>
-        <h1 className="text-3xl md:text-3xl font-bold sm:tracking-tight lg:tracking-wide mb-4">
-          Frequently <span className="text-3xl md:text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-4"> Asked Questions</span>
+        <h1 className="text-3xl font-bold sm:tracking-tight mb-4">
+          Frequently <span className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-4"> Asked Questions</span>
         </h1>
         
       </div>
 
       {/* FAQ Items */}
-      <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2  animate-fade-in-up">
+      <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 justify-center max-w-7xl animate-fade-in-up">
         {faqData.map((item, index) => (
           <div
             key={index}

@@ -362,7 +362,7 @@ export async function POST(request: NextRequest) {
     ]);
 
     return NextResponse.json(
-      { message: "Quote request submitted successfully" },
+      { message: "Quote request submitted successfully", success: true },
       { status: 200 }
     );
     

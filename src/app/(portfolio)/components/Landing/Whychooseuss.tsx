@@ -23,7 +23,7 @@ const WhyChooseUsSection = () => {
     },
     {
       icon: Zap,
-      title: "Innovative Processes Implemented",
+      title: "Innovative Processes",
       description: "Cutting-edge development methodologies and agile processes are utilized for superior outcomes.",
       bgImage: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80"
     },
@@ -43,37 +43,13 @@ const WhyChooseUsSection = () => {
   ];
 
   return (
-    <section className=" py-8 bg-gradient-to-r from-orange-50 to yellow-50 px-4 sm:px-6 lg:px-8">
+    <section className=" py-8 bg-gradient-to-r from-white to bg-gray-50 px-4 sm:px-6 lg:px-8">
       <div className=" mx-auto">
-        <div className="grid lg:grid-cols-3   gap-12 items-center">
-          {/* Left Side - Mobile App Showcase */}
-          <div className="relative hidden sm:block col-span-1 flex justify-center items-center">
-            <div className="relative">
-             
-              {/* Main phone mockup */}
-              <div className="relative bg-gradient-to-b opacity-50 hover:opacity-100 from-gray-800 to-gray-900 rounded-[2.5rem] p-2 shadow-2xl">
-                <div className="bg-black rounded-[2rem] p-1">
-                  <div className="bg-white rounded-[1.5rem] overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-                      alt="Mobile App Interface"
-                      className="w-full lg:h-[400px]  sm:h-[150px] object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              
-              <div className="absolute -bottom-4 -left-4 bg-orange-600 text-white px-3 py-1 rounded-full 
-               font-semibold shadow-lg">
-                100+ Projects
-              </div>
-            </div>
-          </div>
+        <div className="   gap-12 items-center">
+          
 
           {/* Right Side - Why Choose Us Content */}
-          <div className="lg:col-span-2  space-y-8">
+          <div className="  space-y-8">
             
 
             <div className="mt-5">

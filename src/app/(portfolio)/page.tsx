@@ -10,6 +10,7 @@ import FAQComponent from "./components/Landing/FAQ"
 import IndustryLeading from "./components/Landing/IndustryLeading"
 import QueryPopup from "./components/Forms/QueryPopup"// Add this line
 import PreviousProjects from "./components/Portfolio/Projects"
+import TestimonialCarousel from "./components/Landing/Testimonial"
 
 export default async function Home() {
   return (
@@ -17,11 +18,14 @@ export default async function Home() {
       <HeroSection />
       <OurServices />
       <IndustryLeading/>
-      <PastExperiences/>
       <PreviousProjects/>
-      <DevelopmentLifecycle/>
       <WhyChooseUs/>
-      <WhyChooseUsSection/>
+
+       {/* <PastExperiences/> */}
+      
+      
+      <DevelopmentLifecycle/>
+      <TestimonialCarousel/>
       <FAQComponent/>
       <Service/>
       <QueryPopup /> {/* Add this component */}

@@ -179,7 +179,7 @@ function IndustrySolutions() {
             {industries.map((industry, index) => (
               <div 
                 key={index}
-                className="group relative backdrop-blur-xl rounded-3xl p-5 border border-slate-700/50 hover:border-orange-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-white/80"
+                className="group relative backdrop-blur-xl rounded-md p-5 border border-slate-700/50 hover:border-orange-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-white/80"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-2 h-2 bg-orange-500 rounded-full"></div>

@@ -3,8 +3,8 @@ import React from 'react'
 function OurMagicalProcess() {
   return (
     <div>{/* Process Section */}
-      <section className=" px-6  backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto">
+      <section className=" px-6 py-10  backdrop-blur-xl">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-2xl text-gray-900 font-black ">
               Our Magical
@@ -26,16 +26,14 @@ function OurMagicalProcess() {
             ].map((step, index) => (
               <div
                 key={index}
-                className="group relative  backdrop-blur-xl rounded-3xl p-5 border border-slate-700/50 hover:border-orange-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
+                className="group relative hover:bg-orange-600/70 hover:text-white backdrop-blur-xl rounded-lg p-5 border border-slate-700/50 hover:border-orange-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2"
               >
-                <div className={`w-10 h-10 bg-gradient-to-r ${step.color} rounded-2xl flex items-center justify-center text-2xl mb-6 transform group-hover:rotate-12 transition-transform duration-300`}>
-                  {step.icon}
+                <div className="text-md font-bold text-gray-700 mb-2 group-hover:text-white transition-colors">
+                  {step.icon}  {step.title}
                 </div>
-                <div className="text-2xl font-black text-gray-700 mb-4 group-hover:text-orange-400/20 transition-colors">
-                  {step.number} {step.title}
-                </div>
+               
                 
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-700 hover:text-white leading-relaxed">
                   {step.desc}
                 </p>
               </div>

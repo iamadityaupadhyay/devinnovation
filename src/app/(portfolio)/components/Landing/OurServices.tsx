@@ -62,13 +62,13 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
   return (
     <div
-      className="relative group cursor-pointer h-full"
+      className="relative  group cursor-pointer h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Hover Image Overlay */}
       <div className={`
-        absolute inset-0 rounded-2xl overflow-hidden transition-all duration-500
+        absolute inset-0 rounded-sm overflow-hidden transition-all duration-500
         ${isHovered ? 'opacity-100' : 'opacity-0'}
       `}>
         <Image
@@ -83,7 +83,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
       <div
         className={`
-          relative bg-white rounded-2xl p-5 shadow-lg transition-all duration-500 ease-out h-full
+          relative bg-white rounded-sm py-5 px-4 shadow-lg transition-all duration-500 ease-out h-full
           ${isHovered 
             ? 'transform  shadow-2xl bg-white/80 ' 
             : 'transform translate-y-0 shadow-lg'
@@ -96,10 +96,19 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         {/* Icon */}
         
         <div className={`
-          relative z-10 w-16 h-16  rounded-full flex items-center justify-center mb-6 shadow-lg 
-          transition-all duration-300 ${isHovered ? 'scale-110' : 'scale-100'}
+          relative z-10    flex items-center justify-between mb-6 
+          transition-all duration-300 ${isHovered ? 'scale-105' : 'scale-105'}
         `}>
-           <img src={service.icon? service.icon:"hello.png"} className='w-14 rounded-full'></img>
+          <div>
+             <img src={service.icon? service.icon:"hello.png"} className='w-14 rounded-full'></img>
+            </div>
+          
+           <div className={`transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <Link href={`/service/${service.title.replaceAll(" ","-").toLowerCase()}`} className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-1.5 rounded-full text-sm  font-medium transition-all duration-300 flex items-center justify-center gap-2 group">
+              More Info
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
         </div>
         
         {/* Content */}
@@ -112,12 +121,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
           </p>
           
           {/* More Info Button - appears on hover */}
-          <div className={`transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <Link href={`/service/${service.title.replaceAll(" ","-").toLowerCase()}`} className="bg-orange-500 hover:bg-orange-600 w-36 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 group">
-              More Info
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -126,9 +130,9 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
 export const OurServices = () => {
   return (
-    <div id="services" className="w-full px-4 py-8 bg-gradient-to-r from-orange-50 to-yellow-50  relative overflow-hidden">
+    <div id="services" className="w-full  px-4 py-16 bg-gradient-to-r from-orange-50 to-yellow-50  relative overflow-hidden">
       {/* Interactive background elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0  overflow-hidden">
         {/* Floating particles */}
         {[...Array(20)].map((_, i) => (
           <div
@@ -149,7 +153,7 @@ export const OurServices = () => {
         <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float-delayed-2"></div>
       </div>
       
-      <div className="relative z-10">
+      <div className="relative  z-10">
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-5">
           <h3 className="text-blue-800 font-medium uppercase tracking-wider text-sm ">
@@ -157,7 +161,7 @@ export const OurServices = () => {
           <h1 className="text-3xl md:text-3xl font-extrabold text-gray-900 mb-1 leading-tight">
             We Build Modern Creative
           </h1>
-          <h2 className="text-3xl md:text-3xl font-extrabold mb-6">
+          <h2 className="text-3xl  font-bold mb-6">
             <span className="text-orange-500">Mobile Experiences</span>
           </h2>
         </div>

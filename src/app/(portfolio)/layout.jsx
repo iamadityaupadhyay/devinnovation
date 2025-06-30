@@ -6,7 +6,13 @@ import toast, { Toaster } from 'react-hot-toast';
 import connectDB from "@/lib/util";
 import Contact from "../admin/model/contact";
 import Service from "../admin/model/service";
-
+import { Roboto } from 'next/font/google'
+import Head from "next/head";
+ 
+const roboto = Roboto({
+  weight: '500',
+  subsets: ['latin'],
+})
 export const metadata = {
   title: 'DevTeam Portfolio',
   description: 'Our amazing developer team portfolio',
@@ -21,7 +27,13 @@ export default async function RootLayout({ children }) {
   theme = 'light'; // This can be dynamically set based on user preference or system settings
   
   return (
-    <html lang="en">
+    <html lang="en" className={roboto.className}>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <body>
         <Toaster />
         <Navbar contact={contact} services={services} />

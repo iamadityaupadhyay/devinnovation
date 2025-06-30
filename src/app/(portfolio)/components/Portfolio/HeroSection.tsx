@@ -56,8 +56,8 @@ OF DEVELOPMENT
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {[
-              { number: "500+", label: "Apps Launched" },
-              { number: "50M+", label: "Downloads" },
+              { number: "10+", label: "Apps Launched" },
+              { number: "10M+", label: "Webapps Launched" },
               { number: "99%", label: "Success Rate" },
               { number: "24/7", label: "Support" }
             ].map((stat, index) => (

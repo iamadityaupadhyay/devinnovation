@@ -76,8 +76,8 @@ const ServiceForm: React.FC = () => {
       <div className="max-w-7xl mx-auto">
        <div className="bg-white backdrop-blur-sm rounded-md shadow-xl p-4">
             <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Get a Quote</h3>
-              <p className="text-gray-600">Fill out the form below and we'll get back to you soon</p>
+              <h3 className="text-xl font-bold text-gray-600 mb-2">Contact Us</h3>
+              <p className="text-gray-500 text-sm">Fill out the form below and we'll get back to you soon</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -124,7 +124,7 @@ const ServiceForm: React.FC = () => {
               
 
               {/* Country Code and Mobile */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-gray-700 font-semibold mb-2">
                     Country Code*
@@ -160,34 +160,11 @@ const ServiceForm: React.FC = () => {
                     />
                   </div>
                 </div>
-                <div>
-                <label className="block text-gray-700 font-semibold mb-2">
-                  Budget (can be discussed later)
-                </label>
-                <div className="relative">
-                  <FaRupeeSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-orange-500 w-5 h-5" />
-                  <select
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleInputChange}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none appearance-none"
-                  >
-                    <option value="">Select Budget</option>
-                    {budgetOptions.map((budget) => (
-                      <option key={budget} value={budget}>
-                        {budget}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
+              
               </div>
 
               
-              {/* Budget */}
-              
-
-              {/* Project Information */}
+          
               <div>
                 <label className="block text-gray-700 font-semibold mb-2">
                   Project Information

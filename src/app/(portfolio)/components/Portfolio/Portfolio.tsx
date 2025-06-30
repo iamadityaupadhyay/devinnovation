@@ -23,7 +23,7 @@ const Portfolio = () => {
   
 
   return (
-    <div className="bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 min-h-screen text-white overflow-hidden">
+    <div className="bg-gradient-to-br from-white  to-gray-50 min-h-screen text-white overflow-hidden">
       {/* Animated Background */}
       
 
@@ -36,7 +36,7 @@ const Portfolio = () => {
       
 
       <PreviousProjects/>
- <OurMagicalProcess/>
+ {/* <OurMagicalProcess/> */}
       {/* CTA Section */}
      <CallToAction/>
 

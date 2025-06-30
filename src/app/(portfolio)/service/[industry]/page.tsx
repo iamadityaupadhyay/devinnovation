@@ -1,11 +1,10 @@
 import ServiceForm from "../../components/Forms/CommonForm";
-import DevelopmentRoadmap from "../../components/Landing/DevelopmentLifecycle";
-import { OurServices } from "../../components/Landing/OurServices";
+
 import ServicesComponent from "../../components/Landing/Service";
 import CallToAction from "../../components/Portfolio/CallToAction";
 import OurMagicalProcess from "../../components/Portfolio/OurMagicalProcess";
+import PreviousProjects from "../../components/Portfolio/Projects";
 
-import WhyChooseUs from "../WhyChooseUs";
 import WhyChooseUsSection from "../Whychooseuss";
 interface ServiceItem {
   name: string;
@@ -589,7 +588,7 @@ export default function IndustryPage({ params }: any) {
 
   return (
     <>
-      <div className="relative bg-gradient-to-r from-orange-50 via-yellow-100 to-orange-100 overflow-hidden">
+      <div className="relative bg-gradient-to-r from-white to-gray-100 overflow-hidden">
         {/* Background Image with Arc at Bottom */}
         <div 
           className="absolute inset-0 lg:h-[80vh] h-[30vh] bg-cover bg-center"
@@ -618,19 +617,21 @@ export default function IndustryPage({ params }: any) {
             </div>
 
             {/* Main Content Section - At half height */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start" >
+            <div className="gap-8 items-start" >
               {/* Left Side - Your Content */}
               <ServiceForm/>
-              <WhyChooseUs/>
+              
               
               
             </div>
           </div>
         </div>
+        {/* <CallToAction/> */}
+        <PreviousProjects/>
         <WhyChooseUsSection/>
         
         <OurMagicalProcess/>
-        <CallToAction/>
+        
         <ServicesComponent/>
 
       </div>

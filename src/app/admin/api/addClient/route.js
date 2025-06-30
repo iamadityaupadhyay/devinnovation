@@ -57,3 +57,23 @@ export async function PUT(request) {
     return NextResponse.json({ message: 'Error updating client', error: error.message }, { status: 400 });
   }
 }
+export async function DELETE(request){
+  await connectDB();
+  try {
+    const body = await request.json();
+    const { id } = body; // Expect client ID in the body
+    if (!id) {
+      return NextResponse.json({ message: 'Client ID is required' }, { status: 400 });
+    }
+    const client = await Client.findByIdAndDelete(id);
+    if (!client) {
+      return NextResponse.json({ message: 'Client not found' }, { status: 404 });
+    }
+    return NextResponse.json({ message: 'Client deleted successfully' }, { status: 200 });
+
+  }
+  catch (error) {
+    return NextResponse.json({ message: 'Error deleting client', error: error.message }, { status: 400 });
+  }
+  
+}

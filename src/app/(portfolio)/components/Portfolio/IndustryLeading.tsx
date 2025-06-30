@@ -54,7 +54,7 @@ function IndustryLeading() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative  backdrop-blur-xl rounded-3xl p-8 border transition-all duration-500 transform hover:scale-105 ${
+                className={`group relative  backdrop-blur-xl rounded-3xl p-8 border transition-all duration-500 transform hover:scale-100 ${
                   activeSection === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
               >

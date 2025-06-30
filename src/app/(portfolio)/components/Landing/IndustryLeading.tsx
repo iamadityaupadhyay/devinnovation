@@ -36,16 +36,16 @@ function IndustryLeading() {
   return (
     <div>
         {/* Services Showcase */}
-      <section className="py-8 bg-gradient-to-r from-orange-100 via-yellow-50 to-orange-50 px-4 relative">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 bg-gradient-to-r from-white  to-gray-50 px-4 relative">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
-            <h2 className="text-3xl text-gray-800 font-black mb-6">
+            <h2 className="text-3xl text-gray-800 font-black mb-2">
              Industry Leading
               <span className="ml-2 bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
                 Solutions
               </span>
             </h2>
-            <p className="text-gray-600 lg:text-lg">
+            <p className="text-gray-600">
               We are at the forefront of innovation, delivering cutting-edge solutions that redefine industries.
               </p>
            
@@ -55,7 +55,7 @@ function IndustryLeading() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative  backdrop-blur-xl rounded-3xl py-8 px-4 border transition-all duration-500 transform hover:scale-105 ${
+                className={`group relative  backdrop-blur-xl rounded-md py-8 px-4 border transition-all duration-500 transform hover:scale-105 ${
                   activeSection === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
               >
@@ -63,11 +63,11 @@ function IndustryLeading() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 ">
                       <div className="w-3 h-3 bg-gradient-to-r from-orange-400 to-red-500 rounded-full"></div>
-                      <span className="text-sm font-bold text-orange-400 uppercase tracking-wider">
+                      <span className="text-xs font-bold text-orange-400 uppercase tracking-wider">
                         {service.subtitle}
                       </span>
                     </div>
-                    <h3 className="text-xl font-black text-gray-800 mb-4 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-lg font-bold text-gray-800 mb-4 group-hover:text-orange-400 transition-colors">
                       {service.title}
                     </h3>
                     <div className="space-y-3 mb-6">
@@ -99,7 +99,7 @@ function IndustryLeading() {
             ))}
           </div>
           {/* Call to Action */}
-        <div className="text-center mt-5">
+        <div className="text-center mt-10">
           <div className="inline-flex flex-col sm:flex-row gap-4">
             {/* <button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-8 py-4 rounded-xl transition-colors duration-300 shadow-lg hover:shadow-xl">
               Get Started Today (not set)

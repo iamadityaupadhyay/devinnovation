@@ -22,6 +22,12 @@ const ClientSchema = new mongoose.Schema({
     
     lowercase: true
   },
+  feedback:{
+    type:String
+  },
+  image:{
+    type:String
+  },
   projectName: {
     type: String,
     
