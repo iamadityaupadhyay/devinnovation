@@ -1,68 +1,14 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-
-const TestimonialCarousel = () => {
+import axios from 'axios';
+const TestimonialCarousel = ({testimonials}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      position: "Marketing Director",
-      company: "TechCorp Solutions",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b789?w=150&h=150&fit=crop&crop=face",
-      content: "Working with this team has been absolutely transformative for our business. Their expertise and dedication exceeded all our expectations.",
-      rating: 5
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      position: "CEO",
-      company: "Innovation Labs",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      content: "The results speak for themselves. Our ROI increased by 300% within the first quarter. Highly recommended for anyone serious about growth.",
-      rating: 5
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      position: "Product Manager",
-      company: "Digital Dynamics",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      content: "Professional, reliable, and incredibly skilled. They delivered exactly what we needed, on time and within budget. A true partnership.",
-      rating: 5
-    },
-    {
-      id: 4,
-      name: "David Thompson",
-      position: "Founder",
-      company: "StartupVenture",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      content: "Their innovative approach and attention to detail set them apart. Our project was completed flawlessly and ahead of schedule.",
-      rating: 5
-    },
-    {
-      id: 5,
-      name: "Lisa Wang",
-      position: "Operations Director",
-      company: "Global Tech",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
-      content: "Outstanding service quality and exceptional results. They transformed our entire workflow and boosted our productivity significantly.",
-      rating: 5
-    },
-    {
-      id: 6,
-      name: "James Miller",
-      position: "CTO",
-      company: "Future Systems",
-      image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
-      content: "Best investment we've made for our company. Their technical expertise and customer service are unmatched in the industry.",
-      rating: 5
-    }
-  ];
-
+  
+  
+  
+  console.log(testimonials) // Add client testimonials
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex >= testimonials.length - 3 ? 0 : prevIndex + 1
@@ -92,7 +38,7 @@ const TestimonialCarousel = () => {
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
-  const totalSlides = testimonials.length - 2;
+  const totalSlides = testimonials.length>2?testimonials.length -2 : testimonials.length ;
 
   return (
     <div className="relative max-w-7xl py-16">
@@ -142,7 +88,7 @@ const TestimonialCarousel = () => {
 
                     {/* Testimonial Text */}
                     <blockquote className="text-gray-700 leading-relaxed mb-6 text-sm">
-                      "{testimonial.content}"
+                      "{testimonial.feedback}"
                     </blockquote>
 
                     {/* Client Info */}
@@ -157,7 +103,7 @@ const TestimonialCarousel = () => {
                           {testimonial.name}
                         </h4>
                         <p className="text-orange-600 text-xs font-medium">
-                          {testimonial.position}
+                          {testimonial.projectName}
                         </p>
                         <p className="text-gray-500 text-xs">
                           {testimonial.company}
