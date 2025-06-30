@@ -55,7 +55,7 @@ export default function HeroSection() {
     },
     {
       id: 4,
-      title: "Blockchain",
+      title: "Blockchain Development",
       subtitle: "Solutions",
       ranking: "#1 Blockchain Development",
       location: "Serving Global Markets",

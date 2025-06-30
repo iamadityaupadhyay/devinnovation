@@ -98,16 +98,16 @@ const TeamShowcase = () => {
   return (
     <div className="bg-gray-50 pb-20">
       {/* Hero Section */}
-      <div className="relative">
+      <div className="relative mb-10">
         <div
-          className="h-[35vh] lg:h-[70vh]  bg-cover bg-center"
+          className="h-[35vh] lg:h-[40vh]  bg-center "
           style={{
             backgroundImage: `url(https://images.unsplash.com/photo-1548705085-101177834f47?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0)`,
             backgroundColor: '#e5e7eb', // Fallback color
           }}
         >
           <div className="absolute inset-0 bg-black/60"></div> {/* Subtle overlay */}
-          <div className="absolute inset-0 flex flex-col  items-center mb-28  justify-center">
+          <div className="absolute inset-0 flex flex-col  items-center  justify-center">
             <h1 className="text-3xl lg:text-3xl font-black text-white">Meet Our
               <span className='text-orange-400'> Superstar Team</span>
                
@@ -122,7 +122,7 @@ const TeamShowcase = () => {
       </div>
 
       {/* Team Cards */}
-      <div className="max-w-6xl mx-auto -mt-20 lg:-mt-40 relative z-10">
+      <div className="max-w-6xl mx-auto  relative z-10">
         {teamMembers.length === 0 ? (
           <p className="text-center text-gray-600">No team members available at the moment.</p>
         ) : (
@@ -130,7 +130,7 @@ const TeamShowcase = () => {
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member._id}
-                className="bg-gray-50/80 backdrop-blur-lg rounded-md shadow-md p-4 border border-gray-200"
+                className="bg-gray-50/90 backdrop-blur-lg rounded-md shadow-md p-4 border border-gray-200"
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"

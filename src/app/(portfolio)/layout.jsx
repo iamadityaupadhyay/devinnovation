@@ -10,8 +10,8 @@ import { Roboto } from 'next/font/google'
 import Head from "next/head";
  
 const roboto = Roboto({
-  weight: '500',
-  subsets: ['latin'],
+  weight: '400',
+  subsets: ["latin-ext"],
 })
 export const metadata = {
   title: 'DevTeam Portfolio',
