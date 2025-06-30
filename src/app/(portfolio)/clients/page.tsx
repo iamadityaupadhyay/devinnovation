@@ -2,6 +2,7 @@ import TestimonialCarousel from "./TestinomialPage"
 import connectDB from "@/lib/util"
 import Client from "@/app/admin/model/client"
 async function page() {
+  await connectDB();
   const clients = await Client.find({}).sort({ createdAt: -1 }).lean();
   const testimonials: {
     name: string;
