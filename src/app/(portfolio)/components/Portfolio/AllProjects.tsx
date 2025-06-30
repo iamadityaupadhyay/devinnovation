@@ -120,7 +120,7 @@ function PreviousProjects() {
       <section className="pb-20 max-w-7xl bg-gray-50">
         <div className="relative">
         <div
-          className="h-[25vh] lg:h-[25vh]  bg-cover bg-center"
+          className="h-[25vh] lg:h-[30vh]  bg-cover bg-center"
           style={{
             backgroundImage: `url(https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
             backgroundColor: '#e5e7eb', // Fallback color
@@ -139,7 +139,7 @@ function PreviousProjects() {
           </div>
         </div>
       </div>
-        <div className="max-w-6xl py-5 mx-auto">
+        <div className="max-w-6xl py-5 px-2 mx-auto">
           
 
           <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
