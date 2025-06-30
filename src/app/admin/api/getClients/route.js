@@ -11,7 +11,11 @@ export async function GET() {
   try {
     await connectDB();
     const clients = await Client.find().sort({ createdAt: -1 });
-    return NextResponse.json(clients, { status: 200 });
+    
+    return NextResponse.json(
+      clients
+    );
+    
   } catch (error) {
     return NextResponse.json({ message: 'Error fetching clients', error: error.message }, { status: 500 });
   }

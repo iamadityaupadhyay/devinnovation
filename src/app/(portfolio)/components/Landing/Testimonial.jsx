@@ -2,67 +2,86 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import axios from 'axios';
 
 const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      position: "Marketing Director",
-      company: "TechCorp Solutions",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b789?w=150&h=150&fit=crop&crop=face",
-      content: "Working with this team has been absolutely transformative for our business. Their expertise and dedication exceeded all our expectations.",
-      rating: 5
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      position: "CEO",
-      company: "Innovation Labs",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      content: "The results speak for themselves. Our ROI increased by 300% within the first quarter. Highly recommended for anyone serious about growth.",
-      rating: 5
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      position: "Product Manager",
-      company: "Digital Dynamics",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      content: "Professional, reliable, and incredibly skilled. They delivered exactly what we needed, on time and within budget. A true partnership.",
-      rating: 5
-    },
-    {
-      id: 4,
-      name: "David Thompson",
-      position: "Founder",
-      company: "StartupVenture",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      content: "Their innovative approach and attention to detail set them apart. Our project was completed flawlessly and ahead of schedule.",
-      rating: 5
-    },
-    {
-      id: 5,
-      name: "Lisa Wang",
-      position: "Operations Director",
-      company: "Global Tech",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
-      content: "Outstanding service quality and exceptional results. They transformed our entire workflow and boosted our productivity significantly.",
-      rating: 5
-    },
-    {
-      id: 6,
-      name: "James Miller",
-      position: "CTO",
-      company: "Future Systems",
-      image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
-      content: "Best investment we've made for our company. Their technical expertise and customer service are unmatched in the industry.",
-      rating: 5
+  const [testimonials, setTestimonials] = useState([]);
+  const fetchTestimonials = async () => {
+    try {
+      const response = await axios.get('/admin/api/getClients');
+      
+      if (response.data){
+        setTestimonials(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching testimonials:", error);
+      setTestimonials([]); // Fallback to empty array on error
     }
-  ];
+  };
+  useEffect(
+    ()=>{
+      fetchTestimonials();
+    },[]
+  )
+  
+  
+  //   {
+  //     id: 1,
+  //     name: "Sarah Johnson",
+  //     position: "Marketing Director",
+  //     company: "TechCorp Solutions",
+  //     image: "https://images.unsplash.com/photo-1494790108755-2616b612b789?w=150&h=150&fit=crop&crop=face",
+  //     content: "Working with this team has been absolutely transformative for our business. Their expertise and dedication exceeded all our expectations.",
+  //     rating: 5
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Michael Chen",
+  //     position: "CEO",
+  //     company: "Innovation Labs",
+  //     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+  //     content: "The results speak for themselves. Our ROI increased by 300% within the first quarter. Highly recommended for anyone serious about growth.",
+  //     rating: 5
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Emily Rodriguez",
+  //     position: "Product Manager",
+  //     company: "Digital Dynamics",
+  //     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+  //     content: "Professional, reliable, and incredibly skilled. They delivered exactly what we needed, on time and within budget. A true partnership.",
+  //     rating: 5
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "David Thompson",
+  //     position: "Founder",
+  //     company: "StartupVenture",
+  //     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+  //     content: "Their innovative approach and attention to detail set them apart. Our project was completed flawlessly and ahead of schedule.",
+  //     rating: 5
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Lisa Wang",
+  //     position: "Operations Director",
+  //     company: "Global Tech",
+  //     image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+  //     content: "Outstanding service quality and exceptional results. They transformed our entire workflow and boosted our productivity significantly.",
+  //     rating: 5
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "James Miller",
+  //     position: "CTO",
+  //     company: "Future Systems",
+  //     image: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
+  //     content: "Best investment we've made for our company. Their technical expertise and customer service are unmatched in the industry.",
+  //     rating: 5
+  //   }
+  // ];
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
@@ -93,7 +112,7 @@ const TestimonialCarousel = () => {
   const handleMouseEnter = () => setIsAutoPlaying(false);
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
-  const totalSlides = testimonials.length - 2;
+  const totalSlides = testimonials.length >2?testimonials.length - 2:testimonials.length;
 
   return (
     <div className="max-w-7xl   px-4 py-16">
@@ -120,14 +139,14 @@ const TestimonialCarousel = () => {
                 <div className="bg-white rounded-xl shadow-lg p-6 h-full border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                   {/* Stars */}
                   <div className="flex mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+                    {[...Array(testimonial.rating)|| 1,2,3,4,5].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-orange-400 fill-current" />
                     ))}
                   </div>
 
                   {/* Testimonial Text */}
                   <blockquote className="text-gray-700 leading-relaxed mb-6 text-sm">
-                    "{testimonial.content}"
+                    "{testimonial.content || testimonial.feedback}"
                   </blockquote>
 
                   {/* Client Info */}
@@ -142,10 +161,10 @@ const TestimonialCarousel = () => {
                         {testimonial.name}
                       </h4>
                       <p className="text-orange-600 text-xs font-medium">
-                        {testimonial.position}
+                        {testimonial.position || testimonial.projectName}
                       </p>
                       <p className="text-gray-500 text-xs">
-                        {testimonial.company}
+                        {testimonial.company || testimonial.companyName}
                       </p>
                     </div>
                   </div>

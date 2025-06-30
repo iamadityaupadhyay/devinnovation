@@ -8,7 +8,7 @@ const TestimonialCarousel = ({testimonials}) => {
   
   
   
-  console.log(testimonials) // Add client testimonials
+  
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex >= testimonials.length - 3 ? 0 : prevIndex + 1
@@ -81,7 +81,7 @@ const TestimonialCarousel = ({testimonials}) => {
                   <div className="bg-white rounded-xl shadow-lg p-6 h-full border border-gray-100 hover:shadow-xl transition-shadow duration-300">
                     {/* Stars */}
                     <div className="flex mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
+                      {[1,2,3,4,5].map((_, i) => (
                         <Star key={i} className="w-5 h-5 text-orange-400 fill-current" />
                       ))}
                     </div>
