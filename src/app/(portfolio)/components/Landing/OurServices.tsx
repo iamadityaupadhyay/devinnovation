@@ -130,7 +130,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
 
 export const OurServices = () => {
   return (
-    <div id="services" className="w-full  px-4 py-16 bg-gradient-to-r from-orange-50 to-yellow-50  relative overflow-hidden">
+    <div id="services" className="max-w-7xl px-4 py-16 bg-gradient-to-r from-orange-50 to-yellow-50  relative overflow-hidden">
       {/* Interactive background elements */}
       <div className="absolute inset-0  overflow-hidden">
         {/* Floating particles */}

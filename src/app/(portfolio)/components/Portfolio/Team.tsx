@@ -96,26 +96,24 @@ const TeamShowcase = () => {
   }
 
   return (
-    <div className="bg-gray-50 pb-20">
+    <div className="bg-gray-50 max-w-7xl pb-20">
       {/* Hero Section */}
       <div className="relative mb-10">
         <div
-          className="h-[35vh] lg:h-[40vh]  bg-center "
+          className="h-[25vh] lg:h-[25vh]  bg-center "
           style={{
             backgroundImage: `url(https://images.unsplash.com/photo-1548705085-101177834f47?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0)`,
             backgroundColor: '#e5e7eb', // Fallback color
           }}
         >
-          <div className="absolute inset-0 bg-black/60"></div> {/* Subtle overlay */}
+          <div className="absolute inset-0 bg-black/80"></div> {/* Subtle overlay */}
           <div className="absolute inset-0 flex flex-col  items-center  justify-center">
             <h1 className="text-3xl lg:text-3xl font-black text-white">Meet Our
               <span className='text-orange-400'> Superstar Team</span>
                
                
                </h1>
-            <p className=" text-white  max-w-sm text-center">
-              Our team is a diverse group of professionals dedicated to delivering excellence in project.
-            </p>
+            
             {/* <div className='w-10 h-2 bg-orange-400 rounded-lg mt-1'></div> */}
           </div>
         </div>
@@ -137,23 +135,24 @@ const TeamShowcase = () => {
                 whileHover="hover"
                 custom={index}
               >
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
+                <div className="flex justify-center mb-4">
                     <Image
                       width={80}
                       height={80}
                       loading="lazy"
                       src={member.profileImage}
                       alt={member.name}
-                      className="w-14 h-14 rounded-md object-cover"
+                      className="w-40 h-40 rounded-full object-cover"
                       style={{ backgroundColor: '#f3f4f6' }} // Fallback color
                     />
                   </div>
-                  <div className="flex-1">
+                <div className="flex items-center justify-center space-x-4">
+                  
+                  <div className="flex flex-col items-center justify-center flex-1">
                     <h3 className="text-base font-semibold text-gray-800">{member.name}</h3>
                     <p className="text-sm text-gray-600">{member.position}</p>
                     <p className="text-sm text-gray-500">{member.department} | {formatDate(member.joinDate)}</p>
-                    <p className="text-sm text-gray-600 mt-2 line-clamp-4">{member.bio}</p>
+                    {/* <p className="text-sm text-gray-600 mt-2 line-clamp-4">{member.bio}</p> */}
                     <div className="mt-3 flex gap-3">
                       {member.email && (
                         <motion.a

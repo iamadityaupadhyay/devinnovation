@@ -383,7 +383,7 @@ export default function HeroSection() {
 );
   // QA Testing Illustration
   const QAIllustration = () => (
-  <div className="relative w-full h-full mt-8  flex items-center justify-center">
+  <div className="relative w-full h-full   flex items-center justify-center">
     {/* Background image with unique shape and animation */}
     <div 
       className="absolute inset-0 rounded-lg  opacity-20 hover:opacity-100 transition-opacity duration-700 ease-in-out delay-300"
@@ -458,7 +458,7 @@ export default function HeroSection() {
   };
   
   return (
-    <div className="h-screen pb-10 bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
+    <div className="max-w-7xl pb-10 bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
       {/* Carousel Container */}
       <div className="relative h-full">
         <div 
@@ -560,7 +560,7 @@ export default function HeroSection() {
               </div>
 
               {/* Mobile Illustration - Smaller version */}
-              <div className="lg:hidden flex justify-center items-center z-10">
+              <div className="lg:hidden flex justify-center items-center mt-10 z-10">
                 <div className="relative pb-10 w-full h-64">
                   {getIllustration(slide.id)}
                 </div>

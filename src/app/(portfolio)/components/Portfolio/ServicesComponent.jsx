@@ -10,12 +10,12 @@ async function Services() {
   const services = await Service.find().sort({ createdAt: -1 });
   
   return (
-    <div>
+    <div className='max-w-7xl'>
       <section 
-        className="relative py-12 "
+        className="relative  py-12 "
       >
         <div 
-         className="h-[30vh] lg:h-[40vh] absolute inset-0 px-2 bg-cover bg-center" 
+         className="h-[30vh] lg:h-[30vh] absolute inset-0 px-2 bg-cover bg-center" 
          style={{
            backgroundImage: `url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGFuZCUyMHNoYWtlfGVufDB8fDB8fHww')`
          }}
@@ -34,7 +34,7 @@ async function Services() {
               We offer a wide range of services to help you achieve your business goals. 
             </p>
           </div>
-          <div className="min-h-[150px]"></div> {/* Spacer for half image height */}
+          <div className="min-h-[90px]"></div> {/* Spacer for half image height */}
           <div className="grid px-2 md:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div 

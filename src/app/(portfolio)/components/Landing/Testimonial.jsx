@@ -96,8 +96,8 @@ const TestimonialCarousel = () => {
   const totalSlides = testimonials.length - 2;
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center mb-12">
+    <div className="max-w-7xl   px-4 py-16">
+      <div className="max-w-7xl text-center mb-12">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
         <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>
       </div>

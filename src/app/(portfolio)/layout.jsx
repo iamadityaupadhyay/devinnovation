@@ -8,6 +8,7 @@ import Contact from "../admin/model/contact";
 import Service from "../admin/model/service";
 import { Roboto } from 'next/font/google'
 import Head from "next/head";
+import Services from "./components/Portfolio/ServicesComponent";
  
 const roboto = Roboto({
   weight: '400',
@@ -44,6 +45,7 @@ export default async function RootLayout({ children }) {
             type="text/javascript"
           ></script>
         </div>
+        
         <Footer contact={contact} />
         <SocialSidebar contact={contact} />
       </body>

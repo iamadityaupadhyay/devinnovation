@@ -25,7 +25,7 @@ const SocialSidebar = ({ contact }: any) => {
   return (
     <>
       {/* Social Media Sidebar */}
-      <div className="fixed hidden sm:block left-0 top-1/2 transform -translate-y-1/2 z-50">
+      <div className="fixed hidden max-w-7xl sm:block left-0 top-1/2 transform -translate-y-1/2 z-50">
         <div className="flex flex-col space-y-1">
           {socialLinks.map((social, index) => (
             <div key={index} className="group relative">
@@ -47,7 +47,7 @@ const SocialSidebar = ({ contact }: any) => {
       </div>
 
       {/* Contact Sidebar */}
-      <div className="fixed hidden sm:block right-0 top-3/4 transform -translate-y-1/2 z-50">
+      <div className="fixed hidden sm:block right-0 max-w-7xl top-3/4 transform -translate-y-1/2 z-50">
         <div className="flex flex-col space-y-1">
           {contactLinks.map((contact, index) => (
             <div key={index} className="group relative">

@@ -36,8 +36,8 @@ function IndustryLeading() {
   return (
     <div>
         {/* Services Showcase */}
-      <section className="py-16 bg-gradient-to-r from-white  to-gray-50 px-4 relative">
-        <div className="max-w-6xl mx-auto">
+      <section className="py-16 max-w-7xl bg-gradient-to-r from-white  to-gray-50 px-4 relative">
+        <div className=" mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl text-gray-800 font-black mb-2">
              Industry Leading

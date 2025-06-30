@@ -46,7 +46,7 @@ function PreviousProjects() {
 
   if (loading && projects.length === 0) {
     return (
-      <div className="py-16 min-h-screen px-6 flex flex-col items-center justify-center">
+      <div className="py-16 min-h-screen px-6 max-w-7xl flex flex-col items-center justify-center">
         <div className="flex items-center space-x-2 mb-4">
           <span className="w-4 h-4 rounded-full bg-orange-400 animate-bounce"></span>
           <span className="w-4 h-4 rounded-full bg-red-400 animate-bounce [animation-delay:.2s]"></span>
@@ -117,10 +117,10 @@ function PreviousProjects() {
         }
       `}</style>
       
-      <section className="pb-20 bg-gray-50">
+      <section className="pb-20 max-w-7xl bg-gray-50">
         <div className="relative">
         <div
-          className="h-[30vh] lg:h-[40vh]  bg-cover bg-center"
+          className="h-[25vh] lg:h-[30vh]  bg-cover bg-center"
           style={{
             backgroundImage: `url(https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
             backgroundColor: '#e5e7eb', // Fallback color

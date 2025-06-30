@@ -163,7 +163,7 @@ function IndustrySolutions() {
 
   return (
     <div>
-      <section className="pb-16 bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
+      <section className="pb-16 max-w-7xl bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
          <div className="relative mb-5   rounded-b-lg">
         <div
           className="h-[30vh] lg:h-[40vh]  bg-cover"
@@ -174,14 +174,14 @@ function IndustrySolutions() {
         >
           <div className="absolute inset-0 bg-black/80"></div> {/* Subtle overlay */}
           <div className="absolute inset-0 flex flex-col items-center  justify-center">
-            <h1 className="text-3xl lg:text-3xl font-black text-white">Our 
+            <h1 className="text-3xl lg:text-3xl font-black text-white">
               Industries
               <span className="ml-2 bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
                 
                We Serves
                </span></h1>
             <p className="text-center lg:max-w-md max-w-sm text-gray-300 mt-2">
-              Explore our diverse industry solutions designed to transform your business with cutting-edge technology and innovation.
+              Explore our diverse industry solutions designed to transform your business
             </p>
           
           </div>

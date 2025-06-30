@@ -116,7 +116,7 @@ function PreviousProjects() {
         }
       `}</style>
       
-      <section className="py-10 px-6 bg-gradient-to-r from-white  to-gray-50 relative">
+      <section className="py-10 max-w-7xl px-6 bg-gradient-to-r from-white  to-gray-50 relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl text-gray-800 font-black">

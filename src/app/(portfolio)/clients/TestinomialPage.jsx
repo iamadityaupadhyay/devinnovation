@@ -95,9 +95,9 @@ const TestimonialCarousel = () => {
   const totalSlides = testimonials.length - 2;
 
   return (
-    <div className="relative py-16">
+    <div className="relative max-w-7xl py-16">
       <div 
-        className="h-[30vh] lg:h-[50vh] absolute inset-0 px-2 bg-cover "
+        className="h-[30vh] lg:h-[30vh] absolute inset-0 px-2 bg-cover bg-center "
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`
         }}
@@ -117,7 +117,7 @@ const TestimonialCarousel = () => {
           </p>
         </div>
 
-        <div className="min-h-[150px]"></div> {/* Spacer for half image height */}
+        <div className="min-h-[50px]"></div> {/* Spacer for half image height */}
 
         <div 
           className="relative"
