@@ -458,7 +458,7 @@ export default function HeroSection() {
   };
   
   return (
-    <div className="max-w-7xl pb-10 bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
+    <div className="max-w-7xl sm:py-12   bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
       {/* Carousel Container */}
       <div className="relative h-full">
         <div 
