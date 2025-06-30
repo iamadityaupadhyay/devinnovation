@@ -18,6 +18,7 @@ interface Project {
   clientName: string;
   previewImage: string;
   name: string;
+  _id: string; // Added _id for MongoDB compatibility
 }
 
 function PreviousProjects() {
@@ -195,7 +196,7 @@ function PreviousProjects() {
                           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link
-                          href={`/projects/${project.id}`} 
+                          href={`/projects/${project._id}`} 
                           className="text-orange-500 flex gap-2 items-center"
                         >
                           Learn More
