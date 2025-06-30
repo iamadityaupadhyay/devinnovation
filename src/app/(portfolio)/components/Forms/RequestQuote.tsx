@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { X, User, Mail, Phone, DollarSign, FileText } from 'lucide-react';
 import axios from "axios"
 import { FaRupeeSign } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 const RequestQuoteModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
   const [formData, setFormData] = useState({
@@ -109,7 +110,9 @@ const RequestQuoteModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     try {
       const response = await axios.post("/apis/quoteSubmit", formData);
       
-      alert('Quote request submitted successfully!');
+      if(response.data.success) {{
+        toast.success('Quote request submitted successfully!');
+      }
       onClose();
     } catch (error) {
       console.error('Submission error:', error);
