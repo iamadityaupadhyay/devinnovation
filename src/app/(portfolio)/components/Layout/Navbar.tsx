@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ChevronDown, Mail, Phone, MapPin } from 'lucide-react';
@@ -6,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import axios from "axios"
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { usePathname } from 'next/navigation';
 
 interface DropdownItem {
   label: string;
@@ -44,7 +46,8 @@ const Navbar: React.FC = ({contact, services}: any) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false); // New state for scroll tracking
+  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   // Check if device is mobile
   useEffect(() => {
@@ -60,7 +63,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
   // Track scroll position
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50); // Hide top bar after scrolling 50px
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -90,7 +93,8 @@ const Navbar: React.FC = ({contact, services}: any) => {
     { name: 'Laravel Developers', icon: '🎭', href: '#hire-laravel-developers', bgColor: 'bg-red-500' }
   ];
 
-  const industries = [
+  // Empty industries array as requested
+ const industries = [
     {
       name: "Healthcare",
       href: "/service/healthcare",
@@ -344,9 +348,16 @@ const Navbar: React.FC = ({contact, services}: any) => {
       bgColor: 'bg-green-500'
     }
   ];
+  // Function to check if current path matches nav item
+  const isCurrentPage = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   const navItems: NavItem[] = [
-    { label: 'Home', href: '/', isActive: true },
+    { label: 'Home', href: '/' },
     { label: 'Portfolio', href: '/portfolio' },
     {
       label: 'Services',
@@ -366,8 +377,8 @@ const Navbar: React.FC = ({contact, services}: any) => {
     {
       label: 'Industries',
       href: '/industry',
-      hasDropdown: true,
-      isIndustriesDropdown: true,
+      hasDropdown: industries.length > 0,
+      isIndustriesDropdown: industries.length > 0,
       dropdownItems: industries.map(industry => ({
         label: industry.name,
         href: industry.href
@@ -400,42 +411,44 @@ const Navbar: React.FC = ({contact, services}: any) => {
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50 font-custom">
-      {/* Top Bar - Hidden on mobile and when scrolled */}
-      {!isScrolled && (
-        <div className="hidden lg:block bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-end items-center">
-              <div className="flex items-center space-x-6 py-1 text-sm">
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-orange-500 transition-colors"
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>{contact.email}</span>
-                </a>
-                <div className="h-4 w-px bg-gray-300" />
-                <a
-                  href={`mailto:${contact.emailHR}`}
-                  className="text-gray-600 hover:text-orange-500 transition-colors"
-                >
-                  {contact.emailHR}
-                </a>
-                <div className="h-4 w-px bg-gray-300" />
-                <a href={`tel:${contact.phoneNumber}`} className="flex items-center space-x-1 text-gray-600">
-                  <Phone className="w-4 h-4" />
-                  <span>{contact.phoneNumber}</span>
-                </a>
-                <button
-                  onClick={() => setIsModalOpen(true)}
-                  className="bg-orange-500 text-sm text-white px-3 py-1 rounded-md font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
-                >
-                  Consult Experts
-                </button>
-              </div>
+      {/* Top Bar - Hidden on mobile and when scrolled with smooth animation */}
+      <div className={`hidden lg:block bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 border-b border-gray-200 transition-all duration-500 ease-in-out transform ${
+        isScrolled 
+          ? 'opacity-0 -translate-y-full max-h-0 overflow-hidden' 
+          : 'opacity-100 translate-y-0 max-h-20'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-end items-center">
+            <div className="flex items-center space-x-6 py-1 text-sm">
+              <a
+                href={`mailto:${contact.email}`}
+                className="flex items-center space-x-2 text-gray-600 hover:text-orange-500 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span>{contact.email}</span>
+              </a>
+              <div className="h-4 w-px bg-gray-300" />
+              <a
+                href={`mailto:${contact.emailHR}`}
+                className="text-gray-600 hover:text-orange-500 transition-colors"
+              >
+                {contact.emailHR}
+              </a>
+              <div className="h-4 w-px bg-gray-300" />
+              <a href={`tel:${contact.phoneNumber}`} className="flex items-center space-x-1 text-gray-600">
+                <Phone className="w-4 h-4" />
+                <span>{contact.phoneNumber}</span>
+              </a>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="bg-orange-500 text-sm text-white px-3 py-1 rounded-md font-medium transition-colors border-2 border-orange-500 hover:bg-white hover:text-orange-500 hover:outline-none hover:border-orange-500"
+              >
+                Consult Experts
+              </button>
             </div>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Main Navigation */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -464,7 +477,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
                   href={item.href}
                   onClick={() => setActiveDropdown(null)}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    item.isActive
+                    isCurrentPage(item.href)
                       ? "text-orange-500 bg-orange-50"
                       : "text-gray-700 hover:text-orange-500 hover:bg-gray-50"
                   }`}
@@ -579,7 +592,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
                           ))}
                         </div>
                       </div>
-                    ) : item.isIndustriesDropdown ? (
+                    ) : item.isIndustriesDropdown && industries.length > 0 ? (
                       <div>
                         <div className="mb-6">
                           <h3 className="text-2xl font-bold text-gray-800 mb-2">
@@ -739,7 +752,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
                     setActiveDropdown(null);
                   }}
                   className={`flex-1 py-3 text-base font-medium ${
-                    item.isActive ? "text-orange-500" : "text-gray-700"
+                    isCurrentPage(item.href) ? "text-orange-500" : "text-gray-700"
                   }`}
                 >
                   {item.label}
@@ -811,7 +824,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
                           </a>
                         ))}
                       </div>
-                    ) : item.isIndustriesDropdown ? (
+                    ) : item.isIndustriesDropdown && industries.length > 0 ? (
                       <div className="grid grid-cols-2 gap-2 py-2">
                         {industries.map((industry, industryIndex) => (
                           <a

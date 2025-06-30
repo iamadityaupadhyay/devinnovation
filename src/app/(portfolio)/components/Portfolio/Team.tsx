@@ -96,11 +96,11 @@ const TeamShowcase = () => {
   }
 
   return (
-    <div className="bg-gray-50 pb-10">
+    <div className="bg-gray-50 pb-20">
       {/* Hero Section */}
       <div className="relative">
         <div
-          className="h-[35vh] lg:h-[80vh]  bg-cover bg-center"
+          className="h-[35vh] lg:h-[70vh]  bg-cover bg-center"
           style={{
             backgroundImage: `url(https://images.unsplash.com/photo-1548705085-101177834f47?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0)`,
             backgroundColor: '#e5e7eb', // Fallback color

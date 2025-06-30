@@ -163,17 +163,32 @@ function IndustrySolutions() {
 
   return (
     <div>
-      <section className="py-10 px-2 bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl text-gray-900 font-bold mb-2">
-            Industry We
+      <section className="pb-16 bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
+         <div className="relative mb-5   rounded-b-lg">
+        <div
+          className="h-[30vh] lg:h-[40vh]  bg-cover"
+          style={{
+            backgroundImage: `url(https://plus.unsplash.com/premium_photo-1680608979589-e9349ed066d5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aXQlMjBpbmR1c3RyeXxlbnwwfHwwfHx8MA%3D%3D)`,
+            backgroundColor: '#e5e7eb', // Fallback color
+          }}
+        >
+          <div className="absolute inset-0 bg-black/80"></div> {/* Subtle overlay */}
+          <div className="absolute inset-0 flex flex-col items-center  justify-center">
+            <h1 className="text-3xl lg:text-3xl font-black text-white">Our 
+              Industries
               <span className="ml-2 bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
-                Serves
-              </span>
-            </h2>
-           
+                
+               We Serves
+               </span></h1>
+            <p className="text-center lg:max-w-md max-w-sm text-gray-300 mt-2">
+              Explore our diverse industry solutions designed to transform your business with cutting-edge technology and innovation.
+            </p>
+          
           </div>
+        </div>
+      </div>
+        <div className="max-w-7xl px-2 mx-auto">
+          
 
           <div className="grid md:grid-cols-4 gap-8">
             {industries.map((industry, index) => (
@@ -208,7 +223,7 @@ function IndustrySolutions() {
                   </svg>
                 </Link>
                 
-                <div className="relative overflow-hidden rounded-2xl group-hover:scale-105 transition-transform duration-300">
+                <div className="relative overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-300">
                   <img 
                     src={industry.image}
                     alt={industry.name}
@@ -224,6 +239,7 @@ function IndustrySolutions() {
             ))}
           </div>
         </div>
+        
       </section>
       <OurMagicalProcess/>
       <CallToAction/>

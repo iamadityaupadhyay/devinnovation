@@ -44,7 +44,18 @@ function PreviousProjects() {
   }, []);
 
   if (loading && projects.length === 0) {
-    return <div className="py-16 min-h-screen px-6 text-center">Loading our amazing projects...</div>;
+    return (
+      <div className="py-16 min-h-screen px-6 flex flex-col items-center justify-center">
+        <div className="flex items-center space-x-2 mb-4">
+          <span className="w-4 h-4 rounded-full bg-orange-400 animate-bounce"></span>
+          <span className="w-4 h-4 rounded-full bg-red-400 animate-bounce [animation-delay:.2s]"></span>
+          <span className="w-4 h-4 rounded-full bg-orange-400 animate-bounce [animation-delay:.4s]"></span>
+        </div>
+        <div className="text-center text-lg text-gray-700 font-semibold">
+          Loading our amazing projects...
+        </div>
+      </div>
+    );
   }
 
   if (error) {
