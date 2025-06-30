@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import ServiceForm from "../CommonForm";
 import connectDB from "@/lib/util";
+import WhyChooseUs from "../../service/Whychooseuss";
+import WhyChooseUsSection from "../../components/Landing/Whychooseuss";
 
 interface Project {
   _id: string;
@@ -50,7 +52,7 @@ export default async function ProjectDetails({ params }: any) {
   return (
     <div className="font-custom text-gray-800">
       {/* Project Content */}
-      <main className="grid grid-cols-1 md:grid-cols-3 gap-10 mx-auto px-4 py-8">
+      <main className="grid grid-cols-1 md:grid-cols-3  mx-auto px-4 py-8">
         {/* Project Description */}
         <section className="mb-8  max-w-2xl col-span-2">
           <h1 className="text-3xl font-bold text-orange-800 mb-16">{project.name} | <span className="text-gray-800"> {project.category}</span></h1>
@@ -76,7 +78,7 @@ export default async function ProjectDetails({ params }: any) {
           {/* Features */}
           <section className="mt-8">
             <h2 className="text-xl font-semibold mb-4 text-orange-800 ">Key Features</h2>
-            <ul className="justify-between flex">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.bulletPoints.map((feature, index) => (
                 <li key={index} className="text-gray-600">
                   <span className="text-orange-800 mr-2">✓</span>{feature}
@@ -88,6 +90,8 @@ export default async function ProjectDetails({ params }: any) {
 
         <ServiceForm />
       </main>
+
+      <WhyChooseUs/>
     </div>
   );
 }
