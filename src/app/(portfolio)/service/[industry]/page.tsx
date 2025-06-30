@@ -591,7 +591,7 @@ export default function IndustryPage({ params }: any) {
       <div className="relative max-w-7xl bg-gradient-to-r from-white to-gray-100 overflow-hidden">
         {/* Background Image with Arc at Bottom */}
         <div 
-          className="absolute inset-0 lg:h-[80vh] h-[30vh] bg-cover bg-center"
+          className="absolute inset-0 lg:h-[80vh] h-[25vh] bg-cover bg-center"
           style={{
             backgroundImage: `url(${currentService.imageUrl})`,
             backgroundSize: 'cover',
