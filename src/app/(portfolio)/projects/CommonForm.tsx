@@ -73,11 +73,11 @@ const ServiceForm: React.FC = () => {
 
   return (
     <div className="">
-      <div className="max-w-7xl mx-auto">
+      <div className="p-4 mx-auto">
        <div className="bg-white backdrop-blur-sm rounded-md shadow-xl p-4">
             <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-600 mb-2">Contact Us</h3>
-              <p className="text-gray-500 text-sm">Fill out the form below and we'll get back to you soon</p>
+              <h3 className="text-xl font-bold text-orange-600 mb-2">Contact Us</h3>
+              <p className="text-orange-500 text-sm">Fill out the form below and we'll get back to you soon</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -85,7 +85,7 @@ const ServiceForm: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Full Name */}
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">
+                <label className="block text-orange-700 font-semibold mb-2">
                   Full Name*
                 </label>
                 <div className="relative">
@@ -97,14 +97,14 @@ const ServiceForm: React.FC = () => {
                     onChange={handleInputChange}
                     placeholder="Full Name"
                     required
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
+                    className="w-full pl-10 pr-4 py-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
                   />
                 </div>
               </div>
 
               {/* Email */}
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">
+                <label className="block text-orange-700 font-semibold mb-2">
                   Email*
                 </label>
                 <div className="relative">
@@ -116,7 +116,7 @@ const ServiceForm: React.FC = () => {
                     onChange={handleInputChange}
                     placeholder="Email"
                     required
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
+                    className="w-full pl-10 pr-4 py-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
                   />
                 </div>
               </div>
@@ -126,14 +126,14 @@ const ServiceForm: React.FC = () => {
               {/* Country Code and Mobile */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-orange-700 font-semibold mb-2">
                     Country Code*
                   </label>
                   <select
                     name="countryCode"
                     value={formData.countryCode}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
+                    className="w-full px-4 py-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
                     required
                   >
                     {countryCodes.map((country) => (
@@ -144,7 +144,7 @@ const ServiceForm: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-gray-700 font-semibold mb-2">
+                  <label className="block text-orange-700 font-semibold mb-2">
                     Mobile No.*
                   </label>
                   <div className="relative">
@@ -156,7 +156,7 @@ const ServiceForm: React.FC = () => {
                       onChange={handleInputChange}
                       placeholder="Mobile No."
                       required
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
+                      className="w-full pl-10 pr-4 py-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none"
                     />
                   </div>
                 </div>
@@ -166,7 +166,7 @@ const ServiceForm: React.FC = () => {
               
           
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">
+                <label className="block text-orange-700 font-semibold mb-2">
                   Project Information
                 </label>
                 <div className="relative">
@@ -177,7 +177,7 @@ const ServiceForm: React.FC = () => {
                     onChange={handleInputChange}
                     placeholder="Tell us about your project..."
                     rows={4}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none resize-none"
+                    className="w-full pl-10 pr-4 py-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 outline-none resize-none"
                   />
                 </div>
               </div>

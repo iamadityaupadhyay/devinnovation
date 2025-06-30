@@ -110,7 +110,7 @@ const RequestQuoteModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () =
     try {
       const response = await axios.post("/apis/quoteSubmit", formData);
       
-      if(response.data.success) {{
+      if(response.data.success) {
         toast.success('Quote request submitted successfully!');
       }
       onClose();
