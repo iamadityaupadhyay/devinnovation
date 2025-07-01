@@ -112,7 +112,7 @@ function PreviousProjects() {
           left: 0;
           width: 100%;
           height: 100%;
-          filter: grayscale(100%);
+          filter: grayscale(40%);
           z-index: -1;
         }
       `}</style>
@@ -144,14 +144,14 @@ function PreviousProjects() {
 
           <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
             {projects.map((project, index) => (
-              <div
+<div
                 key={project.id}
-                className={`group relative rounded-md p-5 border transition-all duration-500 transform hover:scale-100 ${
+                className={`group relative rounded-sm p-5 py-7 border transition-all duration-500 transform hover:scale-100 ${
                   activeProject === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
                 onMouseEnter={() => setActiveProject(index)}
               >
-                <div className="w-full  mb-2 relative overflow-hidden rounded-lg gradient-reveal">
+                <div className="w-full  mb-2 relative overflow-hidden rounded-ms gradient-reveal">
                   <div className="image-container">
                     <img
                       src={project.image}
@@ -167,22 +167,22 @@ function PreviousProjects() {
                 </div>
                 
                 <div className="flex flex-col items-center gap-4">
-                  <div className="w-full">
+                  <div className="w-full mt-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-red-500 rounded-full group-hover:animate-pulse"></div>
-                      <span className="text-sm font-bold text-orange-400 uppercase tracking-wider group-hover:text-red-500 transition-colors duration-300">
+                      <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-green-500 rounded-full group-hover:animate-pulse"></div>
+                      <span className="text-base font-bold text-orange-800 uppercase tracking-wider group-hover:text-red-500 transition-colors duration-300">
                         {project.name} | {project.category} 
                       </span>
                     </div>
-                    <h3 className="text-base font-bold text-gray-800 mb-2 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-sm mt-3 font-bold text-gray-800 mb-2 group-hover:text-orange-400 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-700 mb-2 group-hover:text-gray-900 transition-colors">{project.shortDescription}</p>
-                    <div className="grid grid-cols-2 gap-2 mb-4">
-                      {project.bulletPoints.slice(0, 4).map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-2 text-sm">
-                          <CheckCircle className="w-5 h-5 text-orange-400 group-hover:text-green-500 transition-colors duration-300" />
-                          <span className="text-gray-700 group-hover:text-gray-900 transition-colors">{feature}</span>
+                    <p className="text-gray-700 mb-2 text-sm group-hover:text-gray-900 transition-colors">{project.shortDescription}</p>
+                    <div className=" gap-2 mt-4 mb-4">
+                      {project.bulletPoints.slice(0,3).map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex mb-2 items-center gap-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-orange-400 group-hover:text-green-500 transition-colors duration-300" />
+                          <span className="text-gray-700 group-hover:text-gray-900   transition-colors">{feature}</span>
                         </div>
                       ))}
                     </div>
@@ -190,17 +190,17 @@ function PreviousProjects() {
                       <div className="flex items-center justify-between gap-4">
                         <Link
                           href={project.link}
-                          className=" bg-white border-orange-400  border-2 text-orange-400  hover:bg-gradient-to-r hover:text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-2 py-1.5 rounded-lg  transition-all duration-300 flex items-center gap-2 transform hover:scale-105 hover:shadow-lg"
+                          className=" bg-white border-orange-400 text-sm border-2 text-orange-400  hover:bg-gradient-to-r hover:text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-2 py-1.5 rounded-lg  transition-all duration-300 flex items-center gap-2 transform hover:scale-105 hover:shadow-lg"
                         >
                           Live Preview
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          <ArrowRight className="w-4 h-4 hover:translate-x-1  transition-transform" />
                         </Link>
                         <Link
                           href={`/projects/${project._id}`} 
-                          className="text-orange-500 flex gap-2 items-center"
+                          className="text-orange-500 hover:scale-105 mr-5 gap-1 text-sm flex  items-center"
                         >
                           Learn More
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          <ArrowRight className="w-4 h-4 hover:scale-105 text-sm transition-transform" />
                         </Link>
                       </div>
                     ) : (

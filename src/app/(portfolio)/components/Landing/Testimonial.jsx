@@ -135,8 +135,8 @@ const TestimonialCarousel = () => {
             style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
           >
             {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id} className="lg:w-1/3 w-80 flex-shrink-0 px-3">
-                <div className="bg-white rounded-xl shadow-lg p-6 h-full border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <div key={testimonial.id} className="lg:w-1/3 py-4 w-80 flex-shrink-0 px-3">
+                <div className="bg-white rounded-xl  p-6 h-full border  hover:shadow-3xl transition-shadow duration-300">
                   {/* Stars */}
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)|| 1,2,3,4,5].map((_, i) => (
@@ -145,7 +145,7 @@ const TestimonialCarousel = () => {
                   </div>
 
                   {/* Testimonial Text */}
-                  <blockquote className="text-gray-700 leading-relaxed mb-6 text-sm">
+                  <blockquote className="text-gray-700 leading-relaxed mb-6 text-base">
                     "{testimonial.content || testimonial.feedback}"
                   </blockquote>
 
@@ -154,13 +154,13 @@ const TestimonialCarousel = () => {
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="w-12 h-12 rounded-full object-cover border-2 border-orange-100"
+                      className="w-14 h-14 rounded-full object-cover border-2 border-orange-100"
                     />
                     <div>
-                      <h4 className="font-semibold text-gray-900 text-sm">
+                      <h4 className="font-semibold text-gray-900 text-base md:text-lg lg:text-lg">
                         {testimonial.name}
                       </h4>
-                      <p className="text-orange-600 text-xs font-medium">
+                      <p className="text-orange-600 text-base  font-medium">
                         {testimonial.position || testimonial.projectName}
                       </p>
                       <p className="text-gray-500 text-xs">
