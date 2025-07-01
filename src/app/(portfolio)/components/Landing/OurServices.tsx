@@ -68,7 +68,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
     >
       {/* Hover Image Overlay */}
       <div className={`
-        absolute inset-0 rounded-sm overflow-hidden transition-all duration-500
+        absolute inset-0 rounded-sm  overflow-hidden transition-all duration-500
         ${isHovered ? 'opacity-100' : 'opacity-0'}
       `}>
         <Image
@@ -153,9 +153,9 @@ export const OurServices = () => {
         <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float-delayed-2"></div>
       </div>
       
-      <div className="relative  z-10">
+      <div className="relative   z-10">
         {/* Header */}
-        <div className="flex flex-col items-center text-center mb-5">
+        <div className="flex  flex-col items-center text-center mb-5">
           <h3 className="text-blue-800 font-medium uppercase tracking-wider text-sm ">
           </h3>
           <h1 className="text-3xl md:text-3xl font-extrabold text-gray-900 mb-1 leading-tight">
@@ -167,7 +167,7 @@ export const OurServices = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} />
           ))}

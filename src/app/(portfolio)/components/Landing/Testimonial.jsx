@@ -115,7 +115,7 @@ const TestimonialCarousel = () => {
   const totalSlides = testimonials.length >2?testimonials.length - 2:testimonials.length;
 
   return (
-    <div className="max-w-7xl   px-4 py-16">
+    <div className="max-w-7xl  md:px-8   py-16">
       <div className="max-w-7xl text-center mb-12">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
         <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>
@@ -135,8 +135,8 @@ const TestimonialCarousel = () => {
             style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
           >
             {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id} className="lg:w-1/3 py-4 w-80 flex-shrink-0 px-3">
-                <div className="bg-white rounded-xl  p-6 h-full border  hover:shadow-3xl transition-shadow duration-300">
+              <div key={testimonial.id} className="lg:w-1/3  w-80 flex-shrink-0 px-3">
+                <div className="bg-white rounded-xl  px-4 py-6 h-full border  hover:shadow-3xl transition-shadow duration-300">
                   {/* Stars */}
                   <div className="flex mb-4">
                     {[...Array(testimonial.rating)|| 1,2,3,4,5].map((_, i) => (

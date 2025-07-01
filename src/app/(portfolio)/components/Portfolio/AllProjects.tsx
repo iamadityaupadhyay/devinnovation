@@ -139,10 +139,10 @@ function PreviousProjects() {
           </div>
         </div>
       </div>
-        <div className="max-w-6xl py-5 px-2 mx-auto">
+        <div className="max-w-6xl py-10 px-2 mx-auto">
           
 
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
             {projects.map((project, index) => (
 <div
                 key={project.id}
@@ -174,13 +174,13 @@ function PreviousProjects() {
                         {project.name} | {project.category} 
                       </span>
                     </div>
-                    <h3 className="text-sm mt-3 font-bold text-gray-800 mb-2 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-base mt-2 font-bold text-gray-600 mb-2 group-hover:text-orange-400 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-700 mb-2 text-sm group-hover:text-gray-900 transition-colors">{project.shortDescription}</p>
-                    <div className=" gap-2 mt-4 mb-4">
-                      {project.bulletPoints.slice(0,3).map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex mb-2 items-center gap-2 text-sm">
+                    <p className="text-gray-700 mb-2 text-base group-hover:text-gray-900 transition-colors">{project.shortDescription}</p>
+                    <div className=" gap-2 grid md:grid-cols-2 mt-4 mb-4">
+                      {project.bulletPoints.slice(0,4).map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex mb-2 items-center gap-2 text-base">
                           <CheckCircle className="w-4 h-4 text-orange-400 group-hover:text-green-500 transition-colors duration-300" />
                           <span className="text-gray-700 group-hover:text-gray-900   transition-colors">{feature}</span>
                         </div>

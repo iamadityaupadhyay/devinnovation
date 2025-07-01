@@ -41,9 +41,9 @@ const FAQComponent = () => {
   ];
 
   return (
-    <div className="w-full   mx-auto px-2 py-16  bg-gradient-to-r from-white to bg-gray-50   ">
+    <div className=" px-2 py-16  max-w-7xl bg-gradient-to-r from-white to bg-gray-50   ">
       {/* Header Section */}
-      <div className="text-center max-w-7xl mb-10 animate-fade-in">
+      <div className="text-center mb-10 animate-fade-in">
         <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mb-4 shadow-lg animate-bounce-slow">
           <span className="text-2xl font-bold text-white">?</span>
           
@@ -55,7 +55,7 @@ const FAQComponent = () => {
       </div>
 
       {/* FAQ Items */}
-      <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 justify-center max-w-7xl animate-fade-in-up">
+      <div className=" grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2 justify-center  animate-fade-in-up">
         {faqData.map((item, index) => (
           <div
             key={index}

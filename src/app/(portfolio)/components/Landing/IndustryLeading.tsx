@@ -37,7 +37,7 @@ function IndustryLeading() {
     <div>
         {/* Services Showcase */}
       <section className="py-16 max-w-7xl bg-gradient-to-r from-white  to-gray-50 px-4 relative">
-        <div className=" mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl text-gray-800 font-black mb-2">
              Industry Leading
@@ -51,11 +51,11 @@ function IndustryLeading() {
            
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid  md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative  backdrop-blur-xl rounded-md py-8 px-4 border transition-all duration-500 transform hover:scale-105 ${
+                className={`group relative   backdrop-blur-xl rounded-md py-8 px-4 border transition-all duration-500 transform hover:-translate-y-3 ${
                   activeSection === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
               >
@@ -79,7 +79,7 @@ function IndustryLeading() {
                       ))}
                     </div>
                     <Link href={`/service/${service.title.replaceAll(" ","-").toLowerCase()}`}
-                    className="bg-gradient-to-r w-1/2 text-base text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-4 py-1.5 rounded-full  transition-all duration-300 transform group-hover:scale-105 flex items-center gap-2">
+                    className="bg-gradient-to-r w-40 text-base text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-4 py-1.5 rounded-full  transition-all duration-300 transform group-hover:scale-105 flex items-center gap-2">
                       Build Now
                       <ArrowRight className="w-4 h-4" />
                     </Link>
