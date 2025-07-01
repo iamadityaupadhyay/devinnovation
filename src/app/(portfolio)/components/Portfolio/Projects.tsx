@@ -94,7 +94,7 @@ function PreviousProjects() {
         
         .project-image {
           transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-          filter: grayscale(100%);
+          filter: grayscale(500%);
           transform: scale(1);
           clip-path: polygon(50% 0%, 50% 0%, 50% 100%, 50% 100%);
         }
