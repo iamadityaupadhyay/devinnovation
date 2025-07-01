@@ -50,21 +50,23 @@ export default async function ProjectDetails({ params }: any) {
   }
 
   return (
-    <div className="font-custom text-gray-800">
+    <div className=" text-gray-800">
       {/* Project Content */}
-      <main className="grid grid-cols-1 md:grid-cols-3  mx-auto px-4 py-8">
+      <main className="grid grid-cols-1 md:grid-cols-3  mx-auto px-8 py-8">
         {/* Project Description */}
         <section className="mb-8  max-w-2xl col-span-2">
-          <h1 className="lg:text-2xl sm:text-xl font-bold text-orange-800 mb-10">{project.name} | <span className="text-gray-800"> {project.category}</span></h1>
+          <h1 className="lg:text-2xl text-xl font-bold text-orange-800 mb-10">{project.name} | <span className="text-gray-800"> {project.category}</span></h1>
           
           <h2 className="text-xl font-bold mb-2 text-orange-800">About the Project</h2>
           <p className="text-gray-500 mb-10">
             {project.shortDescription}
           </p>
-          <h2 className="text-xl font-bold mb-2 text-orange-800">What Does {project.name} Do?</h2>
-          <p className="text-gray-500 mb-10">
-            {project.description}
-          </p>
+          <div
+            className="text-gray-500 mb-10"
+            dangerouslySetInnerHTML={{
+              __html: project.description.replace(/\n/g, "<br/>"),
+            }}
+          />  
           
           <div className="gap-4">
             <Image
