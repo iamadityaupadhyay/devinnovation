@@ -59,7 +59,7 @@ function PreviousProjects() {
   if (loading && projects.length === 0) {
     return (
       <div className="py-16 px-6 text-center">
-        <div className="max-w-7xl mx-auto">
+        <div className=" mx-auto">
           <p>Loading our amazing projects...</p>
         </div>
       </div>

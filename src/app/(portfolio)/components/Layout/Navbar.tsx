@@ -410,14 +410,14 @@ const Navbar: React.FC = ({contact, services}: any) => {
   };
 
   return (
-    <nav className="bg-white max-w-7xl shadow-md sticky top-0 z-50 font-custom">
+    <nav className="bg-white   shadow-md sticky top-0 z-50 font-custom">
       {/* Top Bar - Hidden on mobile and when scrolled with smooth animation */}
       <div className={`hidden lg:block bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 border-b border-gray-200 transition-all duration-500 ease-in-out transform ${
         isScrolled 
           ? 'opacity-0 -translate-y-full max-h-0 overflow-hidden' 
           : 'opacity-100 translate-y-0 max-h-20'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-end items-center">
             <div className="flex items-center space-x-6 py-1 text-sm">
               <a
@@ -451,7 +451,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
       </div>
 
       {/* Main Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14">
           {/* Logo */}
           <a href="/" className="flex items-center space-x-2 group">
@@ -683,7 +683,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
       </div>
 
       <div className="lg:hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto">
+        <div className=" mx-auto">
           <div className="flex justify-center items-center py-1">
             <div className="flex items-center space-x-2 text-sm">
               <a

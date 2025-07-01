@@ -10,7 +10,7 @@ function HeroSection() {
        const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div>{/* Hero Section */}
-      <section className="relative py-10 max-w-7xl  flex items-center justify-center px-6">
+      <section className="relative py-10   flex items-center justify-center px-6">
         <div className={` text-center transition-all duration-2000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
           <div className="mb-8">
             <span className="inline-block bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text text-sm font-bold tracking-wider uppercase mb-4">

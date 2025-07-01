@@ -38,7 +38,7 @@ const ServicesComponent = () => {
   };
 
   return (
-    <div className="bg-gray-900 max-w-7xl text-white p-6">
+    <div className="bg-gray-900  text-white p-6">
       <h2 className="text-orange-500 text-xl font-bold mb-4 border-b-2 border-orange-500 inline-block pb-2">Our Services</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {services.map((items, index) => (

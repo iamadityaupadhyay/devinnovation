@@ -163,7 +163,7 @@ function IndustrySolutions() {
 
   return (
     <div>
-      <section className="pb-16 max-w-7xl bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
+      <section className="pb-16  bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
          <div className="relative mb-5   rounded-b-lg">
         <div
           className="h-[25vh] lg:h-[40vh]  bg-cover"
@@ -187,7 +187,7 @@ function IndustrySolutions() {
           </div>
         </div>
       </div>
-        <div className="max-w-7xl px-2 mx-auto">
+        <div className=" px-2 mx-auto">
           
 
           <div className="grid md:grid-cols-4 gap-8">

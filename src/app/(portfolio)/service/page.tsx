@@ -7,7 +7,7 @@ function ServiceSolutions() {
   
 
   return (
-    <div className='max-w-7xl'> 
+    <div className=''> 
     <Services/>
     <OurMagicalProcess/>
     <CallToAction/>

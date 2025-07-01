@@ -588,7 +588,7 @@ export default function IndustryPage({ params }: any) {
 
   return (
     <>
-      <div className="relative max-w-7xl bg-gradient-to-r from-white to-gray-100 overflow-hidden">
+      <div className="relative  bg-gradient-to-r from-white to-gray-100 overflow-hidden">
         {/* Background Image with Arc at Bottom */}
         <div 
           className="absolute inset-0 lg:h-[80vh] h-[25vh] bg-cover bg-center"

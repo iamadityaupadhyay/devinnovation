@@ -7,7 +7,7 @@ import RequestQuoteModal from '../Forms/RequestQuote';
 function CallToAction() {
     const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className='max-w-7xl'>
+    <div className=''>
         {/* CTA Section */}
       <section className="py-10 px-6 backdrop-blur-xl">
         <div className="max-w-4xl mx-auto text-center">

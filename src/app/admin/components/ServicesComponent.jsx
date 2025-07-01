@@ -57,7 +57,7 @@ async function Services() {
   return (
     <div>
       <section className="  backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto">
+        <div className=" mx-auto">
          
 
           <div className=" gap-8 grid grid-cols-2  mb-5">

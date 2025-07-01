@@ -10,7 +10,7 @@ async function Services() {
   const services = await Service.find().sort({ createdAt: -1 });
   
   return (
-    <div className='max-w-7xl'>
+    <div className=''>
       <section 
         className="relative  py-12 "
       >

@@ -30,7 +30,7 @@ const TestimonialPage = ({ testimonials }) => {
   };
 
   return (
-    <div className="relative bg-gradient-to-r rounded-sm from-gray-50 to-gray-50 max-w-7xl py-16 mx-auto px-2">
+    <div className="relative bg-gradient-to-r rounded-sm from-gray-50 to-gray-50  py-16 mx-auto px-2">
       {/* Background Image */}
       <div
         className="h-[24vh] lg:h-[30vh] absolute inset-0 px-2 bg-cover bg-center"
@@ -42,7 +42,7 @@ const TestimonialPage = ({ testimonials }) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className=" mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-0">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
             What Our Clients
@@ -55,7 +55,7 @@ const TestimonialPage = ({ testimonials }) => {
           </p>
         </div>
 
-        <div className="min-h-[50px]"></div> {/* Spacer for half image height */}
+        <div className="min-h-[80px]"></div> {/* Spacer for half image height */}
 
         {/* Testimonials Grid */}
         <div className=" ">

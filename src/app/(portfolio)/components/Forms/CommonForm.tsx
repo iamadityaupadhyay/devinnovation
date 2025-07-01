@@ -73,7 +73,7 @@ const ServiceForm: React.FC = () => {
 
   return (
     <div className="">
-      <div className="max-w-7xl mx-auto">
+      <div className=" mx-auto">
        <div className="bg-white backdrop-blur-sm rounded-md shadow-xl p-4">
             <div className="mb-8">
               <h3 className="text-xl font-bold text-gray-900 mb-2">Get a Quote</h3>

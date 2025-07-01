@@ -84,7 +84,7 @@ const TeamShowcase = () => {
   }
 
   return (
-    <div className="bg-gray-50 max-w-7xl mx-auto pb-16 relative">
+    <div className="bg-gray-50  mx-auto pb-16 relative">
       {/* Header */}
       <div className="relative mb-6">
         <div

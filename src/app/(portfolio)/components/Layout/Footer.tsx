@@ -49,7 +49,7 @@ export default function ModernFooter({ contact }: any) {
     ];
 
     return (
-        <footer className="bg-gray-900  max-w-7xl text-gray-300 border-t-4 border-orange-500">
+        <footer className="bg-gray-900   text-gray-300 border-t-4 border-orange-500">
             <div className="container mx-auto px-6 py-7">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">

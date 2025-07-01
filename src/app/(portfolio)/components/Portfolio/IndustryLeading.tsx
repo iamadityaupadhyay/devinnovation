@@ -37,7 +37,7 @@ function IndustryLeading() {
     <div>
         {/* Services Showcase */}
       <section className="py-16 px-6 relative">
-        <div className="max-w-7xl mx-auto">
+        <div className=" mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl text-gray-800 font-black mb-6">
               INDUSTRY-LEADING
