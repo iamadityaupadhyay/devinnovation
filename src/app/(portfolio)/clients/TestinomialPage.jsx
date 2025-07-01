@@ -30,7 +30,7 @@ const TestimonialPage = ({ testimonials }) => {
   };
 
   return (
-    <div className="relative bg-gradient-to-r rounded-sm from-orange-50 to-gray-50 max-w-7xl py-16 mx-auto px-2">
+    <div className="relative bg-gradient-to-r rounded-sm from-gray-50 to-gray-50 max-w-7xl py-16 mx-auto px-2">
       {/* Background Image */}
       <div
         className="h-[24vh] lg:h-[30vh] absolute inset-0 px-2 bg-cover bg-center"
@@ -50,7 +50,7 @@ const TestimonialPage = ({ testimonials }) => {
               Say
             </span>
           </h2>
-          <p className="text-white/80 text-base md:text-lg">
+          <p className="text-white/80 text-base">
             Hear from our satisfied clients about their experience with us.
           </p>
         </div>

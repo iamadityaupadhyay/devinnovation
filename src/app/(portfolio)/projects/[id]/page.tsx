@@ -55,7 +55,7 @@ export default async function ProjectDetails({ params }: any) {
       <main className="grid grid-cols-1 md:grid-cols-3  mx-auto px-4 py-8">
         {/* Project Description */}
         <section className="mb-8  max-w-2xl col-span-2">
-          <h1 className="text-3xl font-bold text-orange-800 mb-16">{project.name} | <span className="text-gray-800"> {project.category}</span></h1>
+          <h1 className="lg:text-2xl sm:text-xl font-bold text-orange-800 mb-10">{project.name} | <span className="text-gray-800"> {project.category}</span></h1>
           
           <h2 className="text-xl font-bold mb-2 text-orange-800">About the Project</h2>
           <p className="text-gray-500 mb-10">

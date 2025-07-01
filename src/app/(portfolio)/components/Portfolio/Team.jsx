@@ -113,7 +113,7 @@ const TeamShowcase = () => {
             <motion.div
               key={member._id}
               ref={(el) => (cardRefs.current[member._id] = el)}
-              className="lg:bg-gray-100 bg-transparent py-4 rounded-lg lg:shadow-md relative"
+              className="bg-transparent py-4 hover:bg-orange-50/50 relative"
               variants={cardVariants}
               initial="hidden"
               animate="visible"
