@@ -72,7 +72,7 @@ const ServiceForm: React.FC = () => {
   };
 
   return (
-    <div className="">
+    <div className="  ">
       <div className="">
        <div className="bg-white backdrop-blur-sm rounded-md shadow-xl p-5">
             <div className="mb-8">

@@ -52,34 +52,18 @@ export default async function ProjectDetails({ params }: any) {
   return (
     <div className=" text-gray-800">
       {/* Project Content */}
-      <main className="grid grid-cols-1 md:grid-cols-3  mx-auto px-8 py-8">
+      <main className="grid grid-cols-1 md:grid-cols-3 max-w-7xl  mx-auto px-8 py-8">
         {/* Project Description */}
-        <section className="mb-8  max-w-2xl col-span-2">
-          <h1 className="lg:text-2xl text-xl font-bold text-orange-800 mb-10">{project.name} | <span className="text-gray-800"> {project.category}</span></h1>
+        <section className="mb-4  max-w-2xl col-span-2">
+          <h1 className="lg:text-2xl text-xl font-bold text-gray-600 mb-5">{project.name} | <span className="text-gray-600"> {project.category}</span></h1>
           
-          <h2 className="text-xl font-bold mb-2 text-orange-800">About the Project</h2>
-          <p className="text-gray-500 mb-10">
+          
+          <h2 className="text-xl font-bold mb-2 text-gray-500">About the Project</h2>
+          <p className="text-gray-500 mb-4">
             {project.shortDescription}
           </p>
-          <div
-            className="text-gray-500 mb-10"
-            dangerouslySetInnerHTML={{
-              __html: project.description.replace(/\n/g, "<br/>"),
-            }}
-          />  
-          
-          <div className="gap-4">
-            <Image
-              src={project.image}
-              alt={project.name}
-              width={400}
-              height={300}
-              className="h-full w-full rounded-lg"
-            />
-          </div>
-          {/* Features */}
-          <section className="mt-8">
-            <h2 className="text-xl font-semibold mb-4 text-orange-800 ">Key Features</h2>
+          <section className="mt-4 mb-4">
+            <h2 className="text-xl font-semibold mb-4 text-gray-500 ">Key Features</h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.bulletPoints.map((feature, index) => (
                 <li key={index} className="text-gray-600">
@@ -88,6 +72,27 @@ export default async function ProjectDetails({ params }: any) {
               ))}
             </ul>
           </section>
+          <div className="gap-4 my-8">
+            <Image
+              src={project.image}
+              alt={project.name}
+              width={400}
+              height={300}
+              className="h-full w-full rounded-lg"
+            />
+          </div>
+          <h2 className="text-xl font-bold mt-6 mb-2 text-gray-600">Summary</h2>
+          <div className="text-gray-500" dangerouslySetInnerHTML={{
+              __html: project.description.replace(/\n/g, "<br/>"),
+            }}>
+            
+          </div>
+          
+          
+          
+          
+          {/* Features */}
+          
         </section>
 
         <ServiceForm />

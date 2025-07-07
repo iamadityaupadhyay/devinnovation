@@ -159,7 +159,7 @@ function PreviousProjects() {
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-green-500 rounded-full group-hover:animate-pulse"></div>
                       <span className="text-base font-bold text-orange-800 uppercase tracking-wider group-hover:text-red-500 transition-colors duration-300">
-                        {project.name} | {project.category} 
+                        {project.name}  
                       </span>
                     </div>
                     <h3 className="text-base mt-2 font-bold text-gray-600 mb-2 group-hover:text-orange-400 transition-colors">

@@ -8,7 +8,7 @@ function page() {
   return (
     <div>
       <TeamShowcase/>
-      <OurMagicalProcess/>
+      
       <WhyChooseUs/>
       <ServicesComponent/>
     </div>

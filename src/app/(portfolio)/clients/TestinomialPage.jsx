@@ -55,64 +55,53 @@ const TestimonialPage = ({ testimonials }) => {
           </p>
         </div>
 
-        <div className="min-h-[80px]"></div> {/* Spacer for half image height */}
+        <div className="min-h-[50px]"></div> {/* Spacer for half image height */}
 
         {/* Testimonials Grid */}
-        <div className=" ">
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-3 ">
           {currentTestimonials.map((testimonial) => (
-            <div key={testimonial.id} className="mb-5  w-full">
-              <div className="bg-white   shadow-lg px-7 py-4 h-full border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                <div className="grid grid-cols-1 md:grid-cols-3 ">
+            <div key={testimonial.id} className="  ">
+              <div className="bg-gray-50   shadow-lg px-2 py-4 h-full border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                <div className=" md:grid-cols-3 ">
                   {/* Profile Image */}
-                  <div className="flex flex-col gap-4 ">
-
-                  <div className="flex">
+                  <div className="flex flex-col gap-4 px-0 ">
+                      <div className="bg-gradient-to-r px-0 from-orange-100 rounded-lg to-red-100 py-3">
+                      <h4 className="font-semibold text-gray-700  text-center text-lg ">
+                        {testimonial.name}
+                      </h4>
+                      <p className="text-orange-600 text-center text-base">
+                        {testimonial.projectName}
+                      </p>
+                      
+                    </div>
+                  <div className="flex items-center justify-center">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className=" h-72 lg:w-72 w-72  object-conver border-4 border-orange-200 shadow-md"
+                      className=" h-56 lg:w-56 w-56 rounded-full object-cover border-4 border-orange-200 shadow-md"
                     />
                     
                   </div>
                   {/* Client Info */}
-                    <div className="hidden sm:block">
-                      <h4 className="font-semibold text-gray-900 sm:text-base md:text-lg lg:text-lg">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-orange-600 sm:text-sm text-lg  font-medium">
-                        {testimonial.projectName}
-                      </p>
-                      <p className="text-gray-500 ">
-                        {testimonial.company}
-                      </p>
-                    </div>
+                    
+                  {/* Client Info */}
+
                   </div>
                   {/* Feedback and Stars */}
-                  <div className="mt-10 md:col-span-2">
+                  <div className="mt-3 md:col-span-2">
                     {/* Stars */}
-                    <div className="flex mb-4">
+                    <div className="flex mb-4 items-center justify-center">
                       {[1, 2, 3, 4, 5].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-orange-400 fill-current" />
+                        <Star key={i} className="w-5 h-5 text-orange-400  fill-current" />
                       ))}
                     </div>
 
                     {/* Testimonial Text */}
-                    <blockquote className="text-gray-700 leading-relaxed mb-4 sm:text-base md:text-lg lg:text-lg">
+                    <blockquote className="text-gray-700 leading-relaxed px-4 mb-4 text-base">
                       "{testimonial.feedback}"
                     </blockquote>
 
-                    {/* Client Info */}
-                    <div>
-                      <h4 className="font-semibold text-gray-900 sm:text-base md:text-lg lg:text-lg">
-                        {testimonial.name}
-                      </h4>
-                      <p className="text-orange-600 sm:text-base md:text-lg lg:text-lg">
-                        {testimonial.projectName}
-                      </p>
-                      <p className="text-gray-500 ">
-                        {testimonial.company}
-                      </p>
-                    </div>
+                    
                   </div>
                 </div>
               </div>

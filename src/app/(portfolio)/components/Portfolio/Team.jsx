@@ -124,8 +124,8 @@ const TeamShowcase = () => {
                 if (card) {
                   const rect = card.getBoundingClientRect();
                   setPopupPosition({
-                    top: rect.top + window.scrollY - 160, // position above
-                    left: rect.left + rect.width / 2,
+                    top: rect.top + window.scrollY - 140, // position above
+                    left: rect.left + rect.width /6,
                   });
                   setTypingBio({ text: "", index: 0, memberId: member._id });
                 }
