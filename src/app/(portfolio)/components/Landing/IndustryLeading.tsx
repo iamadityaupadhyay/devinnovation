@@ -55,7 +55,7 @@ function IndustryLeading() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative   backdrop-blur-xl rounded-md py-8 px-4 border transition-all duration-500 transform hover:-translate-y-3 ${
+                className={`group relative   backdrop-blur-xl rounded-sm py-8 px-4 border transition-all duration-500 transform hover:-translate-y-2 ${
                   activeSection === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
               >
@@ -79,13 +79,13 @@ function IndustryLeading() {
                       ))}
                     </div>
                     <Link href={`/service/${service.title.replaceAll(" ","-").toLowerCase()}`}
-                    className="bg-gradient-to-r w-40 text-base text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-4 py-1.5 rounded-full  transition-all duration-300 transform group-hover:scale-105 flex items-center gap-2">
+                    className="bg-gradient-to-r w-40 text-base text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-4 py-1.5 rounded-sm  transition-all duration-300 transform group-hover:scale-105 flex items-center gap-2">
                       Build Now
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
                   <div className="flex-shrink-0">
-                    <div className="relative sm:w-full md:w-56 lg:w-56 h-64 rounded-2xl overflow-hidden transform rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                    <div className="relative sm:w-full md:w-56 lg:w-56 h-64 rounded-sm overflow-hidden transform rotate-1 group-hover:rotate-0 transition-transform duration-500">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -106,7 +106,7 @@ function IndustryLeading() {
             </button> */}
              <Link 
   href="/service"
-  className="border-2 block border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold px-8 py-4 lg:text-lg rounded-xl transition-all duration-300">
+  className="border-2 block border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold px-6 py-2 lg:text-lg rounded-xl transition-all duration-300">
 
   View All Services
  

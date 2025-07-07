@@ -68,7 +68,7 @@ const TeamShowcase = async () => {
 
   return (
     <div className="container mx-auto px-0 ">
-      <div className="space-y-4">
+      <div className="gap-4 grid grid-cols-2 md:grid-cols-3">
         {serializedMembers.map((member) => (
           <TeamMemberCard
             key={member._id}

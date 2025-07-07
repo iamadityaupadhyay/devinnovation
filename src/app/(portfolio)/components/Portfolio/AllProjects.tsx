@@ -139,14 +139,14 @@ function PreviousProjects() {
           </div>
         </div>
       </div>
-        <div className="max-w-6xl py-10 px-2 mx-auto">
+        <div className="max-w-6xl py-8 px-2 mx-auto">
           
 
           <div className="grid md:grid-cols-3 grid-cols-1 gap-8">
             {projects.map((project, index) => (
 <div
                 key={project.id}
-                className={`group relative  p-5 py-4 border transition-all duration-500 transform hover:scale-100 ${
+                className={`group relative  p-5 py-4 border transition-all duration-500 transform hover:-translate-y-2 ${
                   activeProject === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
                 onMouseEnter={() => setActiveProject(index)}
@@ -199,7 +199,7 @@ function PreviousProjects() {
                           href={`/projects/${project._id}`} 
                           className="text-orange-500 hover:scale-105 mr-5 gap-1 text-base flex  items-center"
                         >
-                          Learn More
+                          Read More
                           <ArrowRight className="w-4 h-4 hover:scale-105 text-sm transition-transform" />
                         </Link>
                       </div>

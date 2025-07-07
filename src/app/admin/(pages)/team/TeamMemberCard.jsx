@@ -156,7 +156,7 @@ const TeamMemberCard = ({ member }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white  rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       
       {isEditing ? (
         <form action={handleUpdate} className="p-4 space-y-6">
@@ -413,7 +413,7 @@ const TeamMemberCard = ({ member }) => {
         </form>
       ) : (
         <>
-          <div className="p-4">
+          <div className="p-4 ">
             <div className="flex items-center space-x-4">
               <div className="relative h-16 w-16 rounded-full overflow-hidden">
                 <Image

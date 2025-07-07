@@ -111,12 +111,12 @@ function PreviousProjects() {
           left: 0;
           width: 100%;
           height: 100%;
-          filter: grayscale(40%);
+          filter: grayscale(100%);
           z-index: -1;
         }
       `}</style>
       
-      <section className="py-10  px-6 bg-gradient-to-r from-white  to-gray-50 relative">
+      <section className="py-8  px-6 bg-gradient-to-r from-white  to-gray-50 relative">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl text-gray-800 font-black">
@@ -130,26 +130,26 @@ function PreviousProjects() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 py-7 grid-cols-1 gap-8">
-            {projects.slice(0,4).map((project, index) => (
+          <div className="grid md:grid-cols-3 pb-4 grid-cols-1 gap-8">
+            {projects.slice(0,3).map((project, index) => (
               <div
                 key={project._id}
-                className={`group relative hover:-translate-y-2 rounded-sm p-5 py-7 border transition-all duration-500 transform  ${
+                className={`group relative  p-5 py-4 border transition-all duration-500 transform hover:-translate-y-2 ${
                   activeProject === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
                 onMouseEnter={() => setActiveProject(index)}
               >
-                <div className="w-full  mb-2 relative overflow-hidden rounded-ms gradient-reveal">
+                <div className="w-full  mb-2 relative overflow-hidden border-2 border-gray-300 rounded-ms gradient-reveal">
                   <div className="image-container">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover project-image-bg"
+                      className="w-full h-48 object-cover project-image-bg"
                     />
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover  project-image"
+                      className="w-full h-48 object-cover  project-image"
                     />
                   </div>
                 </div>
@@ -157,37 +157,37 @@ function PreviousProjects() {
                 <div className="flex flex-col items-center gap-4">
                   <div className="w-full mt-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-green-500 rounded-full group-hover:animate-pulse"></div>
-                      <span className="text-base font-bold text-orange-800 uppercase tracking-wider group-hover:text-red-500 transition-colors duration-300">
+                      <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-red-500 rounded-full group-hover:animate-pulse"></div>
+                      <span className="text-sm font-bold text-gray-800 uppercase tracking-wider group-hover:text-red-500 transition-colors duration-300">
                         {project.name}  
                       </span>
                     </div>
-                    <h3 className="text-base mt-2 font-bold text-gray-600 mb-2 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-sm mt-2 font-bold text-gray-600 mb-2 group-hover:text-orange-400 transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-gray-700 mb-2 text-base group-hover:text-gray-900 transition-colors">{project.shortDescription}</p>
-                    <div className=" gap-2 grid md:grid-cols-2 mt-4 mb-4">
+                    <p className="text-gray-600 mb-2 text-base group-hover:text-gray-900 transition-colors line-clamp-2">{project.shortDescription}</p>
+                    {/* <div className=" gap-2 grid md:grid-cols-2 mt-4 mb-4">
                       {project.bulletPoints.slice(0,4).map((feature, featureIndex) => (
                         <div key={featureIndex} className="flex mb-2 items-center gap-2 text-base">
                           <CheckCircle className="w-4 h-4 text-orange-400 group-hover:text-green-500 transition-colors duration-300" />
                           <span className="text-gray-700 group-hover:text-gray-900   transition-colors">{feature}</span>
                         </div>
                       ))}
-                    </div>
+                    </div> */}
                     {project.link ? (
-                      <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center mt-4 justify-between gap-4">
                         <Link
                           href={project.link}
-                          className=" bg-white border-orange-400 text-sm border-2 text-orange-400  hover:bg-gradient-to-r hover:text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-2 py-1.5 rounded-lg  transition-all duration-300 flex items-center gap-2 transform hover:scale-105 hover:shadow-lg"
+                          className=" bg-white border-orange-400 text-base border-2 text-orange-400  hover:bg-gradient-to-r hover:text-white from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 px-2 py-1.5 rounded-lg  transition-all duration-300 flex items-center gap-2 transform hover:scale-105 hover:shadow-lg"
                         >
                           Live Preview
                           <ArrowRight className="w-4 h-4 hover:translate-x-1  transition-transform" />
                         </Link>
                         <Link
                           href={`/projects/${project._id}`} 
-                          className="text-orange-500 hover:scale-105 mr-5 gap-1 text-sm flex  items-center"
+                          className="text-orange-500 hover:scale-105 mr-5 gap-1 text-base flex  items-center"
                         >
-                          Learn More
+                          Read More
                           <ArrowRight className="w-4 h-4 hover:scale-105 text-sm transition-transform" />
                         </Link>
                       </div>
@@ -209,7 +209,7 @@ function PreviousProjects() {
             </button> */}
              <Link 
   href="/projects"
-  className="border-2 block border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold px-8 py-4 lg:text-lg rounded-xl transition-all duration-300">
+  className="border-2 block border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold px-6 py-2 lg:text-lg rounded-xl transition-all duration-300">
 
   More Projects
  

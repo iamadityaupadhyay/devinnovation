@@ -9,7 +9,7 @@ function CallToAction() {
   return (
     <div className=''>
         {/* CTA Section */}
-      <section className="py-10 px-6 backdrop-blur-xl">
+      <section className="py-8 px-6 backdrop-blur-xl">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-4 hidden sm:block">
             

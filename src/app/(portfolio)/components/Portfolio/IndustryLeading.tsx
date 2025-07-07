@@ -54,7 +54,7 @@ function IndustryLeading() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className={`group relative  backdrop-blur-xl rounded-3xl p-8 border transition-all duration-500 transform hover:scale-100 ${
+                className={`group relative  backdrop-blur-xl rounded-lg p-8 border transition-all duration-500 transform hover:scale-100 ${
                   activeSection === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
               >
@@ -84,7 +84,7 @@ function IndustryLeading() {
                     </Link>
                   </div>
                   <div className="flex-shrink-0">
-                    <div className="relative w-64 h-80 rounded-2xl overflow-hidden transform rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                    <div className="relative w-64 h-80 rounded-lg overflow-hidden transform rotate-3 group-hover:rotate-0 transition-transform duration-500">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -105,7 +105,7 @@ function IndustryLeading() {
             </button> */}
              <Link 
   href="/service"
-  className="border-2 block border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold px-8 py-4 lg:text-lg rounded-xl transition-all duration-300">
+  className="border-2 block border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold px-6 py-2 lg:text-lg rounded-xl transition-all duration-300">
 
   View All Services
  

@@ -182,7 +182,7 @@ const TeamForm = () => {
   };
 
   return (
-    <div className=" py-10  gap-4">
+    <div className=" py-8  gap-4">
       {/* <Toaster position="top-right" /> */}
       <div className=" mx-auto p-6 bg-white rounded-lg shadow-lg">
         <div className="flex items-center justify-between mb-8">

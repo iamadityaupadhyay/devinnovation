@@ -55,7 +55,7 @@ const TestimonialCarousel = () => {
 
   return (
     <div className="py-16 flex justify-center">
-      <div className="w-full max-w-6xl md:px-8">
+      <div className="w-full max-w-7xl md:px-4 px-2">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
           <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>
@@ -66,15 +66,7 @@ const TestimonialCarousel = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {/* Left Arrow */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border rounded-full shadow p-2 hover:bg-orange-100 transition hidden md:block"
-            aria-label="Previous"
-            style={{ left: '-2.5rem' }}
-          >
-            <ChevronLeft className="w-6 h-6 text-orange-500" />
-          </button>
+          
 
           {/* Testimonials Grid */}
           <div className="overflow-hidden">
@@ -86,16 +78,6 @@ const TestimonialCarousel = () => {
                 <div key={testimonial.id} className="lg:w-1/3 w-80 flex-shrink-0 px-3">
                   <div className="bg-white rounded-xl px-4 py-6 h-full border hover:shadow-3xl transition-shadow duration-300 flex flex-col">
                     {/* Stars */}
-                    <div className="flex mb-4">
-                      {[...Array(testimonial.rating || 5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-orange-400 fill-current" />
-                      ))}
-                    </div>
-                    {/* Testimonial Text */}
-                    <blockquote className="text-gray-700 leading-relaxed mb-6 text-base">
-                      "{testimonial.content || testimonial.feedback}"
-                    </blockquote>
-                    {/* Client Info */}
                     <div className="flex items-center gap-3 mt-auto">
                       <img
                         src={testimonial.image}
@@ -114,22 +96,24 @@ const TestimonialCarousel = () => {
                         </p>
                       </div>
                     </div>
+                    <div className="flex my-4">
+                      {[...Array(testimonial.rating || 5)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 text-orange-400 fill-current" />
+                      ))}
+                    </div>
+                    {/* Testimonial Text */}
+                    <blockquote className="text-gray-700 text-sm leading-relaxed mb-6 ">
+                      "{testimonial.content || testimonial.feedback}"
+                    </blockquote>
+                    {/* Client Info */}
+                    
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right Arrow */}
-          <button
-            onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border rounded-full shadow p-2 hover:bg-orange-100 transition hidden md:block"
-            aria-label="Next"
-            style={{ right: '-2.5rem' }}
-          >
-            <ChevronRight className="w-6 h-6 text-orange-500" />
-          </button>
-
+         
           {/* Dots Navigation */}
           <div className="flex justify-center mt-8 space-x-2">
             {[...Array(totalSlides)].map((_, index) => (

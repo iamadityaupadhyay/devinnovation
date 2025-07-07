@@ -3,7 +3,7 @@ import React from 'react'
 function OurMagicalProcess() {
   return (
     <div className=' '>{/* Process Section */}
-      <section className=" px-6 py-10  backdrop-blur-xl">
+      <section className=" px-6 py-8  backdrop-blur-xl">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-2xl text-gray-900 font-black ">

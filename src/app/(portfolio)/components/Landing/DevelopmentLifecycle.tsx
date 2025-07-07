@@ -92,12 +92,12 @@ const DevelopmentRoadmap = () => {
                   </div>
 
                   {/* Expandable Content Area */}
-                  <div className={`relative transition-all duration-500 ease-in-out overflow-hidden ${
-                    index === activeStep ? 'max-h-96 opacity-100' : 'max-h-20 opacity-100'
+                  <div className={`relative transition-all  duration-500 ease-in-out overflow-hidden ${
+                    index <= activeStep ? 'max-h-96 opacity-100' : 'max-h-20 opacity-100'
                   }`}>
                     {/* Title and Number */}
                     <h3 className={`font-bold transition-colors mb-1 ${
-                      index === activeStep ? 'text-orange-600' : 'text-gray-700'
+                      index <= activeStep ? 'text-orange-600' : 'text-gray-700'
                     }`}>
                       {phase.title}
                     </h3>
@@ -109,14 +109,14 @@ const DevelopmentRoadmap = () => {
 
                     {/* Expandable Description */}
                     <div className={`transition-all duration-500 ease-in-out ${
-                      index === activeStep ? 'max-h-64 opacity-100 transform translate-y-0' : 'max-h-0 opacity-0 transform -translate-y-2'
+                      index <= activeStep ? 'max-h-56 opacity-100 transform translate-y-0' : 'max-h-0 opacity-0 transform -translate-y-2'
                     }`}>
-                      <div className="relative rounded-lg overflow-hidden shadow-lg border border-orange-100 bg-white/95 backdrop-blur-sm">
+                      <div className="relative rounded-lg py-12 overflow-hidden shadow-lg border border-orange-100 bg-white/95 backdrop-blur-sm">
                         <div 
                           className="absolute inset-0 bg-cover bg-center opacity-10"
                           style={{ backgroundImage: `url(${phase.bgImage})` }}
                         ></div>
-                        <div className="relative z-10 p-4">
+                        <div className="relative z-10   px-1">
                           <div className="flex items-center justify-center mb-2">
                             <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-sm">
                               {phase.icon}
@@ -145,7 +145,7 @@ const DevelopmentRoadmap = () => {
               
               <div 
                 className={`relative rounded-xl overflow-hidden shadow-sm border-2 cursor-pointer transition-all duration-300 ${
-                  index === activeStep ? 'border-orange-500 shadow-lg' : 'border-orange-100 hover:border-orange-300'
+                  index <= activeStep ? 'border-orange-500 shadow-lg' : 'border-orange-100 hover:border-orange-300'
                 }`}
                 onClick={() => setActiveStep(index)}
               >
@@ -180,14 +180,12 @@ const DevelopmentRoadmap = () => {
                       
                       {/* Mobile Description with smooth animation */}
                       <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                        index === activeStep ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'
+                        index <= activeStep ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'
                       }`}>
                         <p className="text-gray-600 leading-relaxed text-sm pt-2 border-t border-orange-100">
                           {phase.description}
                         </p>
                       </div>
-                      
-
                     </div>
                   </div>
                 </div>
