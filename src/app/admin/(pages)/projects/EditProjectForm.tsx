@@ -39,7 +39,7 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
     previewImage: project.previewImage,
     link: project.link || '',
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
