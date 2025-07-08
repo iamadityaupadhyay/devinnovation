@@ -23,7 +23,8 @@ const SocialSidebar = ({ contact }: any) => {
   ];
 
   return (
-    <>
+    <div className=" ">
+      {/* Top Bar - Hidden on mobile and when scrolled with smooth animation */}
       {/* Social Media Sidebar */}
       <div className="fixed hidden  sm:block left-0 top-1/2 transform -translate-y-1/2 z-50">
         <div className="flex flex-col space-y-1">
@@ -105,7 +106,7 @@ const SocialSidebar = ({ contact }: any) => {
           onClick={() => setIsExpanded(false)}
         />
       )}
-    </>
+    </div>
   );
 };
 

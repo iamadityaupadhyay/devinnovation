@@ -139,7 +139,7 @@ function PreviousProjects() {
           </div>
         </div>
       </div>
-        <div className="max-w-6xl py-8 px-2 mx-auto">
+        <div className="max-w-full py-8 px-2 mx-auto">
           
 
           <div className="grid md:grid-cols-3 grid-cols-1 gap-8">

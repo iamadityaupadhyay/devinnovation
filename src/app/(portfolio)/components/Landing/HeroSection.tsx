@@ -415,7 +415,7 @@ export default function HeroSection() {
   };
 
   return (
-    <div className="sm:py-12   bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
+    <div className="sm:py-12 max-w-full mx-auto  bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
       <div className="relative h-full  flex justify-center">
         <div className=" w-full  relative">
           <div
@@ -430,7 +430,7 @@ export default function HeroSection() {
                 <FloatingElements />
 
                 {/* Left Content */}
-                <div className="flex-1 max-w-xl mt-4 z-10 w-full text-center lg:text-left">
+                <div className="flex-1 mt-4 z-10 w-full text-center lg:text-left">
                   <div className="space-y-5 md:space-y-6 lg:space-y-8">
                     <div>
                       <h1 className={`${slide.id == 5 ? "text-3xl" : "text-3xl"} md:text-4xl lg:text-4xl font-extrabold text-orange-500 mb-1 md:mb-2 leading-tight`}>
@@ -458,7 +458,7 @@ export default function HeroSection() {
                             <img src="/icons/global.gif" className='w-14' alt="Global" />
                           </div>
                           <div>
-                            <p className="font-bold text-sm md:text-base">25+</p>
+                            <p className="font-bold text-sm md:text-base">7+</p>
                             <p className="text-xs md:text-sm text-gray-700">Countries Served</p>
                           </div>
                         </div>
@@ -467,7 +467,7 @@ export default function HeroSection() {
                             <img src="/icons/digital-art.gif" className='w-14 h-14' alt="Apps" />
                           </div>
                           <div>
-                            <p className="font-bold text-sm md:text-base">750+</p>
+                            <p className="font-bold text-sm md:text-base">100+</p>
                             <p className="text-xs md:text-sm text-gray-700">Apps Developed</p>
                           </div>
                         </div>
@@ -476,7 +476,7 @@ export default function HeroSection() {
                             <img src="/icons/like.gif" className='w-10 h-10' alt="Happy customers" />
                           </div>
                           <div>
-                            <p className="font-bold text-sm md:text-base">725+</p>
+                            <p className="font-bold text-sm md:text-base">50+</p>
                             <p className="text-xs md:text-sm text-gray-700">Smile Customers</p>
                           </div>
                         </div>
@@ -502,8 +502,8 @@ export default function HeroSection() {
                     Book Free Consultation
                   </button>
                 </div>
-                <div className="hidden lg:flex flex-1 justify-center items-center z-10 h-full">
-                  <div className="relative w-full max-w-md h-96">
+                <div className="hidden ml-16 mb-12 lg:flex  flex-1 justify-center items-center z-10 h-full">
+                  <div className="relative max-w-md w-full h-96">
                     {getIllustration(slide.id)}
                   </div>
                 </div>

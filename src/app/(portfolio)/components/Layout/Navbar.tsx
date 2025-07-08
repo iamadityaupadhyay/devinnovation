@@ -410,7 +410,7 @@ const Navbar: React.FC = ({contact, services}: any) => {
   };
 
   return (
-    <nav className="bg-white   shadow-md sticky top-0 z-50 font-custom">
+    <nav className="bg-white max-w-full mx-auto  shadow-md sticky top-0 z-50 font-custom">
       {/* Top Bar - Hidden on mobile and when scrolled with smooth animation */}
       <div className={`hidden lg:block bg-gradient-to-br from-orange-50 via-yellow-50 to-orange-50 border-b border-gray-200 transition-all duration-500 ease-in-out transform ${
         isScrolled 

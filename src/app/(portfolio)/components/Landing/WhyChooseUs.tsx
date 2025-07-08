@@ -113,7 +113,7 @@ const features2 = [
 
   return (
     <section className=" py-16 bg-gradient-to-r  from-white via-gray-50 to-gray-50  px-4 ">
-      <div className="max-w-6xl  mx-auto">
+      <div className="max-w-full  mx-auto">
         {/* Header */}
          <div className="max-w-4xl mx-auto text-center">
           <div className="mb-4 hidden sm:block">

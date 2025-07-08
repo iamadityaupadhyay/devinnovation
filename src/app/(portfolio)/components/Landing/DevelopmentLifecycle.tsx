@@ -42,7 +42,7 @@ const DevelopmentRoadmap = () => {
     },
     {
       number: "06",
-      title: "Launch & Maintenance",
+      title: "Launch",
       description: "Deploy your solution with seamless integration and comprehensive support for a successful go-live.",
       icon: "🚀",
       bgImage: "https://images.unsplash.com/photo-1516387938699-a93567ec168e?w=800&h=400&fit=crop&crop=center"
@@ -51,7 +51,7 @@ const DevelopmentRoadmap = () => {
 
   return (
     <div className="bg-gradient-to-r  from-white to-gray-50 py-16 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-full mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-black text-gray-900 mb-1">
             Our <span className="text-orange-600">Development Process</span>
@@ -108,15 +108,15 @@ const DevelopmentRoadmap = () => {
                     </span>
 
                     {/* Expandable Description */}
-                    <div className={`transition-all duration-500 ease-in-out ${
+                    <div className={`transition-all  duration-500 ease-in-out ${
                       index <= activeStep ? 'max-h-56 opacity-100 transform translate-y-0' : 'max-h-0 opacity-0 transform -translate-y-2'
                     }`}>
-                      <div className="relative rounded-lg py-12 overflow-hidden shadow-lg border border-orange-100 bg-white/95 backdrop-blur-sm">
+                      <div className="relative rounded-lg  overflow-hidden shadow-lg border border-orange-100 bg-white/95 backdrop-blur-sm">
                         <div 
                           className="absolute inset-0 bg-cover bg-center opacity-10"
                           style={{ backgroundImage: `url(${phase.bgImage})` }}
                         ></div>
-                        <div className="relative z-10   px-1">
+                        <div className="relative z-10 py-10 px-1">
                           <div className="flex items-center justify-center mb-2">
                             <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-sm">
                               {phase.icon}

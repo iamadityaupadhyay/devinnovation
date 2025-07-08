@@ -6,10 +6,10 @@ import { Toaster } from "react-hot-toast";
 import connectDB from "@/lib/util";
 import Contact from "../admin/model/contact";
 import Service from "../admin/model/service";
-import { Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Head from "next/head";
 
-const roboto = Roboto({
+const roboto = Poppins({
   weight: "400",
   subsets: ["latin-ext"],
 });

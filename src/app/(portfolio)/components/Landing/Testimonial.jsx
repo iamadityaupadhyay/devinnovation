@@ -55,7 +55,7 @@ const TestimonialCarousel = () => {
 
   return (
     <div className="py-16 flex justify-center">
-      <div className="w-full max-w-7xl md:px-4 px-2">
+      <div className="w-full max-w-full md:px-4 px-2">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>
           <div className="w-20 h-1 bg-orange-500 mx-auto rounded-full"></div>

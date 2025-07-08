@@ -22,7 +22,7 @@ async function Services() {
         >
           <div className="absolute inset-0 bg-black/80"></div>
         </div>
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-full mx-auto relative z-10">
           <div className="text-center ">
             <h2 className="text-3xl text-white font-black mb-1">
               Our Core 

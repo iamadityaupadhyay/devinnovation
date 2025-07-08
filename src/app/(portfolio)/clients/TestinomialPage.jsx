@@ -42,7 +42,7 @@ const TestimonialPage = ({ testimonials }) => {
       </div>
 
       {/* Content */}
-      <div className=" mx-auto max-w-6xl relative z-10">
+      <div className=" mx-auto max-w-full relative z-10">
         <div className="text-center mb-0">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
             What Our Clients

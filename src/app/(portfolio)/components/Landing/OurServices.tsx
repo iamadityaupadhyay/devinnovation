@@ -137,7 +137,7 @@ export const OurServices = () => {
   return (
     <div
       id="services"
-      className="px-4 py-16 bg-gradient-to-r from-orange-50 to-yellow-50 relative overflow-hidden"
+      className="px-4 max-w-full mx-auto py-16 bg-gradient-to-r from-orange-50 to-yellow-50 relative overflow-hidden"
     >
       {/* Interactive background elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -161,7 +161,7 @@ export const OurServices = () => {
         <div className="absolute bottom-0 left-1/3 w-64 h-64 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float-delayed-2"></div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-full mx-auto">
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-5">
           <h3 className="text-blue-800 font-medium uppercase tracking-wider text-sm"></h3>

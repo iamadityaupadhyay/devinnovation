@@ -156,7 +156,7 @@ const ClientForm = () => {
   };
 
   return (
-    <div className="container mx-auto px-0 py-8 max-w-6xl">
+    <div className="container mx-auto px-0 py-8 max-w-full">
      
       <h1 className="text-2xl font-bold mb-6">Add New Client</h1>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-6 rounded-sm shadow-lg">
