@@ -7,7 +7,7 @@ import QuoteRequest from "./model/Quote";
 import Client from "./model/client";
 import ContactRequest from "../(portfolio)/model/Contact";
 import Link from "next/link";
-
+import { auth } from "@/auth";
 // since this page is dynamic and needs to fetch data on each request, we set dynamic to 'force-dynamic'
 export const dynamic = 'force-dynamic';
 export default async function AdminDashboard() {
@@ -48,18 +48,7 @@ export default async function AdminDashboard() {
     loading = false;
   }
 
-  const getIconForSection = (title) => {
-    const icons = {
-      clients: "👥",
-      queries: "💬",
-      services: "⚡",
-      projects: "🚀",
-      quotes: "💰",
-      team: "🏆",
-      contact: "📞"
-    };
-    return icons[title.toLowerCase()] || "📊";
-  };
+ 
 
   const getGradientForSection = (title) => {
     const gradients = {
@@ -79,14 +68,12 @@ export default async function AdminDashboard() {
       {/* Header Section */}
       <div className={`bg-gradient-to-r ${getGradientForSection(title)} opacity-75 p-2 border-b-2 border-gray-200`}>
         <div className="flex justify-between items-center">
-          <div className="flex items-center justify-center gap-4">
-            <div className="text-2xl text-gray-900">
-              {getIconForSection(title)}
-            </div>
+          <div className="flex items-center justify-center gap-3">
+            
             <h2 className="text-lg font-bold text-gray-900">
               {title}
             </h2>
-            <div className="text-gray-900/90 mt-1 ">
+            <div className="text-gray-900/90 ">
               <div className="text-sm font-medium">Total : {items.length}</div>
               
             </div>
@@ -188,17 +175,18 @@ export default async function AdminDashboard() {
     team: ["name", "email", "position"],
     contact: ["email", "phoneNumber", "address", "whatsapp", "linkedin", "facebook", "instagram"],
   };
-
+  const session= await auth();
+  console.log("Session data:", session);
   return (
     <div className="min-h-screen bg-gray-100">
-      <main className="py-8 px-2">
+      <main className="py-4  ">
         {/* Dashboard header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            Admin Dashboard
+        <div className="mb-4">
+          <h1 className="text-xl font-bold text-gray-800 mb-2">
+            Welcome {session?.user?.email}
           </h1>
           <p className="text-gray-100">Manage your business operations efficiently</p>
-          <div className="mt-4 w-full h-px bg-gray-300"></div>
+          <div className="mt-2 w-full h-px bg-gray-300"></div>
         </div>
 
         {/* Main grid */}
