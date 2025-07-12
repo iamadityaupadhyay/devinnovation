@@ -9,6 +9,7 @@ import ContactRequest from "../(portfolio)/model/Contact";
 import Link from "next/link";
 
 export default async function AdminDashboard() {
+  await connectDB();
   let data, loading, error;
   try {
     loading = true;
