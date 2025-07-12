@@ -8,6 +8,8 @@ import Client from "./model/client";
 import ContactRequest from "../(portfolio)/model/Contact";
 import Link from "next/link";
 
+// since this page is dynamic and needs to fetch data on each request, we set dynamic to 'force-dynamic'
+export const dynamic = 'force-dynamic';
 export default async function AdminDashboard() {
   await connectDB();
   let data, loading, error;
