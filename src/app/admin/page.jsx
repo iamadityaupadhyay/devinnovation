@@ -75,7 +75,7 @@ export default async function AdminDashboard() {
   const DataCard = ({ title, items, fields }) => (
     <div className="group relative overflow-hidden">
       {/* Header Section */}
-      <div className={`bg-gradient-to-r ${getGradientForSection(title)} opacity-75 p-4 border-b-2 border-gray-200`}>
+      <div className={`bg-gradient-to-r ${getGradientForSection(title)} opacity-75 p-2 border-b-2 border-gray-200`}>
         <div className="flex justify-between items-center">
           <div className="flex items-center justify-center gap-4">
             <div className="text-2xl text-gray-900">
