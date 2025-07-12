@@ -3,7 +3,7 @@ import ContactForm from '../../components/ContactForm'
 
 function page() {
   return (
-    <div className=' py-6 px-0 '>
+    <div className=' py-4 px-0 '>
 
        <ContactForm/>
 

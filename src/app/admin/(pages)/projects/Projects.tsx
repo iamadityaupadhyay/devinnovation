@@ -73,7 +73,7 @@ function PreviousProjects() {
   return (
     <div>
       <section className="px-0 relative">
-        <div className="py-2  mx-auto">
+        <div className="py-10  mx-auto">
           <div className="grid gap-8">
             {projects.map((project, index) => (
               <div
@@ -90,9 +90,9 @@ function PreviousProjects() {
                 
                       {/* upper line */}
                       <div className="flex items-center">
-                      <div className="w-3 h-3 bg-gradient-to-r from-orange-400  to-red-500 rounded-full"></div>
+                      
                       <span className="text-sm font-bold text-orange-400 uppercase tracking-wider">
-                        {project.category}
+                        {project.name}
                       </span>
                       </div>
                       
@@ -107,14 +107,14 @@ function PreviousProjects() {
                         className="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-600 transition-all duration-300 flex items-center gap-2"
                       >
                         <Edit className="w-4 h-4" />
-                        Edit
+                        
                       </button>
                       <button
                         onClick={() => handleDelete(project.id)}
                         className="bg-red-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-600 transition-all duration-300 flex items-center gap-2"
                       >
                         <Trash2 className="w-4 h-4" />
-                        Delete
+                        
                       </button>
                         </div>
                       </div>
@@ -125,7 +125,7 @@ function PreviousProjects() {
                       {project.name} - {project.shortDescription}
                     </h3>
                    
-                    <p className="text-gray-700 mb-4">{project.description}</p>
+                    
 
                     <div className="space-y-3 grid grid-cols-2 mb-6">
                       {project.bulletPoints.slice(0, 4).map((feature, featureIndex) => (
@@ -154,7 +154,7 @@ function PreviousProjects() {
                     </div>
                   </div>
                   <div className="flex-shrink-0">
-                    <div className="relative w-64 h-80 rounded-md overflow-hidden transform rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                    <div className="relative w-full h-24 rounded-md overflow-hidden transform   transition-transform duration-500">
                       <img
                         src={project.image}
                         alt={project.name}

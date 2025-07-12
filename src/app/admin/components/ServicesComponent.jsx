@@ -60,7 +60,7 @@ async function Services() {
         <div className=" mx-auto">
          
 
-          <div className=" gap-8 grid grid-cols-2  mb-5">
+          <div className=" gap-8 grid grid-cols-1 md:grid-cols-2  mb-5">
             {services.map((service, index) => (
               <div 
                 key={index}

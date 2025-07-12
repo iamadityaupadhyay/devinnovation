@@ -111,7 +111,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="mx-auto p-4 bg-white rounded-sm shadow-lg">
+    <div className="mx-auto p-4  rounded-sm ">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-xl font-bold text-gray-800">
           <span className="bg-gradient-to-r  from-orange-400 to-red-500 text-transparent bg-clip-text">

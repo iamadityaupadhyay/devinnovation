@@ -179,7 +179,7 @@ export default async function AdminDashboard() {
   console.log("Session data:", session);
   return (
     <div className="min-h-screen bg-gray-100">
-      <main className="py-4  ">
+      <main className="py-4   ">
         {/* Dashboard header */}
         <div className="mb-4">
           <h1 className="text-xl font-bold text-gray-800 mb-2">
