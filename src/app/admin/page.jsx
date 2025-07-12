@@ -189,7 +189,7 @@ export default async function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <main className="py-8 px-6">
+      <main className="py-8 px-2">
         {/* Dashboard header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
