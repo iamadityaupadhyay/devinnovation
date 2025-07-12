@@ -15,7 +15,7 @@ export default function AdminLayout({ children }) {
         <Toaster />
         <SessionProvider/>
         <AdminNavbar />
-        <main className=" px-2 overflow-y-auto">
+        <main className=" px-5 overflow-y-auto">
             {children}
           </main>
         <div className="flex flex-1 overflow-hidden">
