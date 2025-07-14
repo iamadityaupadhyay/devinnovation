@@ -13,3 +13,20 @@ export async function GET(req: NextRequest){
         return new Response("Internal Server Error", { status: 500 });
     }
 }
+export async function DELETE(req: NextRequest) {
+    const body = await req.json();
+    const id = body.id;
+    console.log("Deleting quote request with ID:", id);
+    if (!id) {
+        return new Response("Service ID is required", { status: 400 });
+    }
+    try {
+        await connectDB();
+        await QuoteRequest.findByIdAndDelete(id);
+        return NextResponse.json({ success: true, message: "Quote request deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting quote request:", error);
+        return new Response("Internal Server Error", { status: 500 });
+    }
+    
+}

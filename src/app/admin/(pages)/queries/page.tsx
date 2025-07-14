@@ -27,7 +27,7 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   title: string;
-  isHalfScreen?: boolean; // New prop to control modal width
+  isHalfScreen?: boolean;
 }
 
 const ContactRequestsTable: React.FC = () => {
@@ -41,6 +41,8 @@ const ContactRequestsTable: React.FC = () => {
   const [viewContact, setViewContact] = useState<Contact | null>(null);
   const [editContact, setEditContact] = useState<Contact | null>(null);
   const [formData, setFormData] = useState<FormData>({ status: 'pending' });
+  const [selectedContacts, setSelectedContacts] = useState<string[]>([]);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -56,7 +58,58 @@ const ContactRequestsTable: React.FC = () => {
     fetchContacts();
   }, []);
 
-  // Sorting function
+  // Statistics calculation
+  const stats = {
+    total: contacts.length,
+    pending: contacts.filter(c => c.status === 'pending').length,
+    responded: contacts.filter(c => c.status === 'responded').length,
+    resolved: contacts.filter(c => c.status === 'resolved').length,
+  };
+
+  // Handle select all
+  const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setSelectedContacts(currentContacts.map(contact => contact._id));
+    } else {
+      setSelectedContacts([]);
+    }
+  };
+
+  // Handle individual selection
+  const handleSelectContact = (id: string) => {
+    setSelectedContacts(prev =>
+      prev.includes(id)
+        ? prev.filter(contactId => contactId !== id)
+        : [...prev, id]
+    );
+  };
+
+  // Handle single delete
+  const handleDelete = async (id: string) => {
+    try {
+      await axios.delete('/admin/api/getQuery', { data: { id } });
+      setContacts(prev => prev.filter(contact => contact._id !== id));
+      setSelectedContacts(prev => prev.filter(contactId => contactId !== id));
+    } catch (err) {
+      setError('Failed to delete contact request');
+    }
+  };
+
+  // Handle bulk delete
+  const handleBulkDelete = async () => {
+    try {
+      await Promise.all(
+        selectedContacts.map(id =>
+          axios.delete('/admin/api/getQuery', { data: { id } })
+        )
+      );
+      setContacts(prev => prev.filter(contact => !selectedContacts.includes(contact._id)));
+      setSelectedContacts([]);
+      setShowDeleteConfirm(false);
+    } catch (err) {
+      setError('Failed to delete contact requests');
+    }
+  };
 
   // Filtering function
   const filteredContacts =
@@ -137,19 +190,49 @@ const ContactRequestsTable: React.FC = () => {
 
   return (
     <div className="container mx-auto px-0 py-8">
-      {/* Filter Section */}
-      <div className="mb-6">
-        <label className="mr-2">Filter by Status:</label>
-        <select
-          className="border rounded px-2 py-1"
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-        >
-          <option value="all">All</option>
-          <option value="pending">Pending</option>
-          <option value="responded">Responded</option>
-          <option value="resolved">Resolved</option>
-        </select>
+      {/* Statistics Section */}
+      <div className="mb-6 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-blue-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Total Requests</h3>
+          <p className="text-2xl">{stats.total}</p>
+        </div>
+        <div className="bg-yellow-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Pending</h3>
+          <p className="text-2xl">{stats.pending}</p>
+        </div>
+        <div className="bg-blue-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Responded</h3>
+          <p className="text-2xl">{stats.responded}</p>
+        </div>
+        <div className="bg-green-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Resolved</h3>
+          <p className="text-2xl">{stats.resolved}</p>
+        </div>
+      </div>
+
+      {/* Filter and Bulk Actions */}
+      <div className="mb-6 flex justify-between items-center">
+        <div>
+          <label className="mr-2">Filter by Status:</label>
+          <select
+            className="border rounded px-2 py-1"
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="responded">Responded</option>
+            <option value="resolved">Resolved</option>
+          </select>
+        </div>
+        {selectedContacts.length > 0 && (
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Delete Selected ({selectedContacts.length})
+          </button>
+        )}
       </div>
 
       {/* Table */}
@@ -157,11 +240,17 @@ const ContactRequestsTable: React.FC = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={selectedContacts.length === currentContacts.length && currentContacts.length > 0}
+                />
+              </th>
               {(['name', 'email', 'phone', 'status', 'createdAt'] as Array<keyof Contact>).map((key) => (
                 <th
                   key={key}
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                  
                 >
                   {key.replace(/([A-Z])/g, ' $1').trim()}
                   {sortConfig.key === key && (
@@ -175,40 +264,53 @@ const ContactRequestsTable: React.FC = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {currentContacts.map((Contact) => (
-              <tr key={Contact._id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">{Contact.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{Contact.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{Contact.phone || 'N/A'}</td>
+            {currentContacts.map((contact) => (
+              <tr key={contact._id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <input
+                    type="checkbox"
+                    checked={selectedContacts.includes(contact._id)}
+                    onChange={() => handleSelectContact(contact._id)}
+                  />
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">{contact.name}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{contact.email}</td>
+                <td className="px-6 py-4 whitespace-nowrap">{contact.phone || 'N/A'}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
                     className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
                       ${
-                        Contact.status === 'pending'
+                        contact.status === 'pending'
                           ? 'bg-yellow-100 text-yellow-800'
-                          : Contact.status === 'responded'
+                          : contact.status === 'responded'
                           ? 'bg-blue-100 text-blue-800'
                           : 'bg-green-100 text-green-800'
                       }`}
                   >
-                    {Contact.status.charAt(0).toUpperCase() + Contact.status.slice(1)}
+                    {contact.status.charAt(0).toUpperCase() + contact.status.slice(1)}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {new Date(Contact.createdAt).toLocaleDateString()}
+                  {new Date(contact.createdAt).toLocaleDateString()}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <button
-                    onClick={() => handleView(Contact)}
+                    onClick={() => handleView(contact)}
                     className="text-indigo-600 hover:text-indigo-900 mr-2"
                   >
                     View
                   </button>
                   <button
-                    onClick={() => handleEdit(Contact)}
-                    className="text-blue-600 hover:text-blue-900"
+                    onClick={() => handleEdit(contact)}
+                    className="text-blue-600 hover:text-blue-900 mr-2"
                   >
                     Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(contact._id)}
+                    className="text-red-600 hover:text-red-900"
+                  >
+                    Delete
                   </button>
                 </td>
               </tr>
@@ -283,7 +385,7 @@ const ContactRequestsTable: React.FC = () => {
         isOpen={!!editContact}
         onClose={() => setEditContact(null)}
         title="Edit Contact Request"
-        isHalfScreen={true} // Set half-screen for edit modal
+        isHalfScreen={true}
       >
         {editContact && (
           <form onSubmit={handleEditSubmit} className="space-y-4">
@@ -317,6 +419,32 @@ const ContactRequestsTable: React.FC = () => {
             </div>
           </form>
         )}
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal
+        isOpen={showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(false)}
+        title="Confirm Delete"
+        isHalfScreen={true}
+      >
+        <div className="space-y-4">
+          <p>Are you sure you want to delete {selectedContacts.length} contact(s)?</p>
+          <div className="flex justify-end space-x-2">
+            <button
+              onClick={() => setShowDeleteConfirm(false)}
+              className="px-4 py-2 border rounded text-gray-600 hover:bg-gray-100"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleBulkDelete}
+              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </Modal>
     </div>
   );

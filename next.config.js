@@ -20,7 +20,9 @@ const nextConfig = {
       'images.unsplash.com',
       'cdn.yourdomain.com', // Add your CDN domain
       'res.cloudinary.com',
-      'plus.unsplash.com' // Common image hosting
+      'plus.unsplash.com',
+      'unsplash.com',
+      '*' // Common image hosting
     ],
     
     

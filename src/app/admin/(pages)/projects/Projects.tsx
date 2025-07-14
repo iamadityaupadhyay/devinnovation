@@ -85,10 +85,12 @@ function PreviousProjects() {
     
     const confirmMessage = `Are you sure you want to delete ${selectedProjects.length} project(s)?`;
     if (confirm(confirmMessage)) {
+
       try {
+        console.log(selectedProjects)
         await Promise.all(
           selectedProjects.map(projectId => 
-            axios.delete(`/admin/api/projects/${projectId}`)
+            axios.delete(`/admin/api/deleteProjects/${projectId}`)
           )
         );
         setProjects(projects.filter(project => !selectedProjects.includes(project._id)));
@@ -102,7 +104,7 @@ function PreviousProjects() {
   const handleDelete = async (projectId: string) => {
     if (confirm('Are you sure you want to delete this project?')) {
       try {
-        await axios.delete(`/admin/api/projects/${projectId}`);
+        await axios.delete(`/admin/api/deleteProjects/${projectId}`);
         setProjects(projects.filter(project => project._id !== projectId));
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to delete project');

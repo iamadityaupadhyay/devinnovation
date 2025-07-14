@@ -35,3 +35,21 @@ export async function PUT(request: NextRequest) {
         return new Response("Internal Server Error", { status: 500 });
     }
 }
+export async function DELETE(request: NextRequest) {
+    try {
+        await connectDB();
+        const { id } = await request.json();
+
+        // Find the contact request by ID and delete it
+        const deletedRequest = await ContactRequest.findByIdAndDelete(id);
+
+        if (!deletedRequest) {
+            return NextResponse.json({ message: "Contact request not found" }, { status: 404 });
+        }
+
+        return NextResponse.json({ message: "Contact request deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting contact request:", error);
+        return new Response("Internal Server Error", { status: 500 });
+    }
+}

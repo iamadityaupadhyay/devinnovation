@@ -1,9 +1,8 @@
 "use client";
+
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { set } from 'mongoose';
 
-// Define interfaces for type safety
 interface Quote {
   _id: string;
   fullName: string;
@@ -34,6 +33,7 @@ interface ModalProps {
   onClose: () => void;
   children: React.ReactNode;
   title: string;
+  isHalfScreen?: boolean;
 }
 
 const QuoteRequestsTable: React.FC = () => {
@@ -47,26 +47,102 @@ const QuoteRequestsTable: React.FC = () => {
   const [viewQuote, setViewQuote] = useState<Quote | null>(null);
   const [editQuote, setEditQuote] = useState<Quote | null>(null);
   const [formData, setFormData] = useState<FormData>({ status: 'pending', priority: 'low', adminNotes: '' });
+  const [selectedQuotes, setSelectedQuotes] = useState<string[]>([]);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState<boolean>(false);
 
-  
+  useEffect(() => {
+    const fetchQuotes = async () => {
+      try {
+        const response = await axios.get<Quote[]>('/admin/api/getQuote');
+        setQuotes(response.data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch quote requests');
+        setLoading(false);
+      }
+    };
+    fetchQuotes();
+  }, []);
+
+  // Statistics calculation
+  const stats = {
+    total: quotes.length,
+    pending: quotes.filter(q => q.status === 'pending').length,
+    reviewed: quotes.filter(q => q.status === 'reviewed').length,
+    inProgress: quotes.filter(q => q.status === 'in-progress').length,
+    completed: quotes.filter(q => q.status === 'completed').length,
+    cancelled: quotes.filter(q => q.status === 'cancelled').length,
+  };
 
   // Sorting function
-  // const sortQuotes = useCallback((key: keyof Quote) => {
-  //   let direction: 'asc' | 'desc' = 'asc';
-  //   if (sortConfig.key === key && sortConfig.direction === 'asc') {
-  //     direction = 'desc';
-  //   }
-  //   setSortConfig({ key, direction });
+  const sortQuotes = useCallback((key: keyof Quote) => {
+    let direction: 'asc' | 'desc' = 'asc';
+    if (sortConfig.key === key && sortConfig.direction === 'asc') {
+      direction = 'desc';
+    }
+    setSortConfig({ key, direction });
 
-  //   setQuotes(prevQuotes => {
-  //     const sortedQuotes = [...prevQuotes].sort((a, b) => {
-  //       if (a[key] < b[key]) return direction === 'asc' ? -1 : 1;
-  //       if (a[key] > b[key]) return direction === 'asc' ? 1 : -1;
-  //       return 0;
-  //     });
-  //     return sortedQuotes;
-  //   });
-  // }, [sortConfig.key, sortConfig.direction]);
+    setQuotes(prevQuotes => {
+      const sortedQuotes = [...prevQuotes].sort((a, b) => {
+        const aValue = a[key] || '';
+        const bValue = b[key] || '';
+        if (key === 'submittedAt') {
+          return direction === 'asc'
+            ? new Date(aValue).getTime() - new Date(bValue).getTime()
+            : new Date(bValue).getTime() - new Date(aValue).getTime();
+        }
+        if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return direction === 'asc' ? 1 : -1;
+        return 0;
+      });
+      return sortedQuotes;
+    });
+  }, [sortConfig.key, sortConfig.direction]);
+
+  // Handle select all
+  const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setSelectedQuotes(currentQuotes.map(quote => quote._id));
+    } else {
+      setSelectedQuotes([]);
+    }
+  };
+
+  // Handle individual selection
+  const handleSelectQuote = (id: string) => {
+    setSelectedQuotes(prev =>
+      prev.includes(id)
+        ? prev.filter(quoteId => quoteId !== id)
+        : [...prev, id]
+    );
+  };
+
+  // Handle single delete
+  const handleDelete = async (id: string) => {
+    try {
+      await axios.delete('/admin/api/getQuote', { data: { id } });
+      setQuotes(prev => prev.filter(quote => quote._id !== id));
+      setSelectedQuotes(prev => prev.filter(quoteId => quoteId !== id));
+    } catch (err) {
+      setError('Failed to delete quote request');
+    }
+  };
+
+  // Handle bulk delete
+  const handleBulkDelete = async () => {
+    try {
+      await Promise.all(
+        selectedQuotes.map(id =>
+          axios.delete('/admin/api/getQuote', { data: { id } })
+        )
+      );
+      setQuotes(prev => prev.filter(quote => !selectedQuotes.includes(quote._id)));
+      setSelectedQuotes([]);
+      setShowDeleteConfirm(false);
+    } catch (err) {
+      setError('Failed to delete quote requests');
+    }
+  };
 
   // Filtering function
   const filteredQuotes = filterStatus === 'all'
@@ -98,15 +174,15 @@ const QuoteRequestsTable: React.FC = () => {
 
   // Handle Form Change
   const handleFormChange = useCallback(
-  (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  },
-  []
-);
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    },
+    []
+  );
 
   // Handle Edit Submit
   const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -116,7 +192,6 @@ const QuoteRequestsTable: React.FC = () => {
     try {
       const submitData = { ...formData, id: editQuote._id };
       const response = await axios.put<Quote>("/admin/api/updateQuote", submitData);
-
       setQuotes(prevQuotes =>
         prevQuotes.map(q => q._id === editQuote._id ? response.data : q)
       );
@@ -126,28 +201,22 @@ const QuoteRequestsTable: React.FC = () => {
       setError('Failed to update quote request');
     }
   };
-useEffect(() => {
-    const fetchQuotes = async () => {
-      try {
-        const response = await axios.get<Quote[]>('/admin/api/getQuote');
-        setQuotes(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch quote requests');
-        setLoading(false);
-      }
-    };
-    fetchQuotes();
-  }, [editQuote]);
+
   // Modal Component
-  const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
+  const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title, isHalfScreen = false }) => {
     if (!isOpen) return null;
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div
+          className={`bg-white rounded-lg p-6 w-full ${
+            isHalfScreen ? 'max-w-md' : 'max-w-2xl'
+          } max-h-[90vh] overflow-y-auto`}
+        >
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">{title}</h2>
-            <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-2xl">×</button>
+            <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-2xl">
+              ×
+            </button>
           </div>
           {children}
         </div>
@@ -158,23 +227,57 @@ useEffect(() => {
   if (loading) return <div className="text-center py-8">Loading...</div>;
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
 
-return (
+  return (
     <div className="container px-0 py-8">
-      {/* Filter Section (unchanged) */}
-      <div className="mb-6">
-        <label className="mr-2">Filter by Status:</label>
-        <select
-          className="border rounded px-2 py-1"
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-        >
-          <option value="all">All</option>
-          <option value="pending">Pending</option>
-          <option value="reviewed">Reviewed</option>
-          <option value="in-progress">In-Progress</option>
-          <option value="completed">Completed</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
+      {/* Statistics Section */}
+      <div className="mb-6 grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="bg-blue-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Total Quotes</h3>
+          <p className="text-2xl">{stats.total}</p>
+        </div>
+        <div className="bg-yellow-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Pending</h3>
+          <p className="text-2xl">{stats.pending}</p>
+        </div>
+        <div className="bg-blue-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Reviewed</h3>
+          <p className="text-2xl">{stats.reviewed}</p>
+        </div>
+        <div className="bg-purple-100 p-4 rounded-lg">
+          <h3 className="font-semibold">In Progress</h3>
+          <p className="text-2xl">{stats.inProgress}</p>
+        </div>
+        <div className="bg-green-100 p-4 rounded-lg">
+          <h3 className="font-semibold">Completed</h3>
+          <p className="text-2xl">{stats.completed}</p>
+        </div>
+      </div>
+
+      {/* Filter and Bulk Actions */}
+      <div className="mb-6 flex justify-between items-center">
+        <div>
+          <label className="mr-2">Filter by Status:</label>
+          <select
+            className="border rounded px-2 py-1"
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="all">All</option>
+            <option value="pending">Pending</option>
+            <option value="reviewed">Reviewed</option>
+            <option value="in-progress">In-Progress</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        {selectedQuotes.length > 0 && (
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Delete Selected ({selectedQuotes.length})
+          </button>
+        )}
       </div>
 
       {/* Table */}
@@ -182,12 +285,19 @@ return (
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <input
+                  type="checkbox"
+                  onChange={handleSelectAll}
+                  checked={selectedQuotes.length === currentQuotes.length && currentQuotes.length > 0}
+                />
+              </th>
               {(['fullName', 'email', 'mobile', 'budget', 'status', 'priority', 'submittedAt'] as Array<keyof Quote>).map(
                 (key) => (
                   <th
                     key={key}
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                    // onClick={() => sortQuotes(key)}
+                    onClick={() => sortQuotes(key)}
                   >
                     {key.replace(/([A-Z])/g, ' $1').trim()}
                     {sortConfig.key === key && (
@@ -205,6 +315,13 @@ return (
             {currentQuotes.map((quote) => (
               <React.Fragment key={quote._id}>
                 <tr className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <input
+                      type="checkbox"
+                      checked={selectedQuotes.includes(quote._id)}
+                      onChange={() => handleSelectQuote(quote._id)}
+                    />
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap">{quote.fullName}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{quote.email}</td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -258,16 +375,22 @@ return (
                     </button>
                     <button
                       onClick={() => handleEdit(quote)}
-                      className="text-blue-600 hover:text-blue-900"
+                      className="text-blue-600 hover:text-blue-900 mr-2"
                     >
                       {editQuote?._id === quote._id ? 'Close' : 'Edit'}
+                    </button>
+                    <button
+                      onClick={() => handleDelete(quote._id)}
+                      className="text-red-600 hover:text-red-900"
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>
                 {/* Edit Form Row */}
                 {editQuote?._id === quote._id && (
                   <tr>
-                    <td colSpan={4} className="px-6 py-4 over">
+                    <td colSpan={9} className="px-6 py-4">
                       <form onSubmit={handleEditSubmit} className="space-y-4">
                         <div>
                           <label className="block text-sm font-medium text-gray-700">Status</label>
@@ -333,7 +456,7 @@ return (
         </table>
       </div>
 
-      {/* Pagination (unchanged) */}
+      {/* Pagination */}
       <div className="mt-4 flex justify-between items-center">
         <div>
           Showing {indexOfFirstQuote + 1} to {Math.min(indexOfLastQuote, filteredQuotes.length)} of{' '}
@@ -357,7 +480,7 @@ return (
         </div>
       </div>
 
-      {/* View Modal (unchanged) */}
+      {/* View Modal */}
       <Modal isOpen={!!viewQuote} onClose={() => setViewQuote(null)} title="Quote Request Details">
         {viewQuote && (
           <div className="space-y-4">
@@ -393,6 +516,7 @@ return (
               <h3 className="font-semibold">Status</h3>
               <p>{viewQuote.status}</p>
             </div>
+            TRADEMARK
             <div>
               <h3 className="font-semibold">Priority</h3>
               <p>{viewQuote.priority}</p>
@@ -410,24 +534,32 @@ return (
           </div>
         )}
       </Modal>
-    </div>
-  );
-};
 
-// Modal Component (unchanged, kept for view modal)
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
-  if (!isOpen) return null;
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">{title}</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 text-2xl">
-            ×
-          </button>
+      {/* Delete Confirmation Modal */}
+      <Modal
+        isOpen={showDeleteConfirm}
+        onClose={() => setShowDeleteConfirm(false)}
+        title="Confirm Delete"
+        isHalfScreen={true}
+      >
+        <div className="space-y-4">
+          <p>Are you sure you want to delete {selectedQuotes.length} quote(s)?</p>
+          <div className="flex justify-end space-x-2">
+            <button
+              onClick={() => setShowDeleteConfirm(false)}
+              className="px-4 py-2 border rounded text-gray-600 hover:bg-gray-100"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleBulkDelete}
+              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Delete
+            </button>
+          </div>
         </div>
-        {children}
-      </div>
+      </Modal>
     </div>
   );
 };
