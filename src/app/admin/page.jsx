@@ -122,7 +122,7 @@ export default async function AdminDashboard() {
     </div>
   );
 
-  // Enhanced data table component
+  // Enhanced data table componentf
   const DataTable = ({ title, items, fields, maxRows = 5, color = "blue" }) => {
     const colorClasses = {
       blue: "border-blue-200 bg-blue-50",
@@ -312,7 +312,7 @@ export default async function AdminDashboard() {
         <div className="space-y-8">
           {/* Recent Queries */}
           <DataTable
-            title="Recent Queries"
+            title="Queries"
             items={data.contacts}
             fields={fieldMap.contacts}
             color="green"
@@ -320,7 +320,7 @@ export default async function AdminDashboard() {
 
           {/* Recent Quote Requests */}
           <DataTable
-            title="Quote Requests"
+            title="Quotes"
             items={data.quotes}
             fields={fieldMap.quotes}
             color="blue"
