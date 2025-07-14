@@ -8,7 +8,9 @@ export default async function EditProjectPage({ params }: any) {
   const { id } = params;
   
   await connectDB();
+  
   const projectDoc = await Project.findById(id);
+  
 
   if (!projectDoc) {
     redirect('/admin/projects');
@@ -31,9 +33,9 @@ export default async function EditProjectPage({ params }: any) {
     updatedAt: projectDoc.updatedAt?.toISOString(),
   };
 
-  async function updateProject(formData: FormData) {
+  async function updateProject(id:string, formData: FormData) {
     'use server';
-
+   
     const name = formData.get('name') as string;
     const category = formData.get('category') as string;
     const shortDescription = formData.get('shortDescription') as string;
@@ -83,11 +85,23 @@ export default async function EditProjectPage({ params }: any) {
         throw new Error('Failed to upload image to Cloudinary.');
       }
     }
-
+    await connectDB();
     try {
-      await connectDB();
-      console.log('Updating project with ID:', id);
       
+      
+      
+      console.log('Project data:', {
+        name,
+        category,
+        bulletPoints,
+        image: finalImageUrl,
+        description,
+        link,
+        technologies,
+        shortDescription,
+        clientName,
+      }
+      )
       await Project.findByIdAndUpdate(id, {
         name,
         category,

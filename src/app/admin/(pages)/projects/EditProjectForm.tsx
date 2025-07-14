@@ -22,7 +22,7 @@ interface Project {
 
 interface EditProjectFormProps {
   project: Project;
-  updateProject: (formData: FormData) => Promise<void>;
+  updateProject: (id:string,formData: FormData) => Promise<void>;
 }
 
 export default function EditProjectForm({ project, updateProject }: EditProjectFormProps) {
@@ -147,7 +147,7 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
     data.append('link', formData.link);
 
     try {
-      await updateProject(data);
+      await updateProject(project._id,data);
       toast.success('Project updated successfully!');
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);

@@ -38,7 +38,7 @@ try {
      // Save the project to the database
      await newProject.save();
    return NextResponse.json(
-    {
+    {   success:true,
         message:"successfull"
     }
    ) 

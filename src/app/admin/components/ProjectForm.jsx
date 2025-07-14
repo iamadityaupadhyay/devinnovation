@@ -168,7 +168,7 @@ const ProjectForm = () => {
 
   return (
     <div className="py-8 px-0 gap-4">
-      <div className="col-span-1 mx-auto p-6 bg-white rounded-lg shadow-lg">
+      <div className="col-span-1 mx-auto p-4 rounded-lg ">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-xl font-black text-gray-800">
             <span className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
