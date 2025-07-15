@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-
+import { toast } from 'react-hot-toast';
 interface Quote {
+  quote: any;
   _id: string;
   fullName: string;
   email: string;
@@ -192,8 +193,11 @@ const QuoteRequestsTable: React.FC = () => {
     try {
       const submitData = { ...formData, id: editQuote._id };
       const response = await axios.put<Quote>("/admin/api/updateQuote", submitData);
+      if (response.data){
+        toast.success("Quote updated successfully");
+      }
       setQuotes(prevQuotes =>
-        prevQuotes.map(q => q._id === editQuote._id ? response.data : q)
+        prevQuotes.map(q => q._id === editQuote._id ? response.data.quote : q)
       );
       setEditQuote(null);
       setFormData({ status: 'pending', priority: 'low', adminNotes: '' });

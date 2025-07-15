@@ -24,6 +24,7 @@ export async function PUT(req:NextRequest){
             .json({
                 message: "Quote updated successfully",
                 quote: updatedQuote,
+                success:true
             }, { status: 200 });
     }
     catch (error) {

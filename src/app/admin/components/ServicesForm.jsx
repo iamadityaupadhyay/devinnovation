@@ -6,7 +6,7 @@ import { uploadToCloudinary } from "../lib/cloudinary";
 import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 // Import server action
-
+import { useRouter } from "next/navigation";
 const ServicesForm = () => {
   const [service, setService] = useState({
     name: "",
@@ -102,7 +102,7 @@ const ServicesForm = () => {
       return false;
     }
   };
-
+  const router = useRouter();
   const handleSubmit = async (formDataAction) => {
     if (!validate()) return;
 
@@ -127,6 +127,7 @@ const ServicesForm = () => {
           setImageMode("upload");
           setErrors({});
           toast.success("Service saved successfully!");
+          router.push("/admin/services");
         } else {
           setErrors((prev) => ({ ...prev, form: result.error }));
           toast.error(result.error);

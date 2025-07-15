@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-
+import { toast } from 'react-hot-toast';
 interface Contact {
+  success: any;
   _id: string;
   name: string;
   email: string;
@@ -154,6 +155,9 @@ const ContactRequestsTable: React.FC = () => {
         id: editContact._id,
         data: formData,
       });
+      if (response.data) {
+        toast.success("Status Successfully");
+      }
       setContacts((prevContacts) =>
         prevContacts.map((c) => (c._id === editContact._id ? response.data : c))
       );

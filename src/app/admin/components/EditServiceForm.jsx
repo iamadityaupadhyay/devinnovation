@@ -57,7 +57,7 @@ export default function EditServiceForm({ service, updateService }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <Toaster position="top-right" />
+    
       <div>
         <label className="block text-xs font-medium text-gray-700 mb-1">
           Service Name
