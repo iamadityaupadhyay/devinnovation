@@ -48,7 +48,7 @@ export default function Home() {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible" // Changed from animate to whileInView for scroll-triggered animations
-      viewport={{ once: true }} // Only animate once
+      viewport={{ once: false }} // Only animate once
     >
       <motion.div variants={slideUpVariants}>
         <HeroSection />
@@ -57,14 +57,19 @@ export default function Home() {
       <motion.div variants={slideUpVariants}>
         <OurServices />
       </motion.div>
-
       <motion.div variants={slideUpVariants}>
         <IndustryLeading />
       </motion.div>
-
       <motion.div variants={slideUpVariants}>
         <PreviousProjects />
       </motion.div>
+      <motion.div variants={slideUpVariants}>
+        <TestimonialCarousel />
+      </motion.div>
+
+      
+
+      
 
       <motion.div variants={slideUpVariants}>
         <WhyChooseUs />
@@ -74,9 +79,7 @@ export default function Home() {
         <DevelopmentLifecycle />
       </motion.div>
 
-      <motion.div variants={slideUpVariants}>
-        <TestimonialCarousel />
-      </motion.div>
+      
 
       <motion.div variants={slideUpVariants}>
         <FAQComponent />

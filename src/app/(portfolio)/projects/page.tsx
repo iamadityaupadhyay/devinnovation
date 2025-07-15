@@ -10,7 +10,8 @@ function page() {
     <div>
         <PreviousProjects/>
         
-        <WhyChooseUs/>
+        <OurMagicalProcess/>
+    <CallToAction/>
         <ServicesComponent/>
     </div>
   )

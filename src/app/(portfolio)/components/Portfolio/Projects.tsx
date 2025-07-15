@@ -134,7 +134,7 @@ function PreviousProjects() {
             {projects.slice(0,3).map((project, index) => (
               <div
                 key={project._id}
-                className={`group relative  p-5 py-4 border transition-all duration-500 transform hover:-translate-y-2 ${
+                className={`group relative  p-4 border transition-all duration-500 transform hover:-translate-y-2 ${
                   activeProject === index ? 'ring-2 ring-orange-400/50 shadow-2xl shadow-orange-500/20' : ''
                 }`}
                 onMouseEnter={() => setActiveProject(index)}

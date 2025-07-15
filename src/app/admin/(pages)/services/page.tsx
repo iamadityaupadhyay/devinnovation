@@ -1,13 +1,16 @@
 import React from 'react'
 
-import Link from 'next/link'
 import Services from '../../components/ServicesComponent'
+import connectDB from '@/lib/util'
+import Service from '../../model/service'
+async function page() {
+  await connectDB();
+  const services= await Service.find({}).sort({ createdAt: -1 }).lean();
 
-function page() {
   return (
     <div>
        
-      <Services/>
+      <Services services={services}/>
        
       
     </div>

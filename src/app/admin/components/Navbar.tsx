@@ -7,12 +7,12 @@ export default function AdminNavbar() {
 
   const navItems = [
     { name: "Team", href: "/admin/team" },
-    { name: "Services", href: "/admin/services" },
-    { name: "Projects", href: "/admin/projects" },
-    { name: "Contact", href: "/admin/contact" },
     { name: "Clients", href: "/admin/clients" },
     { name: "Queries", href: "/admin/queries" },
     { name: "Quotes", href: "/admin/quotes" },
+    { name: "Services", href: "/admin/services" },
+    { name: "Projects", href: "/admin/projects" },
+    { name: "Contact", href: "/admin/contact" },
   ];
 
   return (

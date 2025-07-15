@@ -33,7 +33,7 @@ const TestimonialPage = ({ testimonials }) => {
     <div className="relative bg-gradient-to-r rounded-sm from-gray-50 to-gray-50  py-16 mx-auto px-2">
       {/* Background Image */}
       <div
-        className="h-[24vh] lg:h-[30vh] absolute inset-0 px-2 bg-cover bg-center"
+        className="h-[24vh] lg:h-[24vh] absolute inset-0 px-2 bg-cover bg-center"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1549923746-c502d488b3ea?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
         }}

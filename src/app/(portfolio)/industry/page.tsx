@@ -166,7 +166,7 @@ function IndustrySolutions() {
       <section className="pb-16  bg-gradient-to-r from-yellow-50 to-orange-50 backdrop-blur-xl">
          <div className="relative mb-5   rounded-b-lg">
         <div
-          className="h-[25vh] lg:h-[40vh]  bg-cover"
+          className="h-[25vh] lg:h-[24vh]  bg-cover"
           style={{
             backgroundImage: `url(https://plus.unsplash.com/premium_photo-1680608979589-e9349ed066d5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aXQlMjBpbmR1c3RyeXxlbnwwfHwwfHx8MA%3D%3D)`,
             backgroundColor: '#e5e7eb', // Fallback color
@@ -187,14 +187,14 @@ function IndustrySolutions() {
           </div>
         </div>
       </div>
-        <div className=" px-2 mx-auto">
+        <div className=" px-4 mx-auto">
           
 
           <div className="grid md:grid-cols-4 gap-8">
             {industries.map((industry, index) => (
               <div 
                 key={index}
-                className="group relative backdrop-blur-xl rounded-md p-5 border border-slate-700/50 hover:border-orange-400/50 transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-white/80"
+                className="group relative backdrop-blur-xl rounded-md p-5 border border-slate-700/50 hover:border-orange-400/50 transition-all duration-500 transform  hover:-translate-y-1 bg-white/80"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
@@ -216,7 +216,7 @@ function IndustrySolutions() {
                   ))}
                 </div>
                 
-                <Link href={`/service/${industry.name.replaceAll(" ","-").toLowerCase()}`} className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-full text-sm transition-all duration-300 transform hover:scale-105 flex items-center gap-2 group-hover:shadow-lg mb-6">
+                <Link href={`/service/${industry.name.replaceAll(" ","-").toLowerCase()}`} className="hover:bg-orange-500 border-2 border-orange-400 text-orange-400 hover:text-white font-semibold py-3 px-6 rounded-full text-sm transition-all duration-300 transform hover:scale-105 flex items-center gap-2 group-hover:shadow-lg mb-6">
                   BUILD NOW
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
