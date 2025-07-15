@@ -144,12 +144,12 @@ function PreviousProjects() {
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover project-image-bg"
+                      className="w-full h-48 object-center project-image-bg"
                     />
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover  project-image"
+                      className="w-full h-48 object-center  project-image"
                     />
                   </div>
                 </div>
