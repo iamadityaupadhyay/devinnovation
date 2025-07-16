@@ -236,7 +236,7 @@ function MobileCarouselProjects() {
                     
                     {/* Project Image */}
                     <img
-                      src={project.image}
+                      src={project.image || project.image1}
                       alt={project.title}
                       className="w-full h-full object-center"
                     />
