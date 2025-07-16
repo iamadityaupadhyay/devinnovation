@@ -35,7 +35,7 @@ export default function HeroSection() {
     },
     {
       id: 4,
-      title: "E-Commerce",
+      title: "E-Commerce App",
       subtitle: "Solutions",
       ranking: "#1 E-Commerce Development",
       location: "Serving Global Markets",
@@ -43,7 +43,7 @@ export default function HeroSection() {
     },
     {
       id: 5,
-      title: "Transportation",
+      title: "Transport App",
       subtitle: "Solutions",
       ranking: "#1 Tranport App Like Ola & Uber",
       location: "Serving Global Markets",
