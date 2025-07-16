@@ -232,7 +232,7 @@ export default function HeroSection() {
                             <img
                               src={images[index][0]}
                               alt={`${slide.title} mockup 1`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-center"
                             />
                           </div>
                           <div className="absolute top-1 left-1/2 justify-center  rounded-lg items-center flex  transform -translate-x-1/2 w-16 h-3 bg-gray-800 ">
@@ -245,7 +245,7 @@ export default function HeroSection() {
                             <img
                               src={images[index][1]}
                               alt={`${slide.title} mockup 2`}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-center"
                             />
                           </div>
                          <div className="absolute top-1 left-1/2 justify-center  rounded-lg items-center flex  transform -translate-x-1/2 w-16 h-3 bg-gray-800 ">
