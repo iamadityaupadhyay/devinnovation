@@ -227,7 +227,7 @@ export default function HeroSection() {
                   <div className="relative pb-10 w-full h-64 flex justify-center items-center gap-4">
                     {images[index]  && (
                       <>
-                        <div className="relative w-32 h-56 bg-gray-800 rounded-2xl p-2 shadow-lg transform -rotate-6">
+                        <div className="relative w-32 h-56 bg-gray-800 rounded-2xl p-1 shadow-lg transform ">
                           <div className="bg-white rounded-xl w-full h-full overflow-hidden">
                             <img
                               src={images[index][0]}
@@ -235,10 +235,12 @@ export default function HeroSection() {
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-600 rounded-full"></div>
-                          <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full"></div>
+                          <div className="absolute top-1 left-1/2 justify-center  rounded-lg items-center flex  transform -translate-x-1/2 w-16 h-3 bg-gray-800 ">
+                           <div className="bg-white rounded-full w-2 h-1 "></div>
+                           </div>
+                          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-1 rounded-full bg-gray-800 "></div>
                         </div>
-                        <div className="relative w-32 h-56 bg-gray-800 rounded-2xl p-2 shadow-lg transform rotate-6">
+                        <div className="relative w-32 min-h-44 mt-5 bg-gray-800 rounded-2xl p-1 shadow-lg transform ">
                           <div className="bg-white rounded-xl w-full h-full overflow-hidden">
                             <img
                               src={images[index][1]}
@@ -246,8 +248,10 @@ export default function HeroSection() {
                               className="w-full h-full object-cover"
                             />
                           </div>
-                          <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-gray-600 rounded-full"></div>
-                          <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-gray-600 rounded-full"></div>
+                         <div className="absolute top-1 left-1/2 justify-center  rounded-lg items-center flex  transform -translate-x-1/2 w-16 h-3 bg-gray-800 ">
+                           <div className="bg-white rounded-full w-2 h-1 "></div>
+                           </div>
+                          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-10 h-1 rounded-full bg-gray-800 "></div>
                         </div>
                       </>
                     )}
