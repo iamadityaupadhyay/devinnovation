@@ -50,7 +50,7 @@ async function Services() {
                 <div className="text-lg font-black text-gray-700 mb-4 group-hover:text-orange-400 transition-colors">
                   {service.name}
                 </div>
-                <div className="relative overflow-hidden rounded-xl mb-4 group-hover:scale-105 transition-transform duration-300">
+                <div className="relative overflow-hidden rounded-lg mb-4 group-hover:scale-105 transition-transform duration-300">
                   <img 
                     src={service.image}
                     alt={service.name}
@@ -66,7 +66,7 @@ async function Services() {
                     </div>
                   ))}
                 </div>
-                <Link href={`/service/${service.name.toLowerCase().replaceAll(" ","-")}`} className="bg-transparent hover:bg-orange-600 text-orange-500 hover:text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-all duration-300 flex items-center gap-2 group">
+                <Link href={`/service/${service.name.toLowerCase().replaceAll(" ","-")}`} className="bg-transparent w-1/2 hover:bg-orange-600 text-orange-500 hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-1 group">
                   Get Started
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

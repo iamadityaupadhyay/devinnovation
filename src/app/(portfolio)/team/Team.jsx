@@ -85,7 +85,24 @@ const TeamShowcase = () => {
 
   return (
     <div className="bg-gray-50  mx-auto pb-16 relative">
-      
+      {/* Header */}
+      <div className="relative mb-6">
+        <div
+          className="h-[20vh] lg:h-[25vh] bg-center bg-cover"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1548705085-101177834f47?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.1.0)",
+            backgroundColor: "#e5e7eb",
+          }}
+        >
+          <div className="absolute inset-0 bg-black/80"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1 className="text-3xl lg:text-4xl font-bold text-white">
+              Meet Our <span className="text-orange-400">Superstar Team</span>
+            </h1>
+          </div>
+        </div>
+      </div>
 
       {/* Team Grid */}
       <div className="max-w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

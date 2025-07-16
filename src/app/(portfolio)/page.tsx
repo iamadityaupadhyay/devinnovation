@@ -11,8 +11,9 @@ import WhyChooseUsSection from "./components/Landing/Whychooseuss";
 import FAQComponent from "./components/Landing/FAQ";
 import IndustryLeading from "./components/Landing/IndustryLeading";
 import QueryPopup from "./components/Forms/QueryPopup";
-import PreviousProjects from "./components/Portfolio/Projects";
+import PreviousProjects from "./components/Portfolio/OurProjects";
 import TestimonialCarousel from "./components/Landing/Testimonial";
+import CommerceAppsShowcase from "./components/Landing/CommerceAppShowcase";
 
 // Animation variants for slide up effect
 const slideUpVariants = {
@@ -44,7 +45,7 @@ const containerVariants = {
 export default function Home() {
   return (
     <motion.main
-      className="min-h-screen"
+      className="min-h-screen "
       variants={containerVariants}
       initial="hidden"
       whileInView="visible" // Changed from animate to whileInView for scroll-triggered animations
@@ -53,16 +54,17 @@ export default function Home() {
       <motion.div variants={slideUpVariants}>
         <HeroSection />
       </motion.div>
-
+      <CommerceAppsShowcase/>
+      <motion.div variants={slideUpVariants}>
+        <PreviousProjects />
+      </motion.div>
       <motion.div variants={slideUpVariants}>
         <OurServices />
       </motion.div>
       <motion.div variants={slideUpVariants}>
         <IndustryLeading />
       </motion.div>
-      <motion.div variants={slideUpVariants}>
-        <PreviousProjects />
-      </motion.div>
+      
       <motion.div variants={slideUpVariants}>
         <TestimonialCarousel />
       </motion.div>
@@ -71,9 +73,7 @@ export default function Home() {
 
       
 
-      <motion.div variants={slideUpVariants}>
-        <WhyChooseUs />
-      </motion.div>
+     
 
       <motion.div variants={slideUpVariants}>
         <DevelopmentLifecycle />

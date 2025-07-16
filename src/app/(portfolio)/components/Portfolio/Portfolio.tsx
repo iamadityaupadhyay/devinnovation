@@ -5,7 +5,9 @@ import IndustryLeading from "../Landing/IndustryLeading";
 import OurMagicalProcess from "./OurMagicalProcess";
 import HeroSection from "./HeroSection";
 import CallToAction from "./CallToAction";
-import PreviousProjects from "./Projects";
+import PreviousProjects from "./OurProjects";
+import CommerceAppsShowcase from "../Landing/CommerceAppShowcase";
+import TeamShowcase from "./Team";
 
 const Portfolio = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,8 +32,7 @@ const Portfolio = () => {
       {/* Hero Section */}
       <HeroSection/>
 
-      {/* Services Showcase */}
-      <IndustryLeading/>
+      <CommerceAppsShowcase/>
      
       
 
@@ -39,6 +40,7 @@ const Portfolio = () => {
  {/* <OurMagicalProcess/> */}
       {/* CTA Section */}
      <CallToAction/>
+     <TeamShowcase/>
 
       
     </div>

@@ -16,7 +16,8 @@ try {
           technologies,
           description,
           clientName,
-          image,
+          image1,
+          image2,
           previewImage,
           link
      } = project;
@@ -30,7 +31,8 @@ try {
           technologies,
           description,
           clientName,
-          image,
+          image1,
+          image2,
           previewImage,
           link
      });

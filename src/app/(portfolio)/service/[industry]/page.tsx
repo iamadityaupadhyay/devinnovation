@@ -3,7 +3,7 @@ import ServiceForm from "../../components/Forms/CommonForm";
 import ServicesComponent from "../../components/Landing/Service";
 import CallToAction from "../../components/Portfolio/CallToAction";
 import OurMagicalProcess from "../../components/Portfolio/OurMagicalProcess";
-import PreviousProjects from "../../components/Portfolio/Projects";
+import PreviousProjects from "../../components/Portfolio/OurProjects";
 
 import WhyChooseUsSection from "../Whychooseuss";
 interface ServiceItem {

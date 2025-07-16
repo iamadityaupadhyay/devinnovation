@@ -11,18 +11,20 @@ interface Project {
   name: string;
   category: string;
   bulletPoints: string[];
-  image: string;
+  image1: string;
+  image2: string;
   description: string;
   link?: string;
   technologies: string[];
   shortDescription: string;
   clientName: string;
-  previewImage: string;
+  previewImage1: string;
+  previewImage2: string;
 }
 
 interface EditProjectFormProps {
   project: Project;
-  updateProject: (id:string,formData: FormData) => Promise<void>;
+  updateProject: (id: string, formData: FormData) => Promise<void>;
 }
 
 export default function EditProjectForm({ project, updateProject }: EditProjectFormProps) {
@@ -35,14 +37,17 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
     technologies: project.technologies || [''],
     description: project.description,
     clientName: project.clientName,
-    image: project.image,
-    previewImage: project.previewImage,
+    image1: project.image1,
+    previewImage1: project.previewImage1,
+    image2: project.image2,
+    previewImage2: project.previewImage2,
     link: project.link || '',
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef1 = useRef<HTMLInputElement>(null) as React.RefObject<HTMLInputElement>;
+  const fileInputRef2 = useRef<HTMLInputElement>(null) as React.RefObject<HTMLInputElement>;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -73,34 +78,34 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
     setFormData((prev) => ({ ...prev, technologies: newTech }));
   };
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, imageKey: string, previewKey: string, fileInputRef: React.RefObject<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) {
-      setErrors((prev) => ({ ...prev, image: 'No file selected' }));
+      setErrors((prev) => ({ ...prev, [imageKey]: 'No file selected' }));
       return;
     }
 
     const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
     if (!validTypes.includes(file.type)) {
-      setErrors((prev) => ({ ...prev, image: 'Please select a valid image file (JPEG, PNG, GIF, WebP)' }));
+      setErrors((prev) => ({ ...prev, [imageKey]: `Please select a valid image file (JPEG, PNG, GIF, WebP)` }));
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      setErrors((prev) => ({ ...prev, image: 'File size must be less than 5MB' }));
+      setErrors((prev) => ({ ...prev, [imageKey]: 'File size must be less than 5MB' }));
       return;
     }
 
     try {
       setIsSubmitting(true);
-      setErrors((prev) => ({ ...prev, image: '' }));
+      setErrors((prev) => ({ ...prev, [imageKey]: '' }));
 
       const result = await uploadToCloudinary(file);
 
       setFormData((prev) => ({
         ...prev,
-        image: result.secure_url,
-        previewImage: result.secure_url,
+        [imageKey]: result.secure_url,
+        [previewKey]: result.secure_url,
       }));
 
       if (fileInputRef.current) {
@@ -108,7 +113,7 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
       }
     } catch (error) {
       console.error('Upload error:', error);
-      setErrors((prev) => ({ ...prev, image: 'Failed to upload image' }));
+      setErrors((prev) => ({ ...prev, [imageKey]: 'Failed to upload image' }));
     } finally {
       setIsSubmitting(false);
     }
@@ -123,7 +128,8 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
     if (formData.technologies.some((t) => !t.trim())) newErrors.technologies = 'All technologies must be filled';
     if (!formData.description.trim()) newErrors.description = 'Description is required';
     if (!formData.clientName.trim()) newErrors.clientName = 'Client name is required';
-    if (!formData.image) newErrors.image = 'Image is required';
+    if (!formData.image1) newErrors.image1 = 'First image is required';
+    if (!formData.image2) newErrors.image2 = 'Second image is required';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -142,12 +148,14 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
     formData.technologies.forEach((tech, i) => data.append(`technologies[${i}]`, tech));
     data.append('description', formData.description);
     data.append('clientName', formData.clientName);
-    if (formData.image) data.append('image', formData.image);
-    data.append('previewImage', formData.previewImage);
+    if (formData.image1) data.append('image1', formData.image1);
+    if (formData.image2) data.append('image2', formData.image2);
+    data.append('previewImage1', formData.previewImage1);
+    data.append('previewImage2', formData.previewImage2);
     data.append('link', formData.link);
 
     try {
-      await updateProject(project._id,data);
+      await updateProject(project._id, data);
       toast.success('Project updated successfully!');
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
@@ -160,10 +168,9 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
   };
 
   return (
-    <div className=" px-0 gap-4">
-      <div className="col-span-1 mx-auto  rounded-lg ">
+    <div className="px-0 gap-4">
+      <div className="col-span-1 mx-auto rounded-lg">
         <div className="flex items-center justify-between mb-8">
-         
           {success && (
             <div className="flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full">
               <CheckCircle className="w-5 h-5" />
@@ -178,7 +185,7 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
           )}
 
           <div className="grid md:grid-cols-2 gap-6">
-              
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Project Name <span className="text-red-500">*</span>
               </label>
@@ -211,7 +218,7 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
               />
               {errors.category && <p className="mt-1 text-sm text-red-600">{errors.category}</p>}
             </div>
-          
+          </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -325,40 +332,78 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
             {errors.clientName && <p className="mt-1 text-sm text-red-600">{errors.clientName}</p>}
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Project Image <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileUpload}
-              accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
-              className="hidden"
-            />
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              disabled={isSubmitting}
-              className={`w-full px-4 py-6 border-2 rounded-xl ${
-                errors.image ? 'border-red-500' : 'border-gray-300 hover:border-orange-400'
-              } transition-colors`}
-            >
-              {formData.previewImage ? (
-                <img
-                  src={formData.previewImage}
-                  alt="Preview"
-                  className="h-32 mx-auto object-contain"
-                />
-              ) : (
-                <div className="text-center">
-                  <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
-                  <p className="mt-2 text-sm text-gray-600">Click to upload an image</p>
-                  <p className="text-xs text-gray-500">PNG, JPG, GIF, WebP up to 5MB</p>
-                </div>
-              )}
-            </button>
-            {errors.image && <p className="mt-1 text-sm text-red-600">{errors.image}</p>}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Project Image 1 <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="file"
+                ref={fileInputRef1}
+                onChange={(e) => handleFileUpload(e, 'image1', 'previewImage1', fileInputRef1)}
+                accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef1.current?.click()}
+                disabled={isSubmitting}
+                className={`w-full px-4 py-6 border-2 rounded-xl ${
+                  errors.image1 ? 'border-red-500' : 'border-gray-300 hover:border-orange-400'
+                } transition-colors`}
+              >
+                {formData.previewImage1 ? (
+                  <img
+                    src={formData.previewImage1}
+                    alt="Preview 1"
+                    className="h-32 mx-auto object-contain"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                    <p className="mt-2 text-sm text-gray-600">Click to upload first image</p>
+                    <p className="text-xs text-gray-500">PNG, JPG, GIF, WebP up to 5MB</p>
+                  </div>
+                )}
+              </button>
+              {errors.image1 && <p className="mt-1 text-sm text-red-600">{errors.image1}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Project Image 2 <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="file"
+                ref={fileInputRef2}
+                onChange={(e) => handleFileUpload(e, 'image2', 'previewImage2', fileInputRef2)}
+                accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef2.current?.click()}
+                disabled={isSubmitting}
+                className={`w-full px-4 py-6 border-2 rounded-xl ${
+                  errors.image2 ? 'border-red-500' : 'border-gray-300 hover:border-orange-400'
+                } transition-colors`}
+              >
+                {formData.previewImage2 ? (
+                  <img
+                    src={formData.previewImage2}
+                    alt="Preview 2"
+                    className="h-32 mx-auto object-contain"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                    <p className="mt-2 text-sm text-gray-600">Click to upload second image</p>
+                    <p className="text-xs text-gray-500">PNG, JPG, GIF, WebP up to 5MB</p>
+                  </div>
+                )}
+              </button>
+              {errors.image2 && <p className="mt-1 text-sm text-red-600">{errors.image2}</p>}
+            </div>
           </div>
 
           <div>
@@ -387,13 +432,18 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
                   technologies: project.technologies || [''],
                   description: project.description,
                   clientName: project.clientName,
-                  image: project.image,
-                  previewImage: project.previewImage,
+                  image1: project.image1,
+                  previewImage1: project.previewImage1,
+                  image2: project.image2,
+                  previewImage2: project.previewImage2,
                   link: project.link || '',
                 });
                 setErrors({});
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = '';
+                if (fileInputRef1.current) {
+                  fileInputRef1.current.value = '';
+                }
+                if (fileInputRef2.current) {
+                  fileInputRef2.current.value = '';
                 }
               }}
               className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors"
@@ -442,13 +492,8 @@ export default function EditProjectForm({ project, updateProject }: EditProjectF
               </div>
             </button>
           </div>
-        
-        
         </form>
-
       </div>
-
     </div>
-
   );
 }

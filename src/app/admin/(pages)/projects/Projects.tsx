@@ -19,6 +19,7 @@ interface Project {
   clientName: string;
   previewImage: string;
   _id: string;
+  image1: string;
 }
 
 function PreviousProjects() {
@@ -310,7 +311,7 @@ function PreviousProjects() {
                       <div className="h-10 w-10 flex-shrink-0">
                         <img
                           className="h-10 w-10 rounded-lg object-cover"
-                          src={project.image}
+                          src={project.image || project.image1}
                           alt={project.name}
                         />
                       </div>

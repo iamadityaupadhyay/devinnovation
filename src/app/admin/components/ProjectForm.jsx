@@ -4,8 +4,9 @@ import React, { useState, useRef } from "react";
 import { Save, Image as ImageIcon, X, Plus, Trash2, CheckCircle } from "lucide-react";
 import { uploadToCloudinary } from "../lib/cloudinary";
 import axios from "axios";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+
 const ProjectForm = () => {
   const router = useRouter();
   const [project, setProject] = useState({
@@ -16,8 +17,10 @@ const ProjectForm = () => {
     technologies: [""],
     description: "",
     clientName: "",
-    image: "",
-    previewImage: "",
+    image1: "",
+    previewImage1: "",
+    image2: "",
+    previewImage2: "",
     link: "",
   });
 
@@ -25,8 +28,9 @@ const ProjectForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  // Reference to the hidden file input
-  const fileInputRef = useRef(null);
+  // References to the hidden file inputs
+  const fileInputRef1 = useRef(null);
+  const fileInputRef2 = useRef(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,45 +61,45 @@ const ProjectForm = () => {
     setProject((prev) => ({ ...prev, technologies: newTech }));
   };
 
-  const handleFileUpload = async (event) => {
-    const file = event.target.files[0]; // Access the first file
+  const handleFileUpload = async (event, imageKey, previewKey, fileInputRef) => {
+    const file = event.target.files[0];
     if (!file) {
-      setErrors((prev) => ({ ...prev, image: "No file selected" }));
+      setErrors((prev) => ({ ...prev, [imageKey]: "No file selected" }));
       return;
     }
 
-    // Validate file
     const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/webp"];
     if (!validTypes.includes(file.type)) {
-      setErrors((prev) => ({ ...prev, image: "Please select a valid image file (JPEG, PNG, GIF, WebP)" }));
+      setErrors((prev) => ({
+        ...prev,
+        [imageKey]: "Please select a valid image file (JPEG, PNG, GIF, WebP)",
+      }));
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
-      // 5MB
-      setErrors((prev) => ({ ...prev, image: "File size must be less than 5MB" }));
+      setErrors((prev) => ({ ...prev, [imageKey]: "File size must be less than 5MB" }));
       return;
     }
 
     try {
       setIsSubmitting(true);
-      setErrors((prev) => ({ ...prev, image: "" }));
+      setErrors((prev) => ({ ...prev, [imageKey]: "" }));
 
       const result = await uploadToCloudinary(file);
 
       setProject((prev) => ({
         ...prev,
-        image: result.secure_url,
-        previewImage: result.secure_url,
+        [imageKey]: result.secure_url,
+        [previewKey]: result.secure_url,
       }));
 
-      // Reset file input after successful upload
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
     } catch (error) {
       console.error("Upload error:", error);
-      setErrors((prev) => ({ ...prev, image: "Failed to upload image" }));
+      setErrors((prev) => ({ ...prev, [imageKey]: "Failed to upload image" }));
     } finally {
       setIsSubmitting(false);
     }
@@ -110,7 +114,8 @@ const ProjectForm = () => {
     if (project.technologies.some((t) => !t.trim())) newErrors.technologies = "All technologies must be filled";
     if (!project.description.trim()) newErrors.description = "Description is required";
     if (!project.clientName.trim()) newErrors.clientName = "Client name is required";
-    if (!project.image) newErrors.image = "Image is required";
+    if (!project.image1) newErrors.image1 = "First image is required";
+    if (!project.image2) newErrors.image2 = "Second image is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -119,8 +124,7 @@ const ProjectForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
-    
-    
+
     setIsSubmitting(true);
     try {
       const formData = new FormData();
@@ -131,14 +135,15 @@ const ProjectForm = () => {
       project.technologies.forEach((tech, i) => formData.append(`technologies[${i}]`, tech));
       formData.append("description", project.description);
       formData.append("clientName", project.clientName);
-      if (project.image) formData.append("image", project.image);
+      if (project.image1) formData.append("image1", project.image1);
+      if (project.image2) formData.append("image2", project.image2);
       formData.append("link", project.link);
 
       const response = await axios.post("/admin/api/addProjects", {
         project,
       });
 
-      if (response.data.success){
+      if (response.data.success) {
         toast.success("Project saved successfully!");
         router.push("/admin/projects");
       }
@@ -152,8 +157,10 @@ const ProjectForm = () => {
         technologies: [""],
         description: "",
         clientName: "",
-        image: "",
-        previewImage: "",
+        image1: "",
+        previewImage1: "",
+        image2: "",
+        previewImage2: "",
         link: "",
       });
 
@@ -168,7 +175,7 @@ const ProjectForm = () => {
 
   return (
     <div className="py-8 px-0 gap-4">
-      <div className="col-span-1 mx-auto p-4 rounded-lg ">
+      <div className="col-span-1 mx-auto p-4 rounded-lg">
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-xl font-black text-gray-800">
             <span className="bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
@@ -321,7 +328,7 @@ const ProjectForm = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Client Name <span className="text-red-500">*</span>
+              Client Name <span className="text-red-用了500">*</span>
             </label>
             <input
               type="text"
@@ -336,41 +343,78 @@ const ProjectForm = () => {
             {errors.clientName && <p className="mt-1 text-sm text-red-600">{errors.clientName}</p>}
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Project Image <span className="text-red-500">*</span>
-            </label>
-            {/* Hidden file input */}
-            <input
-              type="file"
-              ref={fileInputRef}
-              onChange={handleFileUpload}
-              accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
-              className="hidden"
-            />
-            <button
-              type="button"
-              onClick={() => fileInputRef.current?.click()}
-              disabled={isSubmitting}
-              className={`w-full px-4 py-6 border-2 rounded-xl ${
-                errors.image ? "border-red-500" : "border-gray-300 hover:border-orange-400"
-              } transition-colors`}
-            >
-              {project.previewImage ? (
-                <img
-                  src={project.previewImage}
-                  alt="Preview"
-                  className="h-32 mx-auto object-contain"
-                />
-              ) : (
-                <div className="text-center">
-                  <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
-                  <p className="mt-2 text-sm text-gray-600">Click to upload an image</p>
-                  <p className="text-xs text-gray-500">PNG, JPG, GIF, WebP up to 5MB</p>
-                </div>
-              )}
-            </button>
-            {errors.image && <p className="mt-1 text-sm text-red-600">{errors.image}</p>}
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Project Image 1 <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="file"
+                ref={fileInputRef1}
+                onChange={(e) => handleFileUpload(e, "image1", "previewImage1", fileInputRef1)}
+                accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef1.current?.click()}
+                disabled={isSubmitting}
+                className={`w-full px-4 py-6 border-2 rounded-xl ${
+                  errors.image1 ? "border-red-500" : "border-gray-300 hover:border-orange-400"
+                } transition-colors`}
+              >
+                {project.previewImage1 ? (
+                  <img
+                    src={project.previewImage1}
+                    alt="Preview 1"
+                    className="h-32 mx-auto object-contain"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                    <p className="mt-2 text-sm text-gray-600">Click to upload first image</p>
+                    <p className="text-xs text-gray-500">PNG, JPG, GIF, WebP up to 5MB</p>
+                  </div>
+                )}
+              </button>
+              {errors.image1 && <p className="mt-1 text-sm text-red-600">{errors.image1}</p>}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Project Image 2 <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="file"
+                ref={fileInputRef2}
+                onChange={(e) => handleFileUpload(e, "image2", "previewImage2", fileInputRef2)}
+                accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef2.current?.click()}
+                disabled={isSubmitting}
+                className={`w-full px-4 py-6 border-2 rounded-xl ${
+                  errors.image2 ? "border-red-500" : "border-gray-300 hover:border-orange-400"
+                } transition-colors`}
+              >
+                {project.previewImage2 ? (
+                  <img
+                    src={project.previewImage2}
+                    alt="Preview 2"
+                    className="h-32 mx-auto object-contain"
+                  />
+                ) : (
+                  <div className="text-center">
+                    <ImageIcon className="mx-auto h-12 w-12 text-gray-400" />
+                    <p className="mt-2 text-sm text-gray-600">Click to upload second image</p>
+                    <p className="text-xs text-gray-500">PNG, JPG, GIF, WebP up to 5MB</p>
+                  </div>
+                )}
+              </button>
+              {errors.image2 && <p className="mt-1 text-sm text-red-600">{errors.image2}</p>}
+            </div>
           </div>
 
           <div>
@@ -399,13 +443,18 @@ const ProjectForm = () => {
                   technologies: [""],
                   description: "",
                   clientName: "",
-                  image: "",
-                  previewImage: "",
+                  image1: "",
+                  previewImage1: "",
+                  image2: "",
+                  previewImage2: "",
                   link: "",
                 });
                 setErrors({});
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = "";
+                if (fileInputRef1.current) {
+                  fileInputRef1.current.value = "";
+                }
+                if (fileInputRef2.current) {
+                  fileInputRef2.current.value = "";
                 }
               }}
               className="px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-xl hover:bg-gray-50 transition-colors"
@@ -456,8 +505,6 @@ const ProjectForm = () => {
           </div>
         </form>
       </div>
-
-     
     </div>
   );
 };
