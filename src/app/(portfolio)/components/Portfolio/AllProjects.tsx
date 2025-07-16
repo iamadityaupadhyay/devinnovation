@@ -299,7 +299,7 @@ const ProjectsShowcase: React.FC = () => {
                     transitionDelay: '100ms'
                   }}
                 >
-                  Live Preview
+                  Preview
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               )}
