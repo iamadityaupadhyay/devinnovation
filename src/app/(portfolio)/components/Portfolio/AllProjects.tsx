@@ -4,29 +4,50 @@ import { Check, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import axios from 'axios';
 
+// Type definitions
+interface Project {
+  _id: string;
+  name: string;
+  title: string;
+  shortDescription: string;
+  bulletPoints: string[];
+  technologies: string[];
+  image: string;
+  image1?: string;
+  image2?: string;
+  link?: string;
+}
 
-const ProjectsShowcase = () => {
-  const [visibleProjects, setVisibleProjects] = useState(new Set());
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+interface ContactData {
+  whatsapp: string;
+}
+
+interface ProjectsApiResponse {
+  projects: Project[];
+}
+
+const ProjectsShowcase: React.FC = () => {
+  const [visibleProjects, setVisibleProjects] = useState<Set<string>>(new Set());
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [whatsapp, setWhatsapp] = useState("");
-  const projectRefs = useRef([]);
+  const [whatsapp, setWhatsapp] = useState<string>("");
+  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const fetchWhatsapp = async () => {
+  const fetchWhatsapp = async (): Promise<void> => {
     try {
       const response = await fetch("/admin/api/getContact");
-      const data = await response.json();
+      const data: ContactData = await response.json();
       setWhatsapp(data.whatsapp);
     } catch (err) {
       console.error('Error fetching WhatsApp:', err);
     }
   };
 
-  const fetchProjects = async () => {
+  const fetchProjects = async (): Promise<void> => {
     try {
       setLoading(true);
-      const response = await axios.get('/admin/api/getProjects');
+      const response = await axios.get<ProjectsApiResponse>('/admin/api/getProjects');
       setProjects(response.data.projects);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
@@ -41,17 +62,19 @@ const ProjectsShowcase = () => {
   }, []);
 
   useEffect(() => {
-    const observerOptions = {
+    const observerOptions: IntersectionObserverInit = {
       root: null,
       rootMargin: '0px 0px -20% 0px',
       threshold: 0.1
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const projectId = entry.target.dataset.projectId;
-          setVisibleProjects(prev => new Set([...prev, projectId]));
+          const projectId = (entry.target as HTMLDivElement).dataset.projectId;
+          if (projectId) {
+            setVisibleProjects(prev => new Set([...prev, projectId]));
+          }
         }
       });
     }, observerOptions);
@@ -63,7 +86,7 @@ const ProjectsShowcase = () => {
     return () => observer.disconnect();
   }, [projects]);
 
-  const getAnimationClasses = (isVisible) => {
+  const getAnimationClasses = (isVisible: boolean): string => {
     const baseClasses = "transition-all duration-1000 ease-out";
     
     if (!isVisible) {
@@ -73,7 +96,7 @@ const ProjectsShowcase = () => {
     return `${baseClasses} transform translate-y-0 opacity-100`;
   };
 
-  const getGradientForProject = (index) => {
+  const getGradientForProject = (index: number): string => {
     const gradients = [
       "from-teal-400 to-green-400",
       "from-orange-400 to-red-400",
@@ -122,13 +145,13 @@ const ProjectsShowcase = () => {
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative z-10 text-center text-white">
           <h1 className="text-3xl lg:text-4xl font-black mb-4">
-        Our Proven
-        <span className="ml-2 bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
-          Projects
-        </span>
+            Our Proven
+            <span className="ml-2 bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
+              Projects
+            </span>
           </h1>
           <p className="text-lg max-w-2xl mx-auto">
-        Explore our diverse portfolio of successful projects
+            Explore our diverse portfolio of successful projects
           </p>
         </div>
       </div>
@@ -137,7 +160,7 @@ const ProjectsShowcase = () => {
       {projects.map((project, index) => (
         <div 
           key={project._id}
-          ref={el => projectRefs.current[index] = el}
+          ref={el => { projectRefs.current[index] = el; }}
           data-project-id={project._id}
           className={`grid md:grid-cols-2 py-8 gap-8 ${getAnimationClasses(visibleProjects.has(project._id))}`}
         >
@@ -265,8 +288,6 @@ const ProjectsShowcase = () => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              
-              
               {project.link && (
                 <Link
                   href={project.link}
@@ -285,7 +306,7 @@ const ProjectsShowcase = () => {
               
               <Link
                 href={`/projects/${project._id}`}
-                className={`text-orange-500 hover:text-orange-600  w-1/2 font-semibold text-lg flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-105 ${
+                className={`text-orange-500 hover:text-orange-600 w-1/2 font-semibold text-lg flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-105 ${
                   visibleProjects.has(project._id) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                 }`}
                 style={{

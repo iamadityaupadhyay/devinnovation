@@ -13,6 +13,7 @@ export default function AdminNavbar() {
     { name: "Services", href: "/admin/services" },
     { name: "Projects", href: "/admin/projects" },
     { name: "Contact", href: "/admin/contact" },
+    { name: "Carousel", href: "/admin/carousel" },
   ];
 
   return (
