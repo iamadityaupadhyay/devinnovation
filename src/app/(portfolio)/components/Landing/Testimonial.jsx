@@ -76,7 +76,7 @@ const TestimonialCarousel = ({clients}) => {
               {/* Display three testimonials with active one highlighted */}
               <div className="h-full  flex flex-col justify-center">
                 <div className="space-y-2 h-full flex flex-col items-center justify-center gap-2">
-                  {clients.slice(0, 3).map((testimonial, index) => (
+                  {clients.slice(0, 2).map((testimonial, index) => (
                     <div
                       key={index}
                       className={`relative rounded-2xl p-4 shadow-lg max-w-md w-full border-2 border-orange-300 ${
