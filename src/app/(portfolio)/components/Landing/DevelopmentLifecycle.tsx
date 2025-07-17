@@ -50,7 +50,7 @@ const DevelopmentRoadmap = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-r  from-white to-gray-50 py-16 px-4">
+    <div className="bg-gradient-to-r  from-white to-gray-50 py-16 px-4 md:px-10">
       <div className="max-w-full mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-black text-gray-900 mb-1">
@@ -92,7 +92,7 @@ const DevelopmentRoadmap = () => {
                   </div>
 
                   {/* Expandable Content Area */}
-                  <div className={`relative transition-all  duration-500 ease-in-out overflow-hidden ${
+                  <div className={`relative transition-all ml-5 duration-500 ease-in-out overflow-hidden ${
                     index <= activeStep ? 'max-h-96 opacity-100' : 'max-h-20 opacity-100'
                   }`}>
                     {/* Title and Number */}

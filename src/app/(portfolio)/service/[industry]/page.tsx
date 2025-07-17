@@ -5,7 +5,7 @@ import CallToAction from "../../components/Portfolio/CallToAction";
 import OurMagicalProcess from "../../components/Portfolio/OurMagicalProcess";
 import PreviousProjects from "../../components/Portfolio/OurProjects";
 
-import WhyChooseUsSection from "../Whychooseuss";
+import WhyChooseUsSection from "../../components/Landing/OurFeatures";
 interface ServiceItem {
   name: string;
   href: string;

@@ -46,7 +46,7 @@ const FAQComponent = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-white to-gray-50 px-2 py-16 flex justify-center">
+    <div className="bg-gradient-to-r from-white to-gray-50 px-4 md:px-10 py-16 flex justify-center">
       <div className="w-full max-w-full mx-auto">
         {/* Header */}
         <div className="text-center mb-10 animate-fade-in">

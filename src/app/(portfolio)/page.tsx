@@ -1,95 +1,56 @@
-"use client"; // This directive is essential for client-side animations
-
-import { motion } from "framer-motion";
 import HeroSection from "@/app/(portfolio)/components/Landing/HeroSection";
 import { OurServices } from "./components/Landing/OurServices";
 import Service from "./components/Landing/Service";
-import PastExperiences from "./components/Landing/PastExperiences";
 import DevelopmentLifecycle from "./components/Landing/DevelopmentLifecycle";
-import WhyChooseUs from "./components/Landing/WhyChooseUs";
-import WhyChooseUsSection from "./components/Landing/Whychooseuss";
 import FAQComponent from "./components/Landing/FAQ";
-import IndustryLeading from "./components/Landing/IndustryLeading";
 import QueryPopup from "./components/Forms/QueryPopup";
 import PreviousProjects from "./components/Portfolio/OurProjects";
 import TestimonialCarousel from "./components/Landing/Testimonial";
 import CommerceAppsShowcase from "./components/Landing/CommerceAppShowcase";
+import ClassyFeaturesSection from "./components/Landing/OurFeatures";
+import Client from "../admin/model/client";
+import connectDB from "@/lib/util";
 
-// Animation variants for slide up effect
-const slideUpVariants = {
-  hidden: {
-    opacity: 0,
-    y: 60,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
+// Simple fade-in animation using CSS classes
+// Add this CSS to your global stylesheet or module:
+// .fade-in { opacity: 0; animation: fadeIn 0.8s forwards; }
+// @keyframes fadeIn { to { opacity: 1; } }
 
-// Stagger animation for sequential appearance
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.2,
-      when: "beforeChildren", // This ensures the parent animation starts before children
-    },
-  },
-};
+export default async function Home() {
+  await connectDB()
+  const clients = JSON.parse(JSON.stringify(await Client.find().lean().sort({ createdAt: -1 })));
 
-export default function Home() {
+
   return (
-    <motion.main
-      className="min-h-screen "
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible" // Changed from animate to whileInView for scroll-triggered animations
-      viewport={{ once: false }} // Only animate once
-    >
-      <motion.div variants={slideUpVariants}>
+    <main className="min-h-screen">
+      <div className="fade-in">
         <HeroSection />
-      </motion.div>
-      <CommerceAppsShowcase/>
-      <motion.div variants={slideUpVariants}>
+      </div>
+      <div className="fade-in">
+        <CommerceAppsShowcase />
+      </div>
+      <div className="fade-in">
         <PreviousProjects />
-      </motion.div>
-      <motion.div variants={slideUpVariants}>
+      </div>
+      <div className="fade-in">
         <OurServices />
-      </motion.div>
-      <motion.div variants={slideUpVariants}>
-        <IndustryLeading />
-      </motion.div>
-      
-      <motion.div variants={slideUpVariants}>
-        <TestimonialCarousel />
-      </motion.div>
-
-      
-
-      
-
-     
-
-      <motion.div variants={slideUpVariants}>
+      </div>
+      <div className="fade-in">
+        <TestimonialCarousel clients={clients}/>
+      </div>
+      <div className="fade-in">
+        <ClassyFeaturesSection />
+      </div>
+      <div className="fade-in">
         <DevelopmentLifecycle />
-      </motion.div>
-
-      
-
-      <motion.div variants={slideUpVariants}>
+      </div>
+      <div className="fade-in">
         <FAQComponent />
-      </motion.div>
-
-      <motion.div variants={slideUpVariants}>
+      </div>
+      <div className="fade-in">
         <Service />
-      </motion.div>
-
+      </div>
       <QueryPopup />
-    </motion.main>
+    </main>
   );
 }

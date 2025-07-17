@@ -1,7 +1,7 @@
 import TestimonialCarousel from "./TestinomialPage"
 import connectDB from "@/lib/util"
 import Client from "@/app/admin/model/client"
-import WhyChooseUs from "../service/Whychooseuss";
+import WhyChooseUs from "../components/Landing/OurFeatures";
 
 async function page() {
   await connectDB();

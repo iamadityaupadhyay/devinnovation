@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react'
 import CallToAction from '../components/Portfolio/CallToAction';
 import OurMagicalProcess from '../components/Portfolio/OurMagicalProcess';
+import ClassyFeaturesSection from '../components/Landing/OurFeatures';
 
 function IndustrySolutions() {
   const industries = [
@@ -241,9 +242,7 @@ function IndustrySolutions() {
         </div>
         
       </section>
-      <OurMagicalProcess/>
-      <CallToAction/>
-
+      <ClassyFeaturesSection/>
     </div>
   );
 }

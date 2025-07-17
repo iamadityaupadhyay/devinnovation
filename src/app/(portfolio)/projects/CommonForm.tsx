@@ -73,14 +73,7 @@ const ServiceForm: React.FC = () => {
 
   return (
     <div className="  ">
-      <div className="">
-       <div className="bg-white backdrop-blur-sm rounded-md shadow-xl p-5">
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-orange-800 mb-2">Contact Us</h3>
-              <p className="text-gray-500 text-sm">Fill out the form below and we'll get back to you soon</p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
+<form onSubmit={handleSubmit} className="space-y-6">
               {/* Country Code and Mobile */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Full Name */}
@@ -186,7 +179,7 @@ const ServiceForm: React.FC = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full bg-orange-800 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transform transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="w-full hover:bg-orange-600 hover:text-white text-orange-500 border-2 border-orange-500 px-4 py-3 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transform transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center">
@@ -211,10 +204,6 @@ const ServiceForm: React.FC = () => {
                 </button>
               </div>
             </form>
-          </div>
-         
-         
-      </div>
     </div>
   );
 };

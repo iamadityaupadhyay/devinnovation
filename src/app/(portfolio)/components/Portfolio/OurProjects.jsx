@@ -204,7 +204,7 @@ function MobileCarouselProjects() {
         
         <div 
           ref={carouselRef}
-          className=" bg-gradient-to-r  from-orange-500 via-orange-600 to-orange-700 h-[420px]  md:w-[580px] md:h-[580px] rounded-full max-w-4xl mx-auto mt-20 flex items-center justify-center cursor-grab active:cursor-grabbing"
+          className=" bg-gradient-to-r  from-orange-500 via-orange-600 to-orange-700 h-[400px] w-[360px]  md:w-[580px] md:h-[580px] rounded-full max-w-4xl mx-auto mt-20 flex items-center justify-center cursor-grab active:cursor-grabbing"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -218,7 +218,7 @@ function MobileCarouselProjects() {
           {projects.map((project, index) => (
             <div
               key={project._id}
-              className="absolute  "
+              className="absolute"
               style={getItemStyle(index)}
               onClick={() => goToSlide(index)}
             >
@@ -228,11 +228,11 @@ function MobileCarouselProjects() {
                 <div className="absolute inset-0 bg-black/20 rounded-[2.5rem] blur-lg transform translate-y-2"></div>
                 
                 {/* Phone Body */}
-                <div className="relative bg-black rounded-[2.5rem] p-2 md:w-72 w-52 h-[400px] md:h-[460px]">
+                <div className="relative bg-black rounded-[2.5rem] md:p-2 p-1 md:w-64 w-48 h-[400px] md:h-[460px]">
                   {/* Screen */}
                   <div className="bg-white rounded-[2rem] h-full relative overflow-hidden">
                     {/* Notch */}
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-xl z-10"></div>
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-4 bg-black rounded-b-xl z-10"></div>
                     
                     {/* Project Image */}
                     <img
@@ -245,7 +245,7 @@ function MobileCarouselProjects() {
                   </div>
                   
                   {/* Home Indicator */}
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white rounded-full"></div>
+                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white rounded-full"></div>
                 </div>
               </div>
             </div>
@@ -256,10 +256,10 @@ function MobileCarouselProjects() {
 
         {/* Project Details */}
         <div className="mt-12 text-center">
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">
+          <h3 className="text-xl font-bold text-gray-800 mb-1">
             {projects[currentIndex].name}
           </h3>
-          <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
+          <p className="text-gray-600  max-w-2xl mx-auto">
             {projects[currentIndex].shortDescription}
           </p>
           
@@ -267,7 +267,7 @@ function MobileCarouselProjects() {
         </div>
 
         {/* More Projects Link */}
-        <div className="text-center mt-5">
+        <div className="text-center mt-7">
           <Link href="/projects" className="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 text-lg">
             View All Projects
           </Link>

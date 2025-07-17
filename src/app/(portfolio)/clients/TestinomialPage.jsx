@@ -30,7 +30,7 @@ const TestimonialPage = ({ testimonials }) => {
   };
 
   return (
-    <div className="relative bg-gradient-to-r rounded-sm from-gray-50 to-gray-50  py-16 mx-auto px-2">
+    <div className="relative bg-gradient-to-r rounded-sm from-gray-50 to-gray-50  py-16 mx-auto px-2 md:px-8">
       {/* Background Image */}
       <div
         className="h-[24vh] lg:h-[24vh] absolute inset-0 px-2 bg-cover bg-center"

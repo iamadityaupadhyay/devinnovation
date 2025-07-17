@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import RequestQuoteModal from "../Forms/RequestQuote";
-
+import { motion } from "framer-motion";
 export default function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -102,7 +102,7 @@ export default function HeroSection() {
   );
 
   return (
-    <div className="sm:py-12 mx-auto   bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
+    <motion.div className="sm:py-12 mx-auto   bg-gradient-to-br from-orange-50 via-white to-orange-100 relative w-full overflow-hidden">
       <div className="relative h-full mx-auto  md:px-8 flex justify-center">
         <div className="w-full relative">
           <div
@@ -294,6 +294,6 @@ export default function HeroSection() {
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

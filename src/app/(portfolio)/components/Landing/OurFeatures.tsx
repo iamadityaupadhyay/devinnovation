@@ -10,7 +10,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "100% Customer Satisfaction",
       description: "We guarantee complete satisfaction with our services and deliver excellence in every project.",
-      icon: "/icons/like.gif",
+      icon: "/customer.png",
       bgColor: "bg-amber-50",
       iconBg: "bg-amber-100",
       textColor: "text-amber-600"
@@ -18,7 +18,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "Quality Assurance",
       description: "Rigorous testing and quality control processes ensure flawless performance.",
-      icon: "/icons/badge.gif",
+      icon: "/quality.png",
       bgColor: "bg-yellow-50",
       iconBg: "bg-yellow-100",
       textColor: "text-yellow-600"
@@ -26,7 +26,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "Deliver on Time",
       description: "We respect deadlines and ensure timely delivery of all projects without compromising quality.",
-      icon: "/icons/delivery-truck.gif",
+      icon: "/delivery.png",
       bgColor: "bg-green-50",
       iconBg: "bg-green-100",
       textColor: "text-green-600"
@@ -34,7 +34,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "24*7 Support & Maintenance",
       description: "Round-the-clock support and maintenance services to keep your applications running smoothly.",
-      icon: "/icons/24-7.gif",
+      icon: "/247.png",
       bgColor: "bg-orange-50",
       iconBg: "bg-orange-100",
       textColor: "text-orange-600"
@@ -42,7 +42,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "Free Consultation",
       description: "Get expert advice and consultation for your project requirements at no cost.",
-      icon: "/icons/medical-consultation.gif",
+      icon: "/consult.png",
       bgColor: "bg-purple-50",
       iconBg: "bg-purple-100",
       textColor: "text-purple-600"
@@ -50,7 +50,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "Trendy Design & Technologies",
       description: "Stay ahead with cutting-edge designs and latest technology implementations.",
-      icon: "/icons/digital-art.gif",
+      icon: "/trendy.png",
       bgColor: "bg-pink-50",
       iconBg: "bg-pink-100",
       textColor: "text-pink-600"
@@ -58,7 +58,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "Cost Effective",
       description: "Premium quality services at competitive prices that fit your budget perfectly.",
-      icon: "/icons/reduce-cost.gif",
+      icon: "/lowcost.png",
       bgColor: "bg-emerald-50",
       iconBg: "bg-emerald-100",
       textColor: "text-emerald-600"
@@ -66,7 +66,7 @@ const ClassyFeaturesSection = () => {
     {
       title: "Time to Time Upgradation",
       description: "Regular updates and improvements to keep your solutions current and efficient.",
-      icon: "/icons/hourglass.gif",
+      icon: "/timetotime.png",
       bgColor: "bg-blue-50",
       iconBg: "bg-blue-100",
       textColor: "text-blue-600"
@@ -74,24 +74,24 @@ const ClassyFeaturesSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-gray-50 px-4">
+    <section className="py-14 bg-gradient-to-br from-slate-50 via-white to-gray-50 px-4 md:px-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <div className="mb-6">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
+        <div className="max-w-5xl mx-auto text-center mb-10">
+          <div className="mb-4">
+            <h2 className="text-3xl font-black text-gray-900 mb-4 leading-tight">
               Let's Build Your
               <span className="ml-3 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-transparent bg-clip-text">
                 Digital Empire
               </span>
             </h2>
-            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-base text-gray-600 font-light max-w-2xl mx-auto">
               Transform your vision into reality with our world-class development services
             </p>
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center justify-center gap-8 text-gray-500 mb-8">
+          <div className="flex flex-wrap items-center  xs:hidden  justify-center gap-4 md:gap-8 text-gray-500 mb-5">
             <div className="flex items-center gap-2 text-sm font-medium">
               <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center">
                 <Shield className="w-4 h-4 text-white" />
@@ -118,7 +118,7 @@ const ClassyFeaturesSection = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`group relative bg-white rounded-2xl p-6 shadow-lg shadow-gray-100 border border-gray-100 transition-all duration-500 hover:shadow-xl hover:shadow-gray-200 hover:-translate-y-2 cursor-pointer overflow-hidden ${
+              className={`group relative bg-white rounded-lg py-5 px-4   border border-orange-100 transition-all duration-500  hover:-translate-y-1 cursor-pointer overflow-hidden ${
                 index === 0 ? 'hover:bg-gradient-to-br hover:from-amber-50 hover:to-amber-100' :
                 index === 1 ? 'hover:bg-gradient-to-br hover:from-yellow-50 hover:to-yellow-100' :
                 index === 2 ? 'hover:bg-gradient-to-br hover:from-green-50 hover:to-green-100' :
@@ -130,12 +130,12 @@ const ClassyFeaturesSection = () => {
               }`}
             >
               {/* Decorative gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%]"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform  translate-x-full group-hover:-translate-y-1"></div>
               
               {/* Icon */}
               <div className="flex items-center justify-center mb-4">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 group-hover:from-white group-hover:to-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
-                  <img src={feature.icon} alt={feature.title} className="w-10 h-10 object-contain" />
+                <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 group-hover:from-white group-hover:to-white flex items-center justify-center transition-all duration-300 group-hover:-translate-y-1 ">
+                  <img src={feature.icon} alt={feature.title} className="w-12 h-12 object-contain" />
                 </div>
               </div>
 
@@ -153,9 +153,7 @@ const ClassyFeaturesSection = () => {
                 }`}>
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 text-xs md:text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  {feature.description}
-                </p>
+                
               </div>
             </div>
           ))}
@@ -165,7 +163,7 @@ const ClassyFeaturesSection = () => {
         <div className="text-center">
           <button 
             onClick={() => setIsModalOpen(true)}
-            className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl shadow-lg shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/40 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+            className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-xl shadow-md shadow-orange-500/25  hover:shadow-orange-500/40 transition-all duration-300 transform overflow-hidden"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             <span className="relative">Schedule Free Consultation</span>

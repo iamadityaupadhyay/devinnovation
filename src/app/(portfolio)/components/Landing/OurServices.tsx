@@ -137,7 +137,7 @@ export const OurServices = () => {
   return (
     <div
       id="services"
-      className="px-4 max-w-full mx-auto py-16 bg-gradient-to-r from-orange-50 to-yellow-50 relative overflow-hidden"
+      className="px-4 md:px-10 max-w-full mx-auto py-16 bg-gradient-to-r from-orange-50 to-yellow-50 relative overflow-hidden"
     >
       {/* Interactive background elements */}
       <div className="absolute inset-0 overflow-hidden">

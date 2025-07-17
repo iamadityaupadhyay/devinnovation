@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef, useState } from 'react';
 import { Check } from 'lucide-react';
 import Link from 'next/link';
@@ -5,18 +6,18 @@ import Link from 'next/link';
 const CommerceAppsShowcase = () => {
   const [visibleApps, setVisibleApps] = useState(new Set());
   const appRefs = useRef([]);
-  const [whatsapp,setWhatsapp] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  
   const fetchWhatsapp = async () => {
-    const response = await fetch("/admin/api/getContact")
+    const response = await fetch("/admin/api/getContact");
     const data = await response.json();
-    console.log(data)
     setWhatsapp(data.whatsapp);
-  }
-  useEffect(
-    ()=>{
-      fetchWhatsapp()
-    },[]
-  )
+  };
+
+  useEffect(() => {
+    fetchWhatsapp();
+  }, []);
+
   const apps = [
     {
       id: 1,
@@ -113,56 +114,48 @@ const CommerceAppsShowcase = () => {
 
   const getAnimationClasses = (isVisible) => {
     const baseClasses = "transition-all duration-1000 ease-out";
-    
-    if (!isVisible) {
-      return `${baseClasses} transform translate-y-20 opacity-0`;
-    }
-    
-    return `${baseClasses} transform translate-y-0 opacity-100`;
+    return isVisible
+      ? `${baseClasses} transform translate-y-0 opacity-100`
+      : `${baseClasses} transform translate-y-20 opacity-0`;
   };
 
   return (
-    <div className="relative w-full mx-auto px-4 py-12 bg-white">
+    <div className="relative w-full mx-auto px-4 md:px-10 py-12 bg-white">
       {apps.map((app, index) => (
-        <div 
+        <div
           key={app.id}
           ref={el => appRefs.current[index] = el}
           data-app-id={app.id}
-          className={`grid md:grid-cols-2 py-11 gap-8 ${getAnimationClasses(visibleApps.has(app.id))}`}
+          className={`grid grid-cols-1 md:grid-cols-2 py-11 gap-8 ${getAnimationClasses(visibleApps.has(app.id))}`}
         >
           {/* Mobile Phones Display */}
-          <div className={`relative  md:min-h-[500px] lg:min-h-[450px] hover:-translate-y-2 transition-all duration-300 rounded-2xl bg-gradient-to-br ${app.gradient} p-4 flex items-center justify-center ${
-            visibleApps.has(app.id) ? 'animate-fade-in-up' : ''
-          }`}>
+          <div
+            className={`relative md:min-h-[500px] lg:min-h-[450px] hover:-translate-y-2 transition-all duration-300 rounded-2xl bg-gradient-to-br ${app.gradient} p-4 flex items-center justify-center ${
+              index % 2 === 1 ? 'md:order-2' : 'md:order-1'
+            } ${visibleApps.has(app.id) ? 'animate-fade-in-up' : ''}`}
+          >
             <div className="flex space-x-4 items-center">
               {app.phones.map((phone, phoneIndex) => (
-                <div 
+                <div
                   key={phoneIndex}
-                  className={`relative ${phoneIndex==1?"mb-20":""} transform transition-all duration-700 ${
+                  className={`relative ${phoneIndex === 1 ? 'mb-20' : ''} transform transition-all duration-700 ${
                     phoneIndex === 1 ? 'scale-110 z-10' : 'scale-95'
                   } ${visibleApps.has(app.id) ? 'animate-slide-up' : 'translate-y-8 opacity-0'}`}
-                  style={{
-                    transitionDelay: `${phoneIndex * 200 + 300}ms`
-                  }}
+                  style={{ transitionDelay: `${phoneIndex * 200 + 300}ms` }}
                 >
                   <div className="w-24 h-48 lg:w-36 lg:h-72 bg-black rounded-3xl p-1.5 shadow-2xl">
                     <div className="w-full h-full bg-white rounded-2xl overflow-hidden relative">
-                      {/* Phone notch - more realistic */}
                       <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-10 h-1.5 bg-black rounded-full z-10"></div>
-                      
-                      {/* Phone content area with real image */}
-                      <div className=" h-full">
+                      <div className="h-full">
                         <div className="w-full h-full rounded-lg overflow-hidden">
-                          <img 
-                            src={phone.image} 
+                          <img
+                            src={phone.image}
                             alt={phone.name}
-                            className="w-full  h-full object-cover"
+                            className="w-full h-full object-cover"
                             loading="lazy"
                           />
                         </div>
                       </div>
-                      
-                      {/* Home indicator */}
                       <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-black rounded-full z-10"></div>
                     </div>
                   </div>
@@ -172,11 +165,17 @@ const CommerceAppsShowcase = () => {
           </div>
 
           {/* Content */}
-          <div className="md:space-y-8 space-y-5 flex flex-col justify-center">
-            <div className={`transition-all duration-700 ${
-              visibleApps.has(app.id) ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          <div
+            className={`md:space-y-8 space-y-5 flex flex-col justify-center ${
+              index % 2 === 1 ? 'md:order-1' : 'md:order-2'
             }`}
-            style={{ transitionDelay: '200ms' }}>
+          >
+            <div
+              className={`transition-all duration-700 ${
+                visibleApps.has(app.id) ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              }`}
+              style={{ transitionDelay: '200ms' }}
+            >
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
                 {app.title}
               </h2>
@@ -187,14 +186,12 @@ const CommerceAppsShowcase = () => {
 
             <div className="md:space-y-4 space-y-3">
               {app.features.map((feature, featureIndex) => (
-                <div 
-                  key={featureIndex} 
+                <div
+                  key={featureIndex}
                   className={`flex items-start space-x-3 transition-all duration-600 ${
                     visibleApps.has(app.id) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
                   }`}
-                  style={{
-                    transitionDelay: `${400 + (featureIndex * 100)}ms`
-                  }}
+                  style={{ transitionDelay: `${400 + (featureIndex * 100)}ms` }}
                 >
                   <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
                     <Check className="w-4 h-4 text-white" />
@@ -204,15 +201,14 @@ const CommerceAppsShowcase = () => {
               ))}
             </div>
 
-            <Link 
-            href={`https://wa.me/${whatsapp}?text=Hi%20I%20want%20to%20book%20a%20consultation%20for%20${app.title}%20App`}
-            target='_blank'
-            className={`bg-transparent lg:w-1/2 md:w-72 border-orange-400 border-2 text-orange-500 md:px-4 px-4 md:py-4 py-3 rounded-xl font-semibold text-lg hover:bg-gray-800 text-center transition-all duration-300 shadow-lg transform hover:scale-105 ${
-              visibleApps.has(app.id) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
-            }`}
-            style={{
-              transitionDelay: '100ms'
-            }}>
+            <Link
+              href={`https://wa.me/${whatsapp}?text=Hi%20I%20want%20to%20book%20a%20consultation%20for%20${app.title}%20App`}
+              target="_blank"
+              className={`bg-transparent lg:w-1/2 md:w-72 border-orange-400 border-2 text-orange-500 md:px-4 px-4 md:py-4 py-3 rounded-xl font-semibold text-lg hover:bg-gray-800 text-center transition-all duration-300 shadow-lg transform hover:scale-105 ${
+                visibleApps.has(app.id) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+              }`}
+              style={{ transitionDelay: '100ms' }}
+            >
               Book Free Consultation
             </Link>
           </div>

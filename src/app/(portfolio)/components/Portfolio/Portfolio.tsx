@@ -8,6 +8,7 @@ import CallToAction from "./CallToAction";
 import PreviousProjects from "./OurProjects";
 import CommerceAppsShowcase from "../Landing/CommerceAppShowcase";
 import TeamShowcase from "./Team";
+import ClassyFeaturesSection from "../Landing/OurFeatures";
 
 const Portfolio = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -39,7 +40,7 @@ const Portfolio = () => {
       <PreviousProjects/>
  {/* <OurMagicalProcess/> */}
       {/* CTA Section */}
-     <CallToAction/>
+     <ClassyFeaturesSection/>
      <TeamShowcase/>
 
       
