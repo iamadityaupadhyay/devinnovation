@@ -15,7 +15,7 @@ import connectDB from "@/lib/util";
 // Add this CSS to your global stylesheet or module:
 // .fade-in { opacity: 0; animation: fadeIn 0.8s forwards; }
 // @keyframes fadeIn { to { opacity: 1; } }
-
+export const dynamic = 'force-dynamic';
 export default async function Home() {
   await connectDB()
   const clients = JSON.parse(JSON.stringify(await Client.find().lean().sort({ createdAt: -1 })));
