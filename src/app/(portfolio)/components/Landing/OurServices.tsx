@@ -165,7 +165,7 @@ export const OurServices = () => {
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-5">
           <h3 className="text-blue-800 font-medium uppercase tracking-wider text-sm"></h3>
-          <h1 className="text-3xl md:text-3xl font-extrabold text-gray-900 mb-1 leading-tight">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-1 leading-tight">
             We Build Modern Creative
           </h1>
           <h2 className="text-3xl font-bold mb-6">

@@ -79,26 +79,26 @@ const ClassyFeaturesSection = () => {
         {/* Header */}
         <div className="max-w-5xl mx-auto text-center mb-10">
           <div className="mb-4">
-            <h2 className="text-3xl font-black text-gray-900 mb-4 leading-tight">
+            <h2 className="text-3xl font-black text-gray-900 mb-3 leading-tight">
               Let's Build Your
               <span className="ml-3 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 text-transparent bg-clip-text">
                 Digital Empire
               </span>
             </h2>
-            <p className="text-base text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-base hidden sm:block text-gray-600 font-light max-w-2xl mx-auto">
               Transform your vision into reality with our world-class development services
             </p>
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap items-center  xs:hidden  justify-center gap-4 md:gap-8 text-gray-500 mb-5">
+          <div className="flex flex-wrap items-center    justify-center gap-4 md:gap-8 text-gray-500 mb-5">
             <div className="flex items-center gap-2 text-sm font-medium">
               <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center">
                 <Shield className="w-4 h-4 text-white" />
               </div>
               100% Secure
             </div>
-            <div className="flex items-center gap-2 text-sm font-medium">
+            <div className="items-center gap-2 text-sm font-medium hidden sm:flex">
               <div className="w-8 h-8 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
               </div>

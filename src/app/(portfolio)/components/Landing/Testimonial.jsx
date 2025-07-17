@@ -34,11 +34,11 @@ const TestimonialCarousel = ({clients}) => {
       <div className=" w-full">
         <div className="grid py-16  md:grid-cols-2  items-stretch overflow-hidden">
           {/* Left Side - Hero Content */}
-          <div className="relative p-2 rounded-3xl min-h-[250px] max-h-[500px]">
+          <div className="relative p-2 hidden sm:block rounded-3xl min-h-[250px] max-h-[500px]">
             <img
               src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&h=800&fit=crop"
               alt="Nature background"
-              className="w-full md:h-[500px] px-5 hidden sm:block rounded-3xl object-cover"
+              className="w-full md:h-[500px] px-5  rounded-3xl object-cover"
             />
 
             {/* Bubble Title Overlay */}
@@ -56,9 +56,18 @@ const TestimonialCarousel = ({clients}) => {
               <div className="text-lg opacity-90">Happy Clients</div>
             </div>
           </div>
+          <div className='relative flex pb-10 flex-row justify-center items-center md:hidden'>
+            <p>
+              <span className='text-2xl block font-bold text-gray-800'>Hear From Our Satisfied Clients</span>
+              <span className='text-orange-500 block text-center text-2xl font-bold'> Have To Say 🖤</span>
+
+            </p>
+            
+
+          </div>
 
           {/* Right Side - Testimonials */}
-          <div className=" flex md:flex-col items-center flex-row justify-between h-full">
+          <div className="px-4 flex md:flex-col items-center flex-row justify-between h-full">
             <div 
               className="relative  h-full"
               onMouseEnter={handleMouseEnter}
@@ -82,17 +91,14 @@ const TestimonialCarousel = ({clients}) => {
                       </div>
 
                       {/* Quote */}
-                      <blockquote className="text-gray-700 text-sm leading-relaxed mb-6">
+                      <blockquote className="text-gray-700 text-sm leading-relaxed mb-3">
                         "{testimonial.content || testimonial.feedback}"
                       </blockquote>
 
                       {/* Client Info */}
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="w-12 h-12 rounded-full object-cover border-2 border-orange-300"
-                        />
+                      <div className="flex items-center justify-between ">
+                        <div>
+                          
                         <div className="overflow-hidden">
                           <h4 className="font-semibold text-gray-900 text-base">
                             {testimonial.name}
@@ -101,7 +107,16 @@ const TestimonialCarousel = ({clients}) => {
                             {testimonial.position || testimonial.projectName}
                           </p>
                         </div>
+
+                        
+                        
                       </div>
+                      <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-12 h-12 rounded-full object-cover border-2 border-orange-300"
+                        />
+                        </div>
                     </div>
                   ))}
                 </div>
