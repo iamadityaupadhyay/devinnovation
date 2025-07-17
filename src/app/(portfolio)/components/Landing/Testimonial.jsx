@@ -44,9 +44,9 @@ const TestimonialCarousel = ({clients}) => {
             {/* Bubble Title Overlay */}
             <div className="absolute top-0 pl-5 py-2 z-10">
               <h1 className="text-2xl rounded-2xl md:text-3xl font-bold  text-gray-800">
-                <span className='bg-gray-50 rounded-r-lg pl-4 mb-4 pr-5'>Hear From Our</span>
-                <span className="bg-gray-50 block pl-7 pr-5 rounded-r-lg  text-orange-500 ">Satisfied Clients</span>
-                <span className=' pl-4  bg-gray-50 rounded-r-lg mt-4  pr-1'>Have To Say <span className="text-red-500">🖤</span></span>
+                <span className='bg-gray-50 rounded-br-lg pl-4 mb-4 pr-5'>Hear From Our</span>
+                <span className="bg-gray-50 block pl-7 pr-2 rounded-r-md  text-orange-500 ">Satisfied Clients</span>
+                <span className=' pl-4  bg-gray-50 rounded-r-md mt-4  pr-1'>Have To Say <span className="text-red-500">🖤</span></span>
               </h1>
             </div>
 

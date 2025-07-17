@@ -23,22 +23,22 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
-      <div className="fade-in">
+      <div className="animate-slide-up">
         <HeroSection />
       </div>
       <div className="fade-in">
         <CommerceAppsShowcase />
       </div>
-      <div className="fade-in">
+      <div className="animate-slide-up">
         <PreviousProjects />
       </div>
-      <div className="fade-in">
+      <div className="animate-slide-up">
         <OurServices />
       </div>
-      <div className="fade-in">
+      <div className="animate-slide-up">
         <TestimonialCarousel clients={clients}/>
       </div>
-      <div className="fade-in">
+      <div className="animate-slide-up">
         <ClassyFeaturesSection />
       </div>
       <div className="fade-in">
