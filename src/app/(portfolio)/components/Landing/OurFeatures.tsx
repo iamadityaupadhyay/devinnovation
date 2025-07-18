@@ -75,6 +75,7 @@ const ClassyFeaturesSection = () => {
   ];
 
   return (
+    <>
     <section className="py-14 bg-gradient-to-br from-slate-50 via-white to-gray-50 px-4 md:px-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -172,8 +173,10 @@ const ClassyFeaturesSection = () => {
           </button>
         </div>
       </div>
-      <RequestQuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      
     </section>
+    <RequestQuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
     
   );
 };
