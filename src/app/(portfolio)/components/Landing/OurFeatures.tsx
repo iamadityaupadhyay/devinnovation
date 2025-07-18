@@ -2,6 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Shield, Zap, CheckCircle } from 'lucide-react';
+import RequestQuoteModal from '../Forms/RequestQuote';
 
 const ClassyFeaturesSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -171,7 +172,9 @@ const ClassyFeaturesSection = () => {
           </button>
         </div>
       </div>
+      <RequestQuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
+    
   );
 };
 
