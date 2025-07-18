@@ -1,12 +1,17 @@
-"use client"
+
 import React from 'react';
-import { useState } from 'react';
 import { Shield, Zap, CheckCircle } from 'lucide-react';
 import RequestQuoteModal from '../Forms/RequestQuote';
+import connectDB from '@/lib/util';
+import Contact from '@/app/admin/model/contact';
+import Link from 'next/link';
 
-const ClassyFeaturesSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  
+
+export const dynamic = 'force-dynamic';
+const ClassyFeaturesSection = async() => {
+  await connectDB()
+  const contact = await Contact.find();
+  const whatsapp = contact[0].whatsapp;
   const features = [
     {
       title: "100% Customer Satisfaction",
@@ -163,19 +168,19 @@ const ClassyFeaturesSection = () => {
 
         {/* Call to Action */}
         <div className="text-center">
-          <button 
-            onClick={() => setIsModalOpen(true)}
+          <Link 
+            href={`https://wa.me/${contact[0].whatsapp}?text=Hi%20I%20want%20to%20book%20a%20consultation%20for%20%20App`}
             className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-xl shadow-md shadow-orange-500/25  hover:shadow-orange-500/40 transition-all duration-300 transform overflow-hidden"
           >
             <span className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             <span className="relative">Schedule Free Consultation</span>
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -skew-x-12 translate-x-full group-hover:translate-x-[-200%]"></div>
-          </button>
+          </Link>
         </div>
       </div>
       
     </section>
-    <RequestQuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    
     </>
     
   );
