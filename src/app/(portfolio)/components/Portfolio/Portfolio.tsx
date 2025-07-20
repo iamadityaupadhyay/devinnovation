@@ -40,7 +40,7 @@ const Portfolio = () => {
       <PreviousProjects/>
  {/* <OurMagicalProcess/> */}
       {/* CTA Section */}
-     <ClassyFeaturesSection/>
+     
      <TeamShowcase/>
 
       
