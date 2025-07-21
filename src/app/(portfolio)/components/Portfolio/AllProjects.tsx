@@ -287,7 +287,7 @@ const ProjectsShowcase: React.FC = () => {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex justify-between items-center ">
               {project.link && (
                 <Link
                   href={project.link}

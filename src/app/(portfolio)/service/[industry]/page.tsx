@@ -617,7 +617,7 @@ export default function IndustryPage({ params }: any) {
             </div>
 
             {/* Main Content Section - At half height */}
-            <div className="gap-8 items-start" >
+            <div className="" >
               {/* Left Side - Your Content */}
               <ServiceForm/>
               

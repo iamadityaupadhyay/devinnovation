@@ -73,11 +73,11 @@ const ServiceForm: React.FC = () => {
 
   return (
     <div className="">
-      <div className=" mx-auto">
-       <div className="bg-white backdrop-blur-sm rounded-md shadow-xl p-4">
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Get a Quote</h3>
-              <p className="text-gray-600">Fill out the form below and we'll get back to you soon</p>
+      <div className="max-w-4xl mx-auto px-4 py-8">
+       <div className="bg-white  backdrop-blur-sm rounded-md shadow-xl p-6">
+            <div className="mb-10">
+              <h3 className="text-xl font-bold text-center text-gray-900 mb-2">Get a Quote</h3>
+              <p className="text-gray-600 text-center">Fill out the form below and we'll get back to you soon</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">

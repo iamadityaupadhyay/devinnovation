@@ -1,26 +1,13 @@
-"use client";
 
-import React, { useState, useEffect } from "react";
-import IndustryLeading from "../Landing/IndustryLeading";
-import OurMagicalProcess from "./OurMagicalProcess";
+import React from "react";
 import HeroSection from "./HeroSection";
-import CallToAction from "./CallToAction";
 import PreviousProjects from "./OurProjects";
 import CommerceAppsShowcase from "../Landing/CommerceAppShowcase";
 import TeamShowcase from "./Team";
 import ClassyFeaturesSection from "../Landing/OurFeatures";
 
 const Portfolio = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [activeSection, setActiveSection] = useState(0);
-
-  useEffect(() => {
-    setIsVisible(true);
-    const interval = setInterval(() => {
-      setActiveSection(prev => (prev + 1) % 4);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+  
 
 
   
@@ -40,7 +27,7 @@ const Portfolio = () => {
       <PreviousProjects/>
  {/* <OurMagicalProcess/> */}
       {/* CTA Section */}
-     
+     <ClassyFeaturesSection/>
      <TeamShowcase/>
 
       
