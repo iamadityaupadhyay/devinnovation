@@ -5,6 +5,7 @@ import Team from '../../model/team'
 import TeamTable from './TeamTable'
 
 // Server Actions
+export const dynamic = "force-dynamic"
 export async function deleteTeamMember(formData) {
   'use server'
   const memberId = formData.get('memberId')
