@@ -49,7 +49,7 @@ const ServiceForm: React.FC = () => {
     setIsSubmitting(true);
     e.preventDefault();
     try {
-      const response = await axios.post("/apis/quoteSubmit", formData);
+      const response = await axios.post("/api/quoteSubmit", formData);
       
       
       // Reset form after submission

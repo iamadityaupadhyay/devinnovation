@@ -1,6 +1,7 @@
 "use client"
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+
 // Sample project data - replace with your actual data
 const sampleProjects = [
   {
@@ -11,7 +12,6 @@ const sampleProjects = [
     image: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&h=600&q=80",
     link: "https://example.com"
   },
-  
   {
     _id: "4",
     title: "Real Estate Platform",
@@ -44,58 +44,100 @@ function MobileCarouselProjects() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [projects, setProjects] = useState(sampleProjects);
   const carouselRef = useRef(null);
-  const projects = sampleProjects; // Replace with your actual projects data
+  const autoSlideRef = useRef(null);
 
-
-
-  const fetchProjects = async ()=>{
-    const response = await fetch('/admin/api/getProjects');
-    const data = await response.json();
-    if (data.success) {
-      sampleProjects.unshift(...data.projects);
-    } else {
-      console.error("Failed to fetch projects");
-      return [];
+  const fetchProjects = async () => {
+    try {
+      const response = await fetch('/admin/api/getProjects');
+      const data = await response.json();
+      if (data.success) {
+        setProjects([...data.projects, ...sampleProjects]);
+      } else {
+        console.error("Failed to fetch projects");
+      }
+    } catch (error) {
+      console.error("Error fetching projects:", error);
     }
-  }
+  };
+
   useEffect(() => {
     fetchProjects();
-  }, []);
-
-
-  
-
-
-
-  useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  // Auto-slide functionality
+  useEffect(() => {
+    const startAutoSlide = () => {
+      autoSlideRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 5000);
+    };
+
+    const stopAutoSlide = () => {
+      if (autoSlideRef.current) {
+        clearInterval(autoSlideRef.current);
+        autoSlideRef.current = null;
+      }
+    };
+
+    // Start auto-slide
+    startAutoSlide();
+
+    // Cleanup function
+    return () => stopAutoSlide();
+  }, [projects.length]);
+
+  // Pause auto-slide on user interaction
+  const pauseAutoSlide = () => {
+    if (autoSlideRef.current) {
+      clearInterval(autoSlideRef.current);
+      autoSlideRef.current = null;
+    }
+  };
+
+  // Resume auto-slide after user interaction
+  const resumeAutoSlide = () => {
+    if (!autoSlideRef.current) {
+      autoSlideRef.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => 
+          prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 5000);
+    }
+  };
+
   const nextSlide = () => {
+    pauseAutoSlide();
     setCurrentIndex((prevIndex) => 
       prevIndex === projects.length - 1 ? 0 : prevIndex + 1
     );
+    // Resume auto-slide after 8 seconds of inactivity
+    setTimeout(resumeAutoSlide, 8000);
   };
-  setTimeout(
-    ()=>{
-      goToSlide(currentIndex + 1 >= projects.length ? 0 : currentIndex + 1);  
-    },5000
-  )
-  
 
   const prevSlide = () => {
+    pauseAutoSlide();
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? projects.length - 1 : prevIndex - 1
     );
+    // Resume auto-slide after 8 seconds of inactivity
+    setTimeout(resumeAutoSlide, 8000);
   };
 
   const goToSlide = (index) => {
+    pauseAutoSlide();
     setCurrentIndex(index);
+    // Resume auto-slide after 8 seconds of inactivity
+    setTimeout(resumeAutoSlide, 8000);
   };
 
   // Touch/Mouse drag handlers
   const handleMouseDown = (e) => {
+    pauseAutoSlide();
     setIsDragging(true);
     setStartX(e.pageX - carouselRef.current.offsetLeft);
     setScrollLeft(carouselRef.current.scrollLeft);
@@ -118,10 +160,13 @@ function MobileCarouselProjects() {
 
   const handleMouseUp = () => {
     setIsDragging(false);
+    // Resume auto-slide after 8 seconds of inactivity
+    setTimeout(resumeAutoSlide, 8000);
   };
 
   // Touch handlers
   const handleTouchStart = (e) => {
+    pauseAutoSlide();
     setStartX(e.touches[0].clientX);
   };
 
@@ -139,6 +184,11 @@ function MobileCarouselProjects() {
       }
       setStartX(0);
     }
+  };
+
+  const handleTouchEnd = () => {
+    // Resume auto-slide after 8 seconds of inactivity
+    setTimeout(resumeAutoSlide, 8000);
   };
 
   const getItemStyle = (index) => {
@@ -183,12 +233,10 @@ function MobileCarouselProjects() {
   };
 
   return (
-    <div className="relative  py-10 px-4 overflow-hidden">
-      
-      
+    <div className="relative py-10 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto pb-10 relative">
         {/* Header */}
-        <div className="text-center ">
+        <div className="text-center">
           <h2 className="text-3xl font-black text-gray-800 mb-2">
             Our Leading 
             <span className="ml-2 bg-gradient-to-r from-orange-400 to-red-500 text-transparent bg-clip-text">
@@ -201,19 +249,17 @@ function MobileCarouselProjects() {
         </div>
 
         {/* Carousel Container */}
-        
         <div 
           ref={carouselRef}
-          className=" bg-gradient-to-r  from-orange-500 via-orange-600 to-orange-700 h-[400px] w-[360px]  md:w-[580px] md:h-[580px] rounded-full max-w-4xl mx-auto mt-20 flex items-center justify-center cursor-grab active:cursor-grabbing"
+          className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 h-[400px] w-[360px] md:w-[580px] md:h-[580px] rounded-full max-w-4xl mx-auto mt-20 flex items-center justify-center cursor-grab active:cursor-grabbing"
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
-          
-
           {/* Phone Frames */}
           {projects.map((project, index) => (
             <div
@@ -240,8 +286,6 @@ function MobileCarouselProjects() {
                       alt={project.title}
                       className="w-full h-full object-center"
                     />
-                    
-                    
                   </div>
                   
                   {/* Home Indicator */}
@@ -252,18 +296,14 @@ function MobileCarouselProjects() {
           ))}
         </div>
 
-        
-
         {/* Project Details */}
         <div className="mt-12 text-center">
           <h3 className="text-xl font-bold text-gray-800 mb-1">
-            {projects[currentIndex].name}
+            {projects[currentIndex]?.name}
           </h3>
-          <p className="text-gray-600  max-w-2xl mx-auto">
-            {projects[currentIndex].shortDescription}
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            {projects[currentIndex]?.shortDescription}
           </p>
-          
-          
         </div>
 
         {/* More Projects Link */}

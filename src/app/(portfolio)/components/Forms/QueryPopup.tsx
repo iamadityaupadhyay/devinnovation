@@ -63,7 +63,7 @@ const QueryPopup = () => {
     
 
     try {
-      const response = await axios.post('/apis/querySubmit', formData);
+      const response = await axios.post('/api/querySubmit', formData);
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setIsSubmitted(true);
       // Auto close after success
