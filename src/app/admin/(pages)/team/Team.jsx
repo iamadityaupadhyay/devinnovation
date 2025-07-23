@@ -1,10 +1,11 @@
-'use server'
+export const dynamic = "force-dynamic"
 import { revalidatePath } from 'next/cache'
 import connectDB from '@/lib/util'
 import Team from '../../model/team'
 import TeamTable from './TeamTable'
 
 // Server Actions
+
 export async function deleteTeamMember(formData) {
   'use server'
   const memberId = formData.get('memberId')
