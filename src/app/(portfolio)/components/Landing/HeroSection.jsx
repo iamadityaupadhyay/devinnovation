@@ -2,12 +2,18 @@
 import { useState, useEffect } from "react";
 import RequestQuoteModal from "../Forms/RequestQuote";
 import { motion } from "framer-motion";
-export default function HeroSection() {
+export default function HeroSection({carousel}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [images, setImages] = useState([]);
-
+  useEffect(() => {
+    if (carousel && carousel.length > 0) {
+      setImages(
+        carousel.map((item) => [item.image1, item.image2]) // Assuming data is an array of objects with image1 and image2 properties  
+      );
+    }
+  }, [carousel]);
   const slides = [
     {
       id: 1,
@@ -65,24 +71,7 @@ export default function HeroSection() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
 
-  useEffect(() => {
-    // Fetch images from API
-    const fetchImages = async () => {
-      try {
-        const response = await fetch('/admin/api/carousel'); // Replace with actual API endpoint
-        const data = await response.json();
-        setImages(
-          data.map((item) => [item.image1, item.image2]) // Assuming data is an array of objects with image1 and image2 properties
-          
-        ); // Assuming data is an array of image URLs grouped by slide
-      } catch (error) {
-        console.error('Error fetching images:', error);
-        // Fallback images
-        setImages([]);
-      }
-    };
-    fetchImages();
-  }, []);
+  
 
   const goToSlide = (index) => {
     setCurrentSlide(index);

@@ -10,6 +10,7 @@ import CommerceAppsShowcase from "./components/Landing/CommerceAppShowcase";
 import ClassyFeaturesSection from "./components/Landing/OurFeatures";
 import Client from "../admin/model/client";
 import connectDB from "@/lib/util";
+import Carousel from "../admin/model/carousel";
 
 // Simple fade-in animation using CSS classes
 // Add this CSS to your global stylesheet or module:
@@ -19,12 +20,15 @@ export const dynamic = 'force-dynamic';
 export default async function Home() {
   await connectDB()
   const clients = JSON.parse(JSON.stringify(await Client.find().lean().sort({ createdAt: -1 })));
+  const carousel = JSON.parse(JSON.stringify(await Carousel.find().lean()));
+
+
 
 
   return (
     <main className="min-h-screen">
       <div className="animate-slide-up">
-        <HeroSection />
+        <HeroSection carousel={carousel} />
       </div>
       <div className="fade-in">
         <CommerceAppsShowcase />

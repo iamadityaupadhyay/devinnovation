@@ -1,9 +1,9 @@
-export const dynamic = "force-dynamic"
+
 import { revalidatePath } from 'next/cache'
 import connectDB from '@/lib/util'
 import Team from '../../model/team'
 import TeamTable from './TeamTable'
-
+export const dynamic = "force-dynamic"
 // Server Actions
 
 export async function deleteTeamMember(formData) {
