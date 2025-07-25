@@ -195,7 +195,7 @@ export default function HeroSection({carousel}) {
                            </div>
                           <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-2 rounded-full bg-gray-800 "></div>
                         </div>
-                        <div className="relative w-52 h-80 mt-14 bg-gray-800 rounded-3xl p-2 shadow-[0_12px_24px_-4px_rgba(0,0,0,0.4)] transform">
+                        <div className="relative w-48 h-80 mt-14 bg-gray-800 rounded-3xl p-2 shadow-[0_12px_24px_-4px_rgba(0,0,0,0.4)] transform">
                           <div className="bg-white rounded-2xl w-full h-full overflow-hidden">
                             <img
                               src={images[index][1]}
