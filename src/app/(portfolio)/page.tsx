@@ -27,9 +27,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen">
-      <div className="animate-slide-up">
-        <HeroSection carousel={carousel} />
-      </div>
+      <HeroSection carousel={carousel} />
+      
       <div className="fade-in">
         <CommerceAppsShowcase />
       </div>
